@@ -1,6 +1,7 @@
 /* ============================================================
-   The Careoperative — style.css
-   Shared stylesheet for all pages.
+   The Careoperative — style.css (v2.0 Harmonized)
+   Unified stylesheet for all 6 pages.
+   Riso Palette with Light Teal (dark mode) standardization.
    ============================================================ */
 
 
@@ -41,36 +42,73 @@ a {
   text-decoration: none;
 }
 
+/* Skip link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--riso-yellow);
+  color: var(--riso-teal);
+  padding: 8px 16px;
+  z-index: 1000;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 
 /* ------------------------------------------------------------
    1. CSS Custom Properties — Light mode (default)
    ------------------------------------------------------------ */
 
 :root {
-  /* Earth greens — primary */
-  --color-primary:        #4a7c59;
-  --color-primary-light:  #7aab8a;
-  --color-primary-dark:   #2e5c3e;
+  /* ── Riso Inks (primary brand colors) ── */
+  --riso-coral:   #e8604c;
+  --riso-teal:    #1d6b6b;
+  --riso-yellow:  #f5c842;
+  --riso-plum:    #6b3a6b;
 
-  /* Warm neutrals — backgrounds and surfaces */
-  --color-bg:             #faf7f2;
-  --color-surface:        #f0ebe2;
-  --color-surface-alt:    #e8e0d4;
+  /* ── Navigation / Footer Background ── */
+  --nav-bg:       #1d6b6b;
 
-  /* Text */
-  --color-text:           #2c2a25;
-  --color-text-muted:     #6b6459;
-  --color-text-subtle:    #9c9389;
+  /* ── Page Surfaces & Text (Light Mode) ── */
+  --riso-bg:      #faf3e8;
+  --riso-surface: #f0ebe0;
+  --riso-ink:     #1a1a1a;
+  --riso-ink-mid: #444;
 
-  /* Accents */
-  --color-accent:         #8b6f3e;
-  --color-accent-light:   #c4a97a;
+  /* ── H2 Chip Styling ── */
+  --chip-bg:      var(--riso-yellow);
+  --chip-text:    var(--riso-teal);
 
-  /* Functional */
-  --color-border:         #d4cdc3;
-  --color-focus:          #4a7c59;
+  /* ── Forest SVG Base Colour ── */
+  --forest-color: #1d6b6b;
 
-  /* Typography scale */
+  /* ── Card/Border Elements ── */
+  --riso-border:         #d4cdc3;
+  --riso-photo-bg:       #e8e0d4;
+  --riso-shadow:         rgba(0,0,0,0.13);
+  --riso-dim-filter:     brightness(0.72) saturate(0.6);
+
+  /* ── Sleeping Member State ── */
+  --riso-sleeping-bg: #f5f0e8;
+  --riso-sleeping-dot: #b0a898;
+
+  /* ── Badge Styling ── */
+  --badge-bg:      rgba(29,107,107,0.10);
+  --badge-border:  rgba(29,107,107,0.30);
+  --badge-text:    #1d6b6b;
+
+  /* ── Layout Tokens ── */
+  --card-h:     140px;
+  --photo-w:    110px;
+  --peek-w:     24px;
+  --card-gap:   12px;
+
+  /* ── Typography Scale ── */
   --font-xs:   0.8rem;
   --font-sm:   0.9rem;
   --font-base: 1rem;
@@ -80,135 +118,136 @@ a {
   --font-2xl:  2.75rem;
   --font-3xl:  3.5rem;
 
-  /* Spacing scale */
+  /* ── Spacing Scale ── */
   --space-xs:  0.25rem;
   --space-sm:  0.5rem;
   --space-md:  1rem;
   --space-lg:  2rem;
   --space-xl:  3.5rem;
   --space-2xl: 6rem;
+
+  /* ── Focus Ring ── */
+  --color-focus: #1d6b6b;
 }
 
 
 /* ------------------------------------------------------------
    2. Dark mode — automatic via prefers-color-scheme
    ------------------------------------------------------------ */
+/* ── GLOBAL VARIABLES (ALL MODES SHARE THESE) ── */
+:root {
+  /* RISO INKS - Constant across modes */
+  --riso-coral:   #e8604c;
+  --riso-teal:    #1d6b6b; 
+  --riso-yellow:  #f5c842;  /* DO NOT CHANGE IN DARK MODE */
+  --riso-plum:    #6b3a6b;  /* DO NOT CHANGE IN DARK MODE */
+  
+  /* LIGHT MODE BASES */
+  --nav-bg:       #1d6b6b;
+  --riso-bg:      #faf3e8;
+  --riso-surface: #f0ebe0;
+  --riso-ink:     #1a1a1a;
+  --riso-ink-mid: #444;
+  --chip-bg:      var(--riso-yellow);
+  --chip-text:    var(--riso-teal);
+  --forest-color: #1d6b6b;
+}
 
-@media (prefers-color-scheme: dark) {
+/* ── DARK MODE OVERRIDES (Unified) ── */
+@media (prefers-color-scheme: dark), html.dark {
   :root {
-    --color-primary:        #7aab8a;
-    --color-primary-light:  #9dc4ad;
-    --color-primary-dark:   #4a7c59;
-
-    --color-bg:             #1e1c18;
-    --color-surface:        #272420;
-    --color-surface-alt:    #322f2a;
-
-    --color-text:           #ede8e0;
-    --color-text-muted:     #a89f94;
-    --color-text-subtle:    #7a7169;
-
-    --color-accent:         #c4a97a;
-    --color-accent-light:   #d9c49f;
-
-    --color-border:         #3d3830;
-    --color-focus:          #7aab8a;
+    /* BACKGROUND & TEXT CHANGES ONLY */
+    --riso-bg:      #1a1a18;    /* Slightly lighter than #18150f */
+    --riso-surface: #252420;
+    --riso-ink:     #e8e2d9;
+    --riso-ink-mid: #b0a898;
+    
+    /* TEAL MODIFICATION (Per your request: Light Teal) */
+    --riso-teal:    #5aadad;    /* <-- Both system-dark AND manual-dark use this */
+    --nav-bg:       #1d6b6b;    /* Keep nav bar darker for separation */
+    
+    /* UPDATED CHIP TEXT */
+    --chip-bg:      var(--riso-yellow);
+    --chip-text:    #1a1a1a;    /* Black text on yellow chip (high contrast) */
+    --forest-color: #5aadad;    /* Sync with new teal */
+    
+    /* NEW ELEMENT SUPPORT (From careoperative/work pages) */
+    --riso-border:         #3d3828;
+    --riso-photo-bg:       #302d24;
+    --riso-shadow:         rgba(0,0,0,0.4);
+    --riso-dim-filter:     brightness(0.45) saturate(0.4);
+    --riso-sleeping-bg:    #222018;
+    --riso-sleeping-dot:   #5a5448;
+    --badge-bg:            rgba(42,138,138,0.15);
+    --badge-border:        rgba(42,138,138,0.35);
+    --badge-text:          #2a8a8a;
   }
 }
 
-
 /* ------------------------------------------------------------
-   3. Dark mode — manual override (.dark class on <html>)
+   4. Light mode — manual override (.light class on <html>)
    ------------------------------------------------------------ */
 
-html.dark {
-  --color-primary:        #7aab8a;
-  --color-primary-light:  #9dc4ad;
-  --color-primary-dark:   #4a7c59;
-
-  --color-bg:             #1e1c18;
-  --color-surface:        #272420;
-  --color-surface-alt:    #322f2a;
-
-  --color-text:           #ede8e0;
-  --color-text-muted:     #a89f94;
-  --color-text-subtle:    #7a7169;
-
-  --color-accent:         #c4a97a;
-  --color-accent-light:   #d9c49f;
-
-  --color-border:         #3d3830;
-  --color-focus:          #7aab8a;
+html.light {
+  --riso-coral:   #e8604c;
+  --riso-teal:    #1d6b6b;
+  --riso-yellow:  #f5c842;
+  --riso-plum:    #6b3a6b;
+  --nav-bg:       #1d6b6b;
+  --riso-bg:      #faf3e8;
+  --riso-surface: #f0ebe0;
+  --riso-ink:     #1a1a1a;
+  --riso-ink-mid: #444;
+  --chip-bg:      var(--riso-yellow);
+  --chip-text:    var(--riso-teal);
+  --forest-color: #1d6b6b;
+  --riso-border:         #d4cdc3;
+  --riso-photo-bg:       #e8e0d4;
+  --riso-shadow:         rgba(0,0,0,0.13);
+  --riso-dim-filter:     brightness(0.72) saturate(0.6);
+  --riso-sleeping-bg: #f5f0e8;
+  --riso-sleeping-dot: #b0a898;
+  --badge-bg:      rgba(29,107,107,0.10);
+  --badge-border:  rgba(29,107,107,0.30);
+  --badge-text:    #1d6b6b;
 }
 
 
 /* ------------------------------------------------------------
-   4. Base typography
+   5. Body base styling
    ------------------------------------------------------------ */
 
 body {
   font-family: 'Source Serif 4', Georgia, serif;
   font-size: var(--font-base);
-  font-weight: 400;
   line-height: 1.7;
-  color: var(--color-text);
-  background-color: var(--color-bg);
-
-  /*
-   * Option B — radial gradient mesh texture.
-   * Four soft pools of slightly warmer/cooler tone layered over the base bg.
-   * Each gradient is radial, large-radius, very low opacity — they read as
-   * ambient light variation rather than deliberate colour, like uneven sunlight
-   * on uncoated paper. The gradients use fixed percentage positions so they
-   * stay anchored to the viewport rather than scrolling with content.
-   *
-   * Pool 1 (top-left):  warm amber tint  — suggests morning light from a window
-   * Pool 2 (top-right): cool green tint  — slight chlorophyll cast
-   * Pool 3 (bottom-left): neutral warm   — balances the composition
-   * Pool 4 (centre):    very soft cream  — brightens the reading column
-   *
-   * All values use fixed hex so they work independently of CSS variable
-   * transitions and don't flicker on dark-mode toggle. Dark mode gets its
-   * own set via the .dark override below.
-   */
-  background-image:
-    radial-gradient(ellipse 80% 60% at 15% 18%,  rgba(196, 155,  80, 0.110) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 90% 10%,  rgba(160, 130,  60, 0.075) 0%, transparent 65%),
-    radial-gradient(ellipse 65% 60% at  8% 88%,  rgba(185, 148,  72, 0.085) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 45% at 78% 82%,  rgba(140, 110,  55, 0.060) 0%, transparent 60%),
-    radial-gradient(ellipse 90% 70% at 50% 45%,  rgba(255, 240, 210, 0.090) 0%, transparent 75%);
-
-  background-attachment: fixed;
-  transition: background-color 0.2s ease, color 0.2s ease;
+  color: var(--riso-ink);
+  background-color: var(--riso-bg);
+  position: relative;
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-/* Dark mode: warm amber pools, reduced opacity against dark bg */
-html.dark body {
-  background-image:
-    radial-gradient(ellipse 80% 60% at 15% 18%,  rgba(196, 155,  80, 0.065) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 50% at 90% 10%,  rgba(160, 130,  60, 0.045) 0%, transparent 65%),
-    radial-gradient(ellipse 65% 60% at  8% 88%,  rgba(185, 148,  72, 0.050) 0%, transparent 65%),
-    radial-gradient(ellipse 55% 45% at 78% 82%,  rgba(140, 110,  55, 0.035) 0%, transparent 60%),
-    radial-gradient(ellipse 90% 70% at 50% 45%,  rgba(196, 155,  80, 0.025) 0%, transparent 75%);
-  background-attachment: fixed;
+/* Grain texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
 }
 
-@media (prefers-color-scheme: dark) {
-  body {
-    background-image:
-      radial-gradient(ellipse 80% 60% at 15% 18%,  rgba(196, 155,  80, 0.065) 0%, transparent 70%),
-      radial-gradient(ellipse 60% 50% at 90% 10%,  rgba(160, 130,  60, 0.045) 0%, transparent 65%),
-      radial-gradient(ellipse 65% 60% at  8% 88%,  rgba(185, 148,  72, 0.050) 0%, transparent 65%),
-      radial-gradient(ellipse 55% 45% at 78% 82%,  rgba(140, 110,  55, 0.035) 0%, transparent 60%),
-      radial-gradient(ellipse 90% 70% at 50% 45%,  rgba(196, 155,  80, 0.025) 0%, transparent 75%);
-    background-attachment: fixed;
-  }
-}
+
+/* ------------------------------------------------------------
+   6. Typography
+   ------------------------------------------------------------ */
 
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Lora', Georgia, serif;
   line-height: 1.2;
-  color: var(--color-text);
+  color: var(--riso-ink);
 }
 
 h1 { font-size: var(--font-2xl); font-weight: 700; }
@@ -232,36 +271,40 @@ em     { font-style: italic; }
 
 small {
   font-size: var(--font-sm);
-  color: var(--color-text-muted);
+  color: var(--riso-ink-mid);
 }
 
 blockquote {
-  border-left: 3px solid var(--color-primary);
+  border-left: 3px solid var(--riso-teal);
   padding-left: var(--space-md);
-  color: var(--color-text-muted);
+  color: var(--riso-ink-mid);
   font-style: italic;
   margin: var(--space-lg) 0;
 }
 
 
 /* ------------------------------------------------------------
-   5. Links and focus states
+   7. Links and focus states
    ------------------------------------------------------------ */
 
 a {
-  color: var(--color-primary);
+  color: var(--riso-teal);
   text-decoration: none;
   transition: color 0.15s ease;
 }
 
 a:hover {
-  color: var(--color-primary-light);
+  color: var(--riso-coral);
   text-decoration: underline;
+}
+
+a:visited {
+  color: var(--riso-teal);
 }
 
 /* Global focus ring */
 :focus-visible {
-  outline: 2px solid var(--color-focus);
+  outline: 2px solid var(--riso-yellow);
   outline-offset: 2px;
   border-radius: 2px;
 }
@@ -273,46 +316,40 @@ a:hover {
 
 
 /* ------------------------------------------------------------
-   6. Layout utilities
+   8. Layout utilities
    ------------------------------------------------------------ */
 
-/* Primary content container — 860px max */
 .container {
-  width: 100%;
-  max-width: 860px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--space-lg);
-  padding-right: var(--space-lg);
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
 }
 
-/* Wide container for nav — 1100px max */
 .container-wide {
-  width: 100%;
   max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: var(--space-lg);
-  padding-right: var(--space-lg);
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
 }
 
-/* Main page content area */
+.clip-wrap {
+  overflow-x: hidden;
+}
+
 main {
+  position: relative;
+  z-index: 1;
   padding-top: var(--space-2xl);
   padding-bottom: var(--space-2xl);
 }
 
-/* Section spacing */
 .section {
-  padding-top: var(--space-2xl);
-  padding-bottom: var(--space-2xl);
+  padding: var(--space-2xl) 0;
 }
 
 .section + .section {
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--riso-border);
 }
 
-/* Section heading rhythm */
 .section-heading {
   margin-bottom: var(--space-lg);
 }
@@ -323,29 +360,22 @@ main {
 
 .section-intro {
   font-size: var(--font-md);
-  color: var(--color-text-muted);
+  color: var(--riso-ink-mid);
   max-width: 60ch;
   margin-bottom: var(--space-lg);
 }
 
 
 /* ------------------------------------------------------------
-   7. Navigation
+   9. Header & Navigation
    ------------------------------------------------------------ */
 
-/* header must not be overflow:hidden or sticky child won't work */
 header {
   position: sticky;
   top: 0;
   z-index: 100;
-}
-
-.site-nav {
-  position: relative;
-  z-index: 100;
-  background-color: var(--color-bg);
-  border-bottom: 1px solid var(--color-border);
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  width: 100%;
+  background-color: var(--nav-bg);
 }
 
 .nav-inner {
@@ -358,27 +388,83 @@ header {
   gap: var(--space-sm);
 }
 
-/* Home / SVG logo link */
 .nav-home {
   display: flex;
   align-items: center;
-  line-height: 1;
-  margin-right: auto;   /* push everything else to right */
-  flex-shrink: 0;
 }
 
 .nav-home:hover {
-  text-decoration: none;
   opacity: 0.8;
 }
 
-.nav-home:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 3px;
-  border-radius: 4px;
+/* Desktop page links */
+.nav-page-links {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  gap: 0;
+}
+
+.nav-page-link {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.85);
+  padding: 0.3rem 0.8rem;
+  border-radius: 2px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.nav-page-link:hover {
+  background-color: var(--riso-coral);
+  color: #fff;
+}
+
+.nav-page-link.active {
+  color: var(--riso-yellow);
+  border-bottom: 2px solid var(--riso-yellow);
 }
 
 /* Dark mode toggle button */
+.dark-mode-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.18);
+  border: none;
+  cursor: pointer;
+  width: 34px;
+  height: 34px;
+  border-radius: 40px;
+  font-size: 1.25rem;
+  color: var(--riso-yellow);
+  margin-right: 4px;
+  transition: all 0.2s;
+}
+
+.dark-mode-toggle:hover {
+  background: var(--riso-coral);
+  color: #fff;
+  transform: scale(0.95);
+}
+
+/* Icon visibility controls */
+.icon-moon { display: none; }
+.icon-sun  { display: block; }
+
+html.dark  .icon-sun  { display: none   !important; }
+html.dark  .icon-moon { display: block  !important; }
+html.light .icon-sun  { display: block  !important; }
+html.light .icon-moon { display: none   !important; }
+
+@media (prefers-color-scheme: dark) {
+  .icon-moon { display: block; }
+  .icon-sun  { display: none; }
+}
+
+/* Hamburger button */
 .nav-icon-btn {
   display: flex;
   align-items: center;
@@ -386,45 +472,16 @@ header {
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--color-text-muted);
-  padding: var(--space-xs);
-  border-radius: 4px;
-  transition: color 0.15s ease, background-color 0.15s ease;
-  flex-shrink: 0;
+  color: rgba(255,255,255,0.8);
+  padding: 4px;
+  border-radius: 3px;
+  transition: color 0.15s;
 }
 
 .nav-icon-btn:hover {
-  color: var(--color-primary);
-  background-color: var(--color-surface-alt);
+  color: var(--riso-yellow);
 }
 
-.nav-icon-btn:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: 2px;
-}
-
-/* Dark mode toggle: show sun in light, moon in dark */
-.icon-moon { display: none; }
-.icon-sun  { display: block; }
-
-html.dark .icon-moon { display: block; }
-html.dark .icon-sun  { display: none; }
-
-@media (prefers-color-scheme: dark) {
-  .icon-moon { display: block; }
-  .icon-sun  { display: none; }
-}
-
-/* Manual dark overrides the media query for icon display */
-html.dark .icon-moon { display: block !important; }
-html.dark .icon-sun  { display: none  !important; }
-
-/* Force light icon when html does NOT have .dark class,
-   even if system is dark (user toggled to light manually) */
-html:not(.dark) .icon-moon { display: none  !important; }
-html:not(.dark) .icon-sun  { display: block !important; }
-
-/* Hamburger button */
 .nav-hamburger {
   flex-direction: column;
   gap: 5px;
@@ -436,12 +493,11 @@ html:not(.dark) .icon-sun  { display: block !important; }
   display: block;
   width: 20px;
   height: 2px;
-  background-color: currentColor;
+  background: currentColor;
   border-radius: 1px;
-  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-/* Animate hamburger to X when open */
+/* Hamburger animation to X */
 .nav-hamburger[aria-expanded="true"] span:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
@@ -452,13 +508,12 @@ html:not(.dark) .icon-sun  { display: block !important; }
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* Slide-down nav panel */
+/* Mobile nav panel */
 .nav-panel {
   display: none;
   flex-direction: column;
-  background-color: var(--color-bg);
-  border-top: 1px solid var(--color-border);
-  transition: background-color 0.2s ease;
+  background-color: var(--nav-bg);
+  border-top: 2px solid rgba(255,255,255,0.15);
 }
 
 .nav-panel.nav-open {
@@ -467,81 +522,103 @@ html:not(.dark) .icon-sun  { display: block !important; }
 
 .nav-link {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: var(--font-md);
-  color: var(--color-text);
-  padding: var(--space-sm) var(--space-lg);
+  font-size: 1.1rem;
+  text-transform: lowercase;
+  color: rgba(255,255,255,0.9);
+  padding: 0.6rem var(--space-lg);
   border-left: 3px solid transparent;
-  transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  transition: background-color 0.15s, border-color 0.15s;
 }
 
 .nav-link:hover {
-  background-color: var(--color-surface-alt);
-  color: var(--color-primary);
-  text-decoration: none;
+  background-color: rgba(255,255,255,0.1);
+  border-left-color: var(--riso-yellow);
 }
 
 .nav-link.active,
 .nav-link[aria-current="page"] {
-  color: var(--color-primary);
-  border-left-color: var(--color-primary);
-  background-color: var(--color-surface);
-  font-weight: 600;
+  color: var(--riso-yellow);
+  border-left-color: var(--riso-yellow);
+  background-color: rgba(255,255,255,0.05);
 }
 
-.nav-link:focus-visible {
-  outline: 2px solid var(--color-focus);
-  outline-offset: -2px;
+/* Hide desktop nav on mobile */
+@media (max-width: 760px) {
+  .nav-page-links {
+    display: none;
+  }
 }
 
 
 /* ------------------------------------------------------------
-   8. Hero section
+   10. Hero sections
    ------------------------------------------------------------ */
 
-.hero {
-  padding-top: var(--space-2xl);
-  padding-bottom: var(--space-2xl);
+.page-hero {
+  padding: 4.5rem 0 3rem;
+  position: relative;
+  text-align: center;
 }
 
-.hero-eyebrow {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: var(--font-sm);
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--color-primary);
-  margin-bottom: var(--space-md);
+.page-hero h1 {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 2.8rem;
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--riso-teal);
+  margin-bottom: 1.25rem;
+}
+
+.page-hero .lead {
+  font-size: 1.05rem;
+  color: var(--riso-ink-mid);
+  max-width: 62ch;
+  margin: 0 auto;
+}
+
+.hero {
+  padding: 5rem 0 4rem;
+  text-align: center;
+  position: relative;
 }
 
 .hero-title {
   font-family: 'Lora', Georgia, serif;
-  font-size: var(--font-3xl);
+  font-size: 3.4rem;
   font-weight: 700;
-  line-height: 1.1;
-  color: var(--color-text);
-  margin-bottom: var(--space-md);
+  line-height: 1.05;
+  color: var(--riso-teal);
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0.75rem;
 }
 
 .hero-tagline {
   font-family: 'Lora', Georgia, serif;
-  font-size: var(--font-lg);
-  font-weight: 400;
+  font-size: 1.25rem;
   font-style: italic;
-  color: var(--color-text-muted);
-  margin-bottom: var(--space-lg);
-  max-width: 52ch;
+  color: var(--riso-coral);
+  margin-bottom: 0;
 }
 
 .hero-intro {
-  font-size: var(--font-md);
-  color: var(--color-text);
-  max-width: 60ch;
-  margin-bottom: var(--space-lg);
+  margin-top: 3rem;
+  text-align: left;
+  border-left: 4px solid var(--riso-yellow);
+  padding-left: 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-intro p {
-  max-width: 60ch;
-  margin-bottom: var(--space-md);
+  max-width: 100%;
+  margin-bottom: 1rem;
+  color: var(--riso-ink-mid);
+}
+
+.hero-intro strong {
+  color: var(--riso-teal);
+  font-weight: 700;
 }
 
 .hero-values {
@@ -557,260 +634,773 @@ html:not(.dark) .icon-sun  { display: block !important; }
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--color-primary);
-  border: 1px solid var(--color-primary);
+  color: var(--riso-teal);
+  border: 1px solid var(--riso-teal);
   border-radius: 2px;
   padding: 0.2rem 0.6rem;
 }
 
 
 /* ------------------------------------------------------------
-   9. Publication cards
+   11. Labyrinth decorative SVG
+   ------------------------------------------------------------ */
+
+.page-labyrinth {
+  position: absolute;
+  right: -60px;
+  top: 640px;
+  width: 300px;
+  height: 274px;
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 0;
+  color: var(--riso-coral);
+}
+
+.hero-labyrinth {
+  position: absolute;
+  top: 445px;
+  right: 100px;
+  width: 340px;
+  height: 310px;
+  opacity: 0.09;
+  pointer-events: none;
+  z-index: 0;
+  color: var(--riso-coral);
+}
+
+html.dark .hero-labyrinth {
+  opacity: 0.12;
+}
+
+@media (max-width: 560px) {
+  .page-labyrinth {
+    width: 220px;
+    height: 200px;
+    top: 520px;
+    right: -10px;
+    opacity: 0.07;
+  }
+  .hero-labyrinth {
+    width: 220px;
+    height: 200px;
+    top: 380px;
+    right: 10px;
+    opacity: 0.07;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   12. Content sections
+   ------------------------------------------------------------ */
+
+.content-section {
+  padding: 3rem 0;
+  position: relative;
+  z-index: 1;
+}
+
+.content-section h2 {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--chip-text);
+  display: inline-block;
+  background-color: var(--chip-bg);
+  padding: 0.1rem 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.content-section p {
+  color: var(--riso-ink-mid);
+  max-width: 65ch;
+  margin-bottom: 1rem;
+}
+
+
+/* ------------------------------------------------------------
+   13. Publication cards
    ------------------------------------------------------------ */
 
 .pub-list {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: 2rem;
 }
 
 .pub-card {
-  border-left: 3px solid var(--color-primary);
-  background-color: var(--color-surface);
-  padding: var(--space-md) var(--space-lg);
-  transition: background-color 0.15s ease, border-color 0.15s ease;
+  background-color: var(--riso-surface);
+  border-left: 3px solid var(--riso-teal);
+  padding: 1.4rem 1.6rem;
 }
 
-.pub-card:hover {
-  background-color: var(--color-surface-alt);
+.pub-card.internal {
+  border-left-color: var(--riso-coral);
+}
+
+.pub-card.internal .pub-year {
+  color: var(--riso-coral);
+}
+
+.pub-card-inner {
+  max-width: 62ch;
+}
+
+.pub-year {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--riso-teal);
+  opacity: 0.7;
+  margin-bottom: 0.35rem;
 }
 
 .pub-title {
   font-family: 'Lora', Georgia, serif;
-  font-size: var(--font-md);
+  font-size: 1.1rem;
   font-weight: 600;
-  color: var(--color-text);
-  margin-bottom: var(--space-xs);
-  line-height: 1.3;
+  line-height: 1.35;
+  margin-bottom: 0.35rem;
 }
 
 .pub-title a {
+  color: var(--riso-ink);
+  text-decoration: underline;
+  text-decoration-color: rgba(29,107,107,0.35);
+  transition: 0.15s;
+}
+
+.pub-title a:hover {
+  color: var(--riso-teal);
+  text-decoration-color: var(--riso-teal);
+}
+
+.pub-meta {
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--riso-ink-mid);
+  margin-bottom: 0.9rem;
+}
+
+.pub-summary {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--riso-ink-mid);
+  margin-bottom: 0.9rem;
+}
+
+.pub-doi {
+  font-size: 0.8rem;
+  color: var(--riso-teal);
+}
+
+.pub-doi a {
+  color: var(--riso-teal);
+  text-decoration: underline;
+}
+
+.pub-doi a:hover {
+  color: var(--riso-coral);
+}
+
+.oCare-note {
+  margin-bottom: 0.5rem;
+  padding: 1.25rem 1.5rem;
+  background-color: var(--riso-surface);
+  border-left: 4px solid var(--riso-coral);
+}
+
+.oCare-note p {
+  font-size: 0.95rem;
+}
+
+
+/* ------------------------------------------------------------
+   14. Value cards grid (About page)
+   ------------------------------------------------------------ */
+
+.values-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-top: 0.5rem;
+}
+
+.value-card {
+  padding: 1.2rem 1.4rem;
+}
+
+.value-card:nth-child(1) {
+  background-color: var(--riso-teal);
+  box-shadow: 4px 4px 0 var(--riso-coral);
+}
+
+.value-card:nth-child(2) {
+  background-color: var(--riso-coral);
+  box-shadow: 4px 4px 0 var(--riso-teal);
+}
+
+.value-card:nth-child(3) {
+  background-color: var(--riso-plum);
+  box-shadow: 4px 4px 0 var(--riso-yellow);
+}
+
+.value-card:nth-child(4) {
+  background-color: var(--riso-yellow);
+  box-shadow: 4px 4px 0 var(--riso-plum);
+}
+
+.value-name {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.value-card:nth-child(1) .value-name,
+.value-card:nth-child(2) .value-name,
+.value-card:nth-child(3) .value-name {
+  color: #fff;
+}
+
+.value-card:nth-child(4) .value-name {
+  color: var(--riso-teal);
+}
+
+.value-text {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.value-card:nth-child(1) .value-text,
+.value-card:nth-child(2) .value-text,
+.value-card:nth-child(3) .value-text {
+  color: rgba(255,255,255,0.92);
+}
+
+.value-card:nth-child(4) .value-text {
+  color: var(--riso-teal);
+}
+
+@media (max-width: 560px) {
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ------------------------------------------------------------
+   15. Member cards (Careoperative page)
+   ------------------------------------------------------------ */
+
+.member-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--card-gap);
+}
+
+@media (max-width: 560px) {
+  .member-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.member-card {
+  position: relative;
+  height: var(--card-h);
+}
+
+.card-shell {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: var(--card-h);
+  display: flex;
+  flex-direction: row;
+  background-color: var(--riso-surface);
+  border-left: 3px solid var(--riso-teal);
+  overflow: hidden;
+  cursor: pointer;
+  transition: width 0.32s cubic-bezier(0.4,0,0.2,1), height 0.32s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s ease;
+  z-index: 1;
+  filter: none;
+}
+
+.member-grid.has-active .card-shell {
+  filter: var(--riso-dim-filter);
+}
+
+.member-grid.has-active .member-card.is-active .card-shell {
+  filter: none;
+}
+
+.member-card.is-active .card-shell {
+  width: calc(200% + var(--card-gap));
+  height: auto;
+  min-height: var(--card-h);
+  box-shadow: 0 6px 24px var(--riso-shadow);
+  z-index: 10;
+  cursor: default;
+}
+
+.member-card.expand-right .card-shell {
+  left: 0;
+  right: auto;
+}
+
+.card-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.6rem;
+  font-style: italic;
+  letter-spacing: 0.03em;
+  color: var(--badge-text);
+  background-color: var(--badge-bg);
+  border: 1px solid var(--badge-border);
+  padding: 1px 5px;
+  pointer-events: none;
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.card-photo {
+  flex-shrink: 0;
+  width: var(--photo-w);
+  background-color: var(--riso-photo-bg);
+  border-right: 1px solid var(--riso-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: width 0.32s cubic-bezier(0.4,0,0.2,1);
+}
+
+.member-card.is-active .card-photo {
+  width: var(--peek-w);
+  min-width: var(--peek-w);
+}
+
+.card-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-photo-label {
+  font-size: 0.6rem;
+  color: var(--riso-sleeping-dot);
+  text-align: center;
+  padding: 0.2rem;
+  transition: opacity 0.15s;
+}
+
+.member-card.is-active .card-photo-label {
+  opacity: 0;
+}
+
+.card-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0.75rem 0.9rem;
+  min-width: 0;
+}
+
+.card-name {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--riso-teal);
+  line-height: 1.25;
+  margin-bottom: 0.25rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.member-card.is-active .card-name {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.card-affiliation {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--riso-ink-mid);
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.member-card.is-active .card-affiliation {
+  -webkit-line-clamp: unset;
+  overflow: visible;
+}
+
+.card-bio {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--riso-ink-mid);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: max-height 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.22s ease 0.1s;
+}
+
+.member-card.is-active .card-bio {
+  max-height: 300px;
+  opacity: 1;
+  padding-top: 0.5rem;
+}
+
+.card-close-hint {
+  display: none;
+  font-size: 0.72rem;
+  color: var(--riso-teal);
+  letter-spacing: 0.04em;
+  text-transform: lowercase;
+  margin-top: 0.6rem;
+  opacity: 0.7;
+}
+
+.member-card.is-active .card-close-hint {
+  display: block;
+}
+
+@media (max-width: 560px) {
+  .member-card {
+    height: auto;
+  }
+  .card-shell {
+    position: relative;
+    width: 100% !important;
+    height: auto !important;
+  }
+  .member-card.is-active .card-photo {
+    width: var(--photo-w);
+  }
+  .member-card.is-active .card-photo-label {
+    opacity: 1;
+  }
+  .card-info {
+    padding: 1rem;
+  }
+}
+
+.sleeping-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.sleeping-name {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.95rem;
+  color: var(--riso-ink-mid);
+  background-color: var(--riso-sleeping-bg);
+  border: 1px solid var(--riso-border);
+  padding: 0.25rem 0.7rem;
+}
+
+.alumni-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0;
+  margin-top: 0.5rem;
+}
+
+.alumni-name {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.9rem;
+  color: var(--riso-sleeping-dot);
+}
+
+.alumni-name + .alumni-name::before {
+  content: '·';
+  margin: 0 0.6rem;
+  color: var(--riso-sleeping-dot);
+}
+
+
+/* ------------------------------------------------------------
+   16. Conference entries (Work page)
+   ------------------------------------------------------------ */
+
+.conf-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.conf-entry {
+  padding: 1.1rem 0;
+  border-top: 1px solid rgba(29,107,107,0.18);
+  max-width: 62ch;
+}
+
+.conf-entry:last-child {
+  border-bottom: 1px solid rgba(29,107,107,0.18);
+}
+
+.conf-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--riso-coral);
+  margin-bottom: 0.3rem;
+}
+
+.conf-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--riso-ink);
+}
+
+.conf-venue {
+  font-size: 0.88rem;
+  font-style: italic;
+  color: var(--riso-ink-mid);
+  margin-bottom: 0.35rem;
+}
+
+.conf-authors {
+  font-size: 0.82rem;
+  color: var(--riso-ink-mid);
+}
+
+
+/* ------------------------------------------------------------
+   17. Forest SVG navigation (About page interactive)
+   ------------------------------------------------------------ */
+
+.forest-nav {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  user-select: none;
+}
+
+.forest-top-row,
+.forest-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 460px;
+}
+
+.forest-top-row {
+  padding: 0 0 0.6rem 0;
+}
+
+.forest-bottom-row {
+  padding: 0.6rem 0 0 0;
+}
+
+.forest-link {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: lowercase;
+  letter-spacing: 0.04em;
+  color: var(--forest-color);
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 0.2rem 0;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.forest-link:hover {
+  color: var(--riso-coral);
+}
+
+.forest-nav-svg a {
+  cursor: pointer;
   color: inherit;
   text-decoration: none;
 }
 
-.pub-title a:hover {
-  color: var(--color-primary);
-  text-decoration: underline;
+.forest-nav-svg a:focus {
+  outline: none;
 }
 
-.pub-meta {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: var(--font-sm);
-  color: var(--color-text-muted);
-  font-style: italic;
-  margin-bottom: var(--space-xs);
-}
-
-.pub-year {
-  font-style: normal;
-  color: var(--color-text-subtle);
-  font-size: var(--font-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
-.pub-doi {
-  display: inline-block;
-  margin-top: var(--space-xs);
-  font-size: var(--font-xs);
-  color: var(--color-primary);
-  text-decoration: none;
-  font-style: normal;
-}
-
-.pub-doi:hover {
-  text-decoration: underline;
-  color: var(--color-primary-light);
-}
-
-
-/* ------------------------------------------------------------
-   10. Illustration placeholder
-   ------------------------------------------------------------ */
-
-.illustration-placeholder {
-  width: 100%;
-  max-width: 600px;
-  height: 300px;
-  background-color: var(--color-surface-alt);
-  border: 1px dashed var(--color-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-subtle);
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: var(--font-sm);
-  font-style: italic;
-  text-align: center;
-  padding: var(--space-md);
-  margin: var(--space-lg) 0;
-}
-
-
-/* ------------------------------------------------------------
-   11. Buttons
-   ------------------------------------------------------------ */
-
-.btn {
-  display: inline-block;
-  background-color: var(--color-primary);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  padding: 0.5rem 1.2rem;
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: var(--font-base);
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background-color 0.15s ease;
-}
-
-.btn:hover {
-  background-color: var(--color-primary-dark);
-  color: #fff;
-  text-decoration: none;
-}
-
-.btn:focus-visible {
-  outline: 2px solid var(--color-focus);
+.forest-nav-svg a:focus-visible {
+  outline: 2px solid var(--riso-yellow);
   outline-offset: 2px;
 }
 
-.btn-secondary {
-  background-color: transparent;
-  color: var(--color-primary);
-  border: 1px solid var(--color-primary);
+.forest-link.bottom-left  { flex-direction: row; }
+.forest-link.bottom-right { flex-direction: row-reverse; }
+.forest-link.top-left     { flex-direction: row; }
+.forest-link.top-right    { flex-direction: row-reverse; }
+
+.forest-link .arrow {
+  font-size: 0.75rem;
+  opacity: 0.5;
+  transition: opacity 0.2s, transform 0.2s;
 }
 
-.btn-secondary:hover {
-  background-color: var(--color-surface-alt);
-  color: var(--color-primary-dark);
+.forest-link:hover .arrow {
+  opacity: 1;
+}
+
+.forest-link.bottom-left:hover .arrow  { transform: translateX(2px); }
+.forest-link.bottom-right:hover .arrow { transform: translateX(-2px); }
+.forest-link.top-left:hover .arrow    { transform: translateX(2px); }
+.forest-link.top-right:hover .arrow   { transform: translateX(-2px); }
+
+#forest-nav-svg {
+  width: 100%;
+  max-width: 460px;
+  height: auto;
+  display: block;
+}
+
+#forest-nav-svg .layer-ground,
+#forest-nav-svg .layer-under,
+#forest-nav-svg .layer-trees,
+#forest-nav-svg .layer-roots {
+  transition: opacity 0.25s, color 0.25s;
+  opacity: 1;
+  color: var(--riso-teal);
+}
+
+/* Roots highlighted */
+.forest-nav.highlight-roots #forest-nav-svg .layer-ground,
+.forest-nav.highlight-roots #forest-nav-svg .layer-under,
+.forest-nav.highlight-roots #forest-nav-svg .layer-trees {
+  opacity: 0.18;
+}
+
+.forest-nav.highlight-roots #forest-nav-svg .layer-roots {
+  opacity: 1;
+  color: var(--riso-coral);
+}
+
+/* Groundcover / understorey highlighted */
+.forest-nav.highlight-under #forest-nav-svg .layer-trees,
+.forest-nav.highlight-under #forest-nav-svg .layer-roots {
+  opacity: 0.18;
+}
+
+.forest-nav.highlight-under #forest-nav-svg .layer-ground,
+.forest-nav.highlight-under #forest-nav-svg .layer-under {
+  opacity: 1;
+  color: var(--riso-coral);
+}
+
+/* Trees / canopies highlighted */
+.forest-nav.highlight-trees #forest-nav-svg .layer-ground,
+.forest-nav.highlight-trees #forest-nav-svg .layer-under,
+.forest-nav.highlight-trees #forest-nav-svg .layer-roots {
+  opacity: 0.18;
+}
+
+.forest-nav.highlight-trees #forest-nav-svg .layer-trees {
+  opacity: 1;
+  color: var(--riso-coral);
 }
 
 
 /* ------------------------------------------------------------
-   12. Footer
+   18. Placeholder blocks (practices/sites pages)
+   ------------------------------------------------------------ */
+
+.placeholder-note {
+  margin: 2rem 0;
+  padding: 2rem;
+  background-color: var(--riso-surface);
+  border-left: 4px solid var(--riso-coral);
+  color: var(--riso-ink-mid);
+}
+
+.illus-placeholder {
+  margin: 0 0 3rem;
+  max-width: 600px;
+  height: 200px;
+  border: 1px dashed var(--riso-teal);
+  background-color: var(--riso-surface);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+}
+
+.illus-placeholder-caption {
+  font-size: 0.78rem;
+  font-style: italic;
+  color: var(--riso-ink-mid);
+  text-align: center;
+  padding: 0 2rem;
+}
+
+
+/* ------------------------------------------------------------
+   19. Footer
    ------------------------------------------------------------ */
 
 .site-footer {
-  background-color: var(--color-surface);
-  border-top: 1px solid var(--color-border);
-  padding: var(--space-xl) 0;
-  margin-top: var(--space-2xl);
-  transition: background-color 0.2s ease;
+  width: 100%;
+  background-color: var(--nav-bg);
+  padding: 3rem 0;
+  text-align: center;
 }
 
 .footer-inner {
-  max-width: 860px;
-  margin: 0 auto;
-  padding: 0 var(--space-lg);
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
-  align-items: flex-start;
+  align-items: center;
+  gap: 1rem;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 var(--space-lg);
 }
 
-.footer-tagline {
+.footer-invitation {
   font-family: 'Lora', Georgia, serif;
-  font-size: var(--font-sm);
+  font-size: 1.2rem;
   font-style: italic;
-  color: var(--color-text-muted);
+  color: var(--riso-yellow);
 }
 
-.footer-contact {
-  font-size: var(--font-sm);
-  color: var(--color-text-muted);
-}
-
-.footer-contact a {
-  color: var(--color-primary);
-}
-
-.footer-contact a:hover {
-  text-decoration: underline;
+.footer-bottom-row {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
 }
 
 .footer-copy {
-  font-size: var(--font-xs);
-  color: var(--color-text-subtle);
-  margin-top: var(--space-sm);
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.45);
+  margin: 0;
 }
 
 
 /* ------------------------------------------------------------
-   13. Forest SVG entrance animation
+   20. Utility classes
    ------------------------------------------------------------ */
 
-.f-ground {
-  stroke-dasharray: 90;
-  stroke-dashoffset: 90;
-  animation: f-draw 0.16s steps(2, end) 0.00s both;
-}
-
-.f-under {
-  opacity: 0;
-  animation: f-appear 0.18s steps(3, end) 0.18s both;
-}
-
-.t1 { opacity: 0; animation: f-appear 0.20s steps(3, end) 0.40s both; }
-.r1 { stroke-dasharray: 80; stroke-dashoffset: 80; animation: f-draw 0.22s steps(3, end) 0.40s both; }
-
-.t2 { opacity: 0; animation: f-appear 0.20s steps(3, end) 0.64s both; }
-.r2 { stroke-dasharray: 80; stroke-dashoffset: 80; animation: f-draw 0.22s steps(3, end) 0.64s both; }
-
-.t3 { opacity: 0; animation: f-appear 0.20s steps(3, end) 0.88s both; }
-.r3 { stroke-dasharray: 80; stroke-dashoffset: 80; animation: f-draw 0.22s steps(3, end) 0.88s both; }
-
-.t4 { opacity: 0; animation: f-appear 0.20s steps(3, end) 1.12s both; }
-.r4 { stroke-dasharray: 80; stroke-dashoffset: 80; animation: f-draw 0.22s steps(3, end) 1.12s both; }
-
-.t5 { opacity: 0; animation: f-appear 0.20s steps(3, end) 1.36s both; }
-.r5 { stroke-dasharray: 80; stroke-dashoffset: 80; animation: f-draw 0.22s steps(3, end) 1.36s both; }
-
-.r-bridge {
-  stroke-dasharray: 90;
-  stroke-dashoffset: 90;
-  animation: f-draw 0.24s steps(3, end) 1.60s both;
-}
-
-@keyframes f-draw   { to { stroke-dashoffset: 0; } }
-@keyframes f-appear { to { opacity: 1; } }
-
-/* Skip animation on repeat visits */
-html.tree-seen .f-ground,
-html.tree-seen .f-under,
-html.tree-seen .t1, html.tree-seen .r1,
-html.tree-seen .t2, html.tree-seen .r2,
-html.tree-seen .t3, html.tree-seen .r3,
-html.tree-seen .t4, html.tree-seen .r4,
-html.tree-seen .t5, html.tree-seen .r5,
-html.tree-seen .r-bridge {
-  animation: none !important;
-  opacity: 1 !important;
-  stroke-dashoffset: 0 !important;
-}
-
-
-/* ------------------------------------------------------------
-   14. Utility classes
-   ------------------------------------------------------------ */
-
-.text-muted   { color: var(--color-text-muted); }
-.text-subtle  { color: var(--color-text-subtle); }
-.text-primary { color: var(--color-primary); }
-.text-accent  { color: var(--color-accent); }
+.text-muted    { color: var(--riso-ink-mid); }
+.text-subtle   { color: var(--riso-sleeping-dot); }
+.text-primary  { color: var(--riso-teal); }
+.text-accent   { color: var(--riso-coral); }
 
 .font-serif-display {
   font-family: 'Lora', Georgia, serif;
@@ -830,13 +1420,13 @@ html.tree-seen .r-bridge {
 
 .divider {
   border: none;
-  border-top: 1px solid var(--color-border);
+  border-top: 1px solid var(--riso-border);
   margin: var(--space-lg) 0;
 }
 
 
 /* ------------------------------------------------------------
-   15. Responsive — mobile (< 640px)
+   21. Responsive adjustments (< 640px)
    ------------------------------------------------------------ */
 
 @media (max-width: 640px) {
@@ -864,32 +1454,16 @@ html.tree-seen .r-bridge {
     padding: var(--space-sm) var(--space-md);
   }
 
-  .hero {
+  .page-hero {
     padding-top: var(--space-xl);
     padding-bottom: var(--space-xl);
   }
 
-  .hero-title {
+  .page-hero h1 {
     font-size: var(--font-2xl);
   }
 
-  .hero-tagline {
-    font-size: var(--font-md);
-  }
-
-  .hero-intro {
-    font-size: var(--font-base);
-  }
-
-  .pub-card {
-    padding: var(--space-md);
-  }
-
-  .footer-inner {
-    padding: 0 var(--space-md);
-  }
-
-  .illustration-placeholder {
+  .illus-placeholder {
     height: 200px;
   }
 }
