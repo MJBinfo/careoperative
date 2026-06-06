@@ -2,27 +2,69 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Careoperative — Riso Print variant</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>The Careoperative — Collective leadership for sustainability</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { -webkit-text-size-adjust: 100%; background-color: var(--riso-teal); }
+    html { -webkit-text-size-adjust: 100%; background-color: var(--nav-bg); }
     img, svg { display: block; max-width: 100%; }
     ul { list-style: none; }
     a { text-decoration: none; }
 
-    /* ── Riso palette — 4 inks: teal, coral, yellow, plum ── */
+    /* ── LIGHT MODE (default) – Riso inks ── */
     :root {
-      --riso-bg:        #faf3e8;
-      --riso-coral:     #e8604c;
-      --riso-teal:      #1d6b6b;
-      --riso-yellow:    #f5c842;
-      --riso-plum:      #6b3a6b;   /* replaces ink-black on cards */
-      --riso-ink:       #1a1a1a;   /* kept only for body text */
-      --riso-ink-mid:   #444;
+      --riso-coral:   #e8604c;
+      --riso-teal:    #1d6b6b;
+      --riso-yellow:  #f5c842;
+      --riso-plum:    #6b3a6b;
+      --nav-bg:       #1d6b6b;
+      --riso-bg:      #faf3e8;
+      --riso-surface: #f0ebe0;
+      --riso-ink:     #1a1a1a;
+      --riso-ink-mid: #444;
+      --chip-bg:      var(--riso-yellow);
+      --chip-text:    var(--riso-teal);
+      --forest-color: #1d6b6b;
+      --card-shadow:  rgba(0,0,0,0.08);
+    }
+
+    /* ── DARK MODE (system preference) ── */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --riso-bg:         #18150f;
+        --riso-surface:    #231e16;
+        --riso-ink:        #ede6d8;
+        --riso-ink-mid:    #b8ad9e;
+        --chip-bg:         var(--riso-yellow);
+        --chip-text:       #1a1a1a;
+        --forest-color:    #7abeaa;
+        --card-shadow:     rgba(0,0,0,0.45);
+      }
+    }
+
+    /* Manual override classes (applied to <html>) */
+    html.dark {
+      --riso-bg:         #18150f;
+      --riso-surface:    #231e16;
+      --riso-ink:        #ede6d8;
+      --riso-ink-mid:    #b8ad9e;
+      --chip-bg:         var(--riso-yellow);
+      --chip-text:       #1a1a1a;
+      --forest-color:    #7abeaa;
+      --card-shadow:     rgba(0,0,0,0.45);
+    }
+    html.light {
+      --riso-bg:         #faf3e8;
+      --riso-surface:    #f0ebe0;
+      --riso-ink:        #1a1a1a;
+      --riso-ink-mid:    #444;
+      --chip-bg:         var(--riso-yellow);
+      --chip-text:       var(--riso-teal);
+      --forest-color:    #1d6b6b;
+      --card-shadow:     rgba(0,0,0,0.08);
     }
 
     body {
@@ -32,58 +74,39 @@
       color: var(--riso-ink);
       background-color: var(--riso-bg);
       position: relative;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
-
-    /* Grain overlay */
+    /* grain texture */
     body::before {
-      content: '';
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      opacity: 0.035;
+      content: ''; position: fixed; inset: 0; z-index: 0;
+      pointer-events: none; opacity: 0.035;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 200px 200px;
     }
 
-    /* ── Nav ── */
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      width: 100%;
-      background-color: var(--riso-teal);
-    }
-    /* Ensure nav fills full width so teal never ends */
-    header nav {
-      width: 100%;
-      background-color: var(--riso-teal);
-    }
-
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      height: 56px;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 2rem;
-      gap: 0.5rem;
-    }
-    .nav-home { display: flex; align-items: center; color: var(--riso-yellow); }
+    /* ── Navbar ── */
+    header { position: sticky; top: 0; z-index: 100; width: 100%; background-color: var(--nav-bg); }
+    header nav { width: 100%; background-color: var(--nav-bg); }
+    .nav-inner { display: flex; align-items: center; height: 56px; max-width: 1100px; margin: 0 auto; padding: 0 2rem; gap: 0.5rem; }
+    .nav-home { display: flex; align-items: center; }
     .nav-home:hover { opacity: 0.8; }
     .nav-page-links { display: flex; flex: 1; justify-content: center; gap: 0; }
     .nav-page-link {
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: lowercase;
-      letter-spacing: 0.04em;
-      color: rgba(255,255,255,0.85);
-      padding: 0.3rem 0.8rem;
-      border-radius: 2px;
-      transition: background-color 0.15s, color 0.15s;
+      font-family: 'Source Serif 4', Georgia, serif; font-size: 0.85rem; font-weight: 600;
+      text-transform: lowercase; letter-spacing: 0.04em; color: rgba(255,255,255,0.85);
+      padding: 0.3rem 0.8rem; border-radius: 2px; transition: background-color 0.15s, color 0.15s;
     }
     .nav-page-link:hover { background-color: var(--riso-coral); color: #fff; }
+    .nav-page-link.active { color: var(--riso-yellow); border-bottom: 2px solid var(--riso-yellow); }
+
+    .dark-mode-toggle {
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(0,0,0,0.18); border: none; cursor: pointer;
+      width: 34px; height: 34px; border-radius: 40px; font-size: 1.25rem;
+      color: var(--riso-yellow); transition: all 0.2s; margin-right: 4px;
+    }
+    .dark-mode-toggle:hover { background: var(--riso-coral); color: white; transform: scale(0.95); }
+
     .nav-icon-btn {
       display: flex; align-items: center; justify-content: center;
       background: none; border: none; cursor: pointer;
@@ -93,334 +116,190 @@
     .nav-hamburger { flex-direction: column; gap: 5px; width: 36px; height: 36px; }
     .nav-hamburger span { display: block; width: 20px; height: 2px; background: currentColor; border-radius: 1px; }
     .nav-panel {
-      display: none; flex-direction: column;
-      background-color: var(--riso-teal);
+      display: none; flex-direction: column; background-color: var(--nav-bg);
       border-top: 2px solid rgba(255,255,255,0.15);
     }
     .nav-panel.nav-open { display: flex; }
     .nav-link {
-      font-family: 'Source Serif 4', Georgia, serif;
-      font-size: 1.1rem;
-      text-transform: lowercase;
-      color: rgba(255,255,255,0.9);
-      padding: 0.6rem 2rem;
-      border-left: 3px solid transparent;
+      font-family: 'Source Serif 4', Georgia, serif; font-size: 1.1rem; text-transform: lowercase;
+      color: rgba(255,255,255,0.9); padding: 0.6rem 2rem; border-left: 3px solid transparent;
       transition: background-color 0.15s, border-color 0.15s;
     }
     .nav-link:hover { background-color: rgba(255,255,255,0.1); border-left-color: var(--riso-yellow); }
     .nav-link.active { color: var(--riso-yellow); border-left-color: var(--riso-yellow); }
     @media (max-width: 760px) { .nav-page-links { display: none; } }
 
-    /* ── Layout ── */
-    /* Clip wrapper prevents labyrinth right-bleed from creating horizontal scroll
-       without touching html/body overflow which would break position:sticky */
     .clip-wrap { overflow-x: hidden; }
     main { position: relative; z-index: 1; }
     .container { max-width: 680px; margin: 0 auto; padding: 0 2rem; }
 
-    /* ── Hero ── */
-    .hero {
-      padding: 5rem 0 4rem;
-      text-align: center;
-      position: relative;
-      overflow: visible;
-    }
-
-    /* Labyrinth watermark — positioned relative to <main>.
-       Adjust top/right to reposition. */
+    /* Hero & labyrinth */
+    .hero { padding: 5rem 0 4rem; text-align: center; position: relative; }
     .hero-labyrinth {
-      position: absolute;
-      top: 445px;
-      right: 100px;
-      width: 340px;
-      height: 310px;
-      opacity: 0.09;
-      pointer-events: none;
-      z-index: 0;
-      color: var(--riso-coral);
+      position: absolute; top: 445px; right: 100px; width: 340px; height: 310px;
+      opacity: 0.09; pointer-events: none; z-index: 0; color: var(--riso-coral);
     }
-
+    html.dark .hero-labyrinth { opacity: 0.12; }
     .hero-title {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 3.4rem;
-      font-weight: 700;
-      line-height: 1.05;
-      color: var(--riso-teal);
-      position: relative;
-      z-index: 1;
+      font-family: 'Lora', Georgia, serif; font-size: 3.4rem; font-weight: 700;
+      line-height: 1.05; color: var(--riso-teal); position: relative; z-index: 1;
       margin-bottom: 0.75rem;
     }
     .hero-tagline {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 1.25rem;
-      font-style: italic;
-      color: var(--riso-coral);
-      margin-bottom: 0;
-      position: relative;
-      z-index: 1;
+      font-family: 'Lora', Georgia, serif; font-size: 1.25rem; font-style: italic;
+      color: var(--riso-coral); margin-bottom: 0;
     }
     .hero-intro {
-      margin-top: 3rem;
-      text-align: left;
-      position: relative;
-      z-index: 1;
-      border-left: 4px solid var(--riso-yellow);
-      padding-left: 1.5rem;
+      margin-top: 3rem; text-align: left; border-left: 4px solid var(--riso-yellow);
+      padding-left: 1.5rem; position: relative; z-index: 1;
     }
     .hero-intro p { max-width: 100%; margin-bottom: 1rem; color: var(--riso-ink-mid); }
-    .hero-intro p:last-child { margin-bottom: 0; }
     .hero-intro strong { color: var(--riso-teal); font-weight: 700; }
 
-    /* ── Section ── */
     .section { padding: 4rem 0; }
-    .section-heading { margin-bottom: 2rem; }
     .section-heading h2 {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--riso-teal);
-      display: inline-block;
-      background-color: var(--riso-yellow);
-      padding: 0.1rem 0.6rem;
-      margin-bottom: 0.5rem;
+      font-family: 'Lora', Georgia, serif; font-size: 1.8rem; font-weight: 700;
+      color: var(--chip-text); display: inline-block; background-color: var(--chip-bg);
+      padding: 0.1rem 0.6rem; margin-bottom: 1rem;
     }
     .section-intro { font-size: 1rem; color: var(--riso-ink-mid); max-width: 60ch; margin-bottom: 1.5rem; }
-
-    /* ── Pub cards: teal / coral / plum (replaces black) ── */
     .pub-list { display: flex; flex-direction: column; gap: 1rem; }
     .pub-card {
-      background-color: var(--riso-teal);
-      padding: 1.2rem 1.5rem;
-      position: relative;
-      box-shadow: 5px 5px 0 var(--riso-coral);
+      background-color: var(--riso-teal); padding: 1.2rem 1.5rem;
+      box-shadow: 5px 5px 0 var(--riso-coral); transition: transform 0.1s;
     }
-    .pub-card:nth-child(2) {
-      background-color: var(--riso-coral);
-      box-shadow: 5px 5px 0 var(--riso-teal);
-    }
-    .pub-card:nth-child(3) {
-      background-color: var(--riso-plum);
-      box-shadow: 5px 5px 0 var(--riso-yellow);
-    }
-    .pub-title { font-family: 'Lora', Georgia, serif; font-size: 1.1rem; font-weight: 700; line-height: 1.3; margin-bottom: 0.4rem; }
-    .pub-title a { color: #fff; }
+    .pub-card:nth-child(2) { background-color: var(--riso-coral); box-shadow: 5px 5px 0 var(--riso-teal); }
+    .pub-card:nth-child(3) { background-color: var(--riso-plum); box-shadow: 5px 5px 0 var(--riso-yellow); }
+    .pub-title { font-family: 'Lora', Georgia, serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .pub-title a { color: #fff; text-decoration: underline transparent; transition: 0.2s; }
     .pub-title a:hover { text-decoration: underline; }
-    .pub-meta { font-size: 0.9rem; color: rgba(255,255,255,0.75); font-style: italic; margin-bottom: 0.25rem; }
-    .pub-year { font-size: 0.75rem; color: rgba(255,255,255,0.6); text-transform: uppercase; letter-spacing: 0.06em; }
-    .pub-doi { display: inline-block; margin-top: 0.4rem; font-size: 0.75rem; color: var(--riso-yellow); }
+    .pub-meta { font-size: 0.9rem; color: rgba(255,255,255,0.8); font-style: italic; margin-bottom: 0.25rem; }
+    .pub-year { font-size: 0.75rem; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.06em; }
+    .pub-doi { display: inline-block; margin-top: 0.4rem; font-size: 0.75rem; color: var(--riso-yellow); font-weight: 500; }
     .pub-card:nth-child(2) .pub-doi { color: var(--riso-yellow); }
     .pub-card:nth-child(3) .pub-doi { color: var(--riso-coral); }
 
-    /* ── Footer — matches header teal ── */
-    .site-footer {
-      width: 100%;
-      background-color: var(--riso-teal);
-      padding: 3rem 0;
-      text-align: center;
-    }
-    .footer-inner {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1rem;
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 0 2rem;
-    }
-    .footer-invitation {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 1.2rem;
-      font-style: italic;
-      color: var(--riso-yellow);
-    }
-    /* No wave line — removed per request */
-    .footer-bottom-row {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-    }
-    .footer-contact-obf { font-size: 0.8rem; color: rgba(255,255,255,0.45); cursor: pointer; margin: 0; }
-    .footer-contact-obf:hover { text-decoration: underline; color: rgba(255,255,255,0.7); }
+    .site-footer { width: 100%; background-color: var(--nav-bg); padding: 3rem 0; text-align: center; }
+    .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; max-width: 680px; margin: 0 auto; padding: 0 2rem; }
+    .footer-invitation { font-family: 'Lora', Georgia, serif; font-size: 1.2rem; font-style: italic; color: var(--riso-yellow); }
+    .footer-bottom-row { width: 100%; display: flex; justify-content: flex-end; align-items: baseline; }
     .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.45); margin: 0; }
+    @media (max-width: 560px) { .hero-labyrinth { width: 220px; height: 200px; top: 380px; right: 10px; opacity: 0.07; } .hero-title { font-size: 2.5rem; } .nav-inner { padding: 0 1rem; } }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--riso-yellow); outline-offset: 2px; }
   </style>
+  <script>
+    (function() {
+      var saved = localStorage.getItem('carop-dark');
+      var html = document.documentElement;
+      if (saved === 'true') html.classList.add('dark');
+      else if (saved === 'false') html.classList.add('light');
+      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) html.classList.add('dark');
+      else html.classList.add('light');
+    })();
+  </script>
 </head>
 <body>
-  <header>
-    <nav aria-label="Main navigation" id="site-nav">
-      <div class="nav-inner">
-        <a href="about.html" aria-label="About — The Careoperative" class="nav-home">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 64" width="46" height="36"
-               stroke-linecap="round" stroke-linejoin="round"
-               style="color:var(--riso-yellow);" aria-hidden="true">
-            <line x1="1" y1="40" x2="81" y2="40" stroke="currentColor" stroke-width="1.2" fill="none"/>
-            <g fill="currentColor" stroke="currentColor">
-              <line x1="19" y1="40" x2="19" y2="35" stroke-width="0.8" fill="none"/>
-              <path d="M19,37 C17,36 15,36 14,37" stroke-width="0.7" fill="none"/>
-              <path d="M19,37 C21,36 23,36 24,37" stroke-width="0.7" fill="none"/>
-              <path d="M5,40 C4,39 3,38 3,37 C3,36 4,36 5,37 C5,36 6,36 6,37 C7,38 6,39 5,40 Z" fill-opacity="0.4" stroke-width="0.7"/>
-            </g>
-            <g fill="currentColor" stroke="currentColor">
-              <line x1="9" y1="40" x2="8" y2="26" stroke-width="1.0" fill="none"/>
-              <ellipse cx="9" cy="20" rx="5.5" ry="7.5" fill-opacity="0.5" stroke-width="0.9"/>
-              <ellipse cx="14" cy="17" rx="5" ry="6.5" fill-opacity="0.4" stroke-width="0.85"/>
-            </g>
-            <g fill="currentColor" stroke="currentColor">
-              <path d="M26,40 C25,37 25,33 26,28" stroke-width="2.0" fill="none"/>
-              <path d="M26,28 C24,25 17,23 13,24 C11,22 12,19 15,19 C13,17 15,15 18,16 C17,13 20,12 22,14 C21,11 24,10 26,12 C26,9 29,9 30,11 C32,9 35,10 34,13 C36,12 38,14 36,16 C39,16 40,19 38,20 C40,22 40,25 37,26 C34,25 29,25 26,28 Z" fill-opacity="0.45" stroke-width="1.0"/>
-            </g>
-            <g fill="currentColor" stroke="currentColor">
-              <path d="M46,40 C46,37 45,32 46,25" stroke-width="2.2" fill="none"/>
-              <path d="M46,2 C43,1 40,2 38,4 C35,3 32,6 31,10 C30,13 31,17 33,19 C32,20 32,22 34,22 C37,23 41,23 46,22 C51,23 55,23 58,22 C60,22 60,20 59,19 C61,17 62,13 61,10 C60,6 57,3 54,4 C52,2 49,1 46,2 Z" fill-opacity="0.5" stroke-width="1.0"/>
-            </g>
-            <g fill="currentColor" stroke="currentColor">
-              <line x1="63" y1="40" x2="63" y2="28" stroke-width="0.95" fill="none"/>
-              <circle cx="63" cy="24" r="6" fill-opacity="0.45" stroke-width="0.85"/>
-              <circle cx="57" cy="27" r="5.5" fill-opacity="0.35" stroke-width="0.85"/>
-            </g>
-            <g fill="currentColor" stroke="currentColor">
-              <path d="M75,40 C75,37 74,33 75,29" stroke-width="1.5" fill="none"/>
-              <path d="M75,29 C72,26 69,25 68,27 C66,25 67,22 69,22 C68,20 70,18 72,19 C71,17 74,16 75,18 C76,16 79,17 78,19 C80,19 81,22 79,23 C81,24 81,27 78,28 C77,27 76,28 75,29 Z" fill-opacity="0.45" stroke-width="1.0"/>
-            </g>
-          </svg>
-        </a>
-        <nav class="nav-page-links" aria-label="Page links">
-          <a href="careoperative.html" class="nav-page-link">Our Careoperative</a>
-          <a href="work.html" class="nav-page-link">Our Work</a>
-          <a href="practices.html" class="nav-page-link">Our Practices</a>
-          <a href="sites.html" class="nav-page-link">Sites of Care</a>
-        </nav>
-        <button id="nav-hamburger" class="nav-icon-btn nav-hamburger"
-                aria-controls="nav-panel" aria-expanded="false"
-                aria-label="Open navigation menu">
-          <span></span><span></span><span></span>
-        </button>
-      </div>
-      <div id="nav-panel" class="nav-panel" role="dialog" aria-label="Site navigation">
-        <a href="index.html" class="nav-link active" aria-current="page">Home</a>
-        <a href="about.html" class="nav-link">About</a>
-        <a href="careoperative.html" class="nav-link">Our Careoperative</a>
-        <a href="work.html" class="nav-link">Our Work</a>
-        <a href="practices.html" class="nav-link">Our Practices</a>
-        <a href="sites.html" class="nav-link">Sites of Care</a>
-      </div>
-    </nav>
-
-  </header>
-
-  <div class="clip-wrap">
+<header>
+  <nav aria-label="Main navigation" id="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" aria-label="Home — The Careoperative" class="nav-home">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 64" width="46" height="36" stroke-linecap="round" stroke-linejoin="round" style="color:var(--riso-yellow);" aria-hidden="true">
+          <line x1="1" y1="40" x2="81" y2="40" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <g fill="currentColor" stroke="currentColor">
+            <line x1="19" y1="40" x2="19" y2="35" stroke-width="0.8" fill="none"/>
+            <path d="M19,37 C17,36 15,36 14,37" stroke-width="0.7" fill="none"/>
+            <path d="M19,37 C21,36 23,36 24,37" stroke-width="0.7" fill="none"/>
+            <path d="M5,40 C4,39 3,38 3,37 C3,36 4,36 5,37 C5,36 6,36 6,37 C7,38 6,39 5,40 Z" fill-opacity="0.4" stroke-width="0.7"/>
+          </g>
+          <g fill="currentColor" stroke="currentColor">
+            <line x1="9" y1="40" x2="8" y2="26" stroke-width="1.0" fill="none"/>
+            <ellipse cx="9" cy="20" rx="5.5" ry="7.5" fill-opacity="0.5" stroke-width="0.9"/>
+            <ellipse cx="14" cy="17" rx="5" ry="6.5" fill-opacity="0.4" stroke-width="0.85"/>
+          </g>
+          <g fill="currentColor" stroke="currentColor">
+            <path d="M26,40 C25,37 25,33 26,28" stroke-width="2.0" fill="none"/>
+            <path d="M26,28 C24,25 17,23 13,24 C11,22 12,19 15,19 C13,17 15,15 18,16 C17,13 20,12 22,14 C21,11 24,10 26,12 C26,9 29,9 30,11 C32,9 35,10 34,13 C36,12 38,14 36,16 C39,16 40,19 38,20 C40,22 40,25 37,26 C34,25 29,25 26,28 Z" fill-opacity="0.45" stroke-width="1.0"/>
+          </g>
+          <g fill="currentColor" stroke="currentColor">
+            <path d="M46,40 C46,37 45,32 46,25" stroke-width="2.2" fill="none"/>
+            <path d="M46,2 C43,1 40,2 38,4 C35,3 32,6 31,10 C30,13 31,17 33,19 C32,20 32,22 34,22 C37,23 41,23 46,22 C51,23 55,23 58,22 C60,22 60,20 59,19 C61,17 62,13 61,10 C60,6 57,3 54,4 C52,2 49,1 46,2 Z" fill-opacity="0.5" stroke-width="1.0"/>
+          </g>
+          <g fill="currentColor" stroke="currentColor">
+            <line x1="63" y1="40" x2="63" y2="28" stroke-width="0.95" fill="none"/>
+            <circle cx="63" cy="24" r="6" fill-opacity="0.45" stroke-width="0.85"/>
+            <circle cx="57" cy="27" r="5.5" fill-opacity="0.35" stroke-width="0.85"/>
+          </g>
+          <g fill="currentColor" stroke="currentColor">
+            <path d="M75,40 C75,37 74,33 75,29" stroke-width="1.5" fill="none"/>
+            <path d="M75,29 C72,26 69,25 68,27 C66,25 67,22 69,22 C68,20 70,18 72,19 C71,17 74,16 75,18 C76,16 79,17 78,19 C80,19 81,22 79,23 C81,24 81,27 78,28 C77,27 76,28 75,29 Z" fill-opacity="0.45" stroke-width="1.0"/>
+          </g>
+        </svg>
+      </a>
+      <nav class="nav-page-links" aria-label="Page links">
+        <a href="careoperative.html" class="nav-page-link">Our Careoperative</a>
+        <a href="work.html" class="nav-page-link">Our Work</a>
+        <a href="practices.html" class="nav-page-link">Our Practices</a>
+        <a href="sites.html" class="nav-page-link">Sites of Care</a>
+      </nav>
+      <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button>
+      <button id="nav-hamburger" class="nav-icon-btn nav-hamburger" aria-controls="nav-panel" aria-expanded="false" aria-label="Open menu"><span></span><span></span><span></span></button>
+    </div>
+    <div id="nav-panel" class="nav-panel" role="dialog" aria-label="Site navigation">
+      <a href="index.html" class="nav-link active" aria-current="page">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="careoperative.html" class="nav-link">Our Careoperative</a>
+      <a href="work.html" class="nav-link">Our Work</a>
+      <a href="practices.html" class="nav-link">Our Practices</a>
+      <a href="sites.html" class="nav-link">Sites of Care</a>
+    </div>
+  </nav>
+</header>
+<div class="clip-wrap">
   <main>
-    <!-- Classical 7-circuit labyrinth watermark. Path data from Wikimedia Commons. -->
-    <svg class="hero-labyrinth"
-         xmlns="http://www.w3.org/2000/svg"
-         viewBox="-855 -1005 1610 1460"
-         aria-hidden="true" focusable="false">
-      <path stroke-width="25" stroke-linejoin="round" stroke-linecap="round"
-            stroke="currentColor" fill="none"
-            d="M200,200 C420.914,200,600,20.9138,600-200 C600-558.985,308.985-850-50-850 C-408.985-850-700-558.985-700-200 C-700,76.1423-476.142,300-200,300 C-144.772,300-100,255.228-100,200V100H-200 C-365.685,100-500-34.3147-500-200 C-500-448.528-298.528-650-50-650 C198.528-650,400-448.528,400-200 C400-89.5432,310.457,0,200,0H-200 C-310.457,0-400-89.5432-400-200 C-400-393.3-243.3-550-50-550 C143.3-550,300-393.3,300-200 C300-144.772,255.228-100,200-100H100V-200 C100-282.843,32.8425-350-50-350 C-132.843-350-200-282.843-200-200 M-200,200 C-420.914,200-600,20.9138-600-200 C-600-503.757-353.757-750-50-750 C253.757-750,500-503.757,500-200 C500-34.3147,365.685,100,200,100H100V200 C100,255.228,144.772,300,200,300 C476.142,300,700,76.1423,700-200 C700-614.213,364.213-950-50-950 C-464.213-950-800-614.213-800-200 C-800,131.371-531.371,400-200,400 C-89.5432,400,0,310.457,0,200V-200 C0-227.614-22.386-250-50-250 C-77.614-250-100-227.614-100-200V-100H-200 C-255.228-100-300-144.772-300-200 C-300-338.071-188.071-450-50-450 C88.071-450,200-338.071,200-200"/>
+    <svg class="hero-labyrinth" xmlns="http://www.w3.org/2000/svg" viewBox="-855 -1005 1610 1460" aria-hidden="true">
+      <path stroke-width="25" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M200,200 C420.914,200,600,20.9138,600-200 C600-558.985,308.985-850-50-850 C-408.985-850-700-558.985-700-200 C-700,76.1423-476.142,300-200,300 C-144.772,300-100,255.228-100,200V100H-200 C-365.685,100-500-34.3147-500-200 C-500-448.528-298.528-650-50-650 C198.528-650,400-448.528,400-200 C400-89.5432,310.457,0,200,0H-200 C-310.457,0-400-89.5432-400-200 C-400-393.3-243.3-550-50-550 C143.3-550,300-393.3,300-200 C300-144.772,255.228-100,200-100H100V-200 C100-282.843,32.8425-350-50-350 C-132.843-350-200-282.843-200-200 M-200,200 C-420.914,200-600,20.9138-600-200 C-600-503.757-353.757-750-50-750 C253.757-750,500-503.757,500-200 C500-34.3147,365.685,100,200,100H100V200 C100,255.228,144.772,300,200,300 C476.142,300,700,76.1423,700-200 C700-614.213,364.213-950-50-950 C-464.213-950-800-614.213-800-200 C-800,131.371-531.371,400-200,400 C-89.5432,400,0,310.457,0,200V-200 C0-227.614-22.386-250-50-250 C-77.614-250-100-227.614-100-200V-100H-200 C-255.228-100-300-144.772-300-200 C-300-338.071-188.071-450-50-450 C88.071-450,200-338.071,200-200"/>
     </svg>
-
     <section class="hero" aria-labelledby="hero-title">
-
       <div class="container">
         <h1 class="hero-title" id="hero-title">The Careoperative</h1>
         <p class="hero-tagline">On journeys of sustainability, rooted in care.</p>
         <div class="hero-intro">
-          <p>We are mid-career social scientists collectively navigating sustainability transformations.
-             The careoperative started out of a 2019 Postdoctoral Academy for Transformational Leadership, funded by the
-             Robert Bosch Stiftung in Germany. We were brought together to explore leadership challegnes in sustainability research and pracitce aspiring to trasnfromation. We decided to stay toghether to collectively reimagine our ways of being sustainbility researchers and practitioners.
-             </p>
-          <p>We orient around four values: <strong>care, reflexivity, inclusivity,
-             and collectivity</strong>. As current challenges demand more from sustainability science than current institutions are designed to give, our aspirations guide how we show up for ourselves, each other, our partners in practice, our teams, and our organizations.</p>
+          <p>We are mid-career social scientists collectively navigating sustainability transformations. The careoperative started out of a 2019 Postdoctoral Academy for Transformational Leadership, funded by the Robert Bosch Stiftung in Germany. We decided to stay together to collectively reimagine our ways of being sustainability researchers and practitioners.</p>
+          <p>We orient around four values: <strong>care, reflexivity, inclusivity, and collectivity</strong>. As current challenges demand more from sustainability science than current institutions are designed to give, our aspirations guide how we show up for ourselves, each other, our partners in practice, our teams, and our organizations.</p>
         </div>
       </div>
     </section>
-
     <section class="section" aria-labelledby="work-heading">
       <div class="container">
-        <div class="section-heading">
-          <h2 id="work-heading">Recent Work</h2>
-          <p class="section-intro">We publish collectively under the pseudonym of Dr. Care (a.k.a., O. Care, a.k.a., Care, O.) — a
-             as part of a choice to elevate recognition of collective contributions in our work.</p>
-        </div>
+        <div class="section-heading"><h2 id="work-heading">Recent Work</h2><p class="section-intro">We publish collectively under the pseudonym of Dr. Care — as part of a choice to elevate recognition of collective contributions.</p></div>
         <div class="pub-list" role="list">
-          <article class="pub-card" role="listitem">
-            <h3 class="pub-title">
-              <a href="https://doi.org/10.1007/s13280-024-02086-5" target="_blank" rel="noopener noreferrer">
-                Reaping what we sow: Centering values in food systems transformations research
-              </a>
-            </h3>
-            <p class="pub-meta">Care et al. &mdash; <em>Ambio</em></p>
-            <p class="pub-year">2025</p>
-            <a class="pub-doi" href="https://doi.org/10.1007/s13280-024-02086-5" target="_blank" rel="noopener noreferrer">doi:10.1007/s13280-024-02086-5</a>
-          </article>
-          <article class="pub-card" role="listitem">
-            <h3 class="pub-title">
-              <a href="https://doi.org/10.1007/s11625-021-00909-y" target="_blank" rel="noopener noreferrer">
-                Creating leadership collectives for sustainability transformations
-              </a>
-            </h3>
-            <p class="pub-meta">Care et al. &mdash; <em>Sustainability Science</em>, 16: 703–708</p>
-            <p class="pub-year">2021</p>
-            <a class="pub-doi" href="https://doi.org/10.1007/s11625-021-00909-y" target="_blank" rel="noopener noreferrer">doi:10.1007/s11625-021-00909-y</a>
-          </article>
-          <article class="pub-card" role="listitem">
-            <h3 class="pub-title">
-              <a href="https://i2insights.org/2020/06/16/caring-online-workshops/" target="_blank" rel="noopener noreferrer">
-                Outbreaks, break-outs and break-times: Creating caring online workshops
-              </a>
-            </h3>
-            <p class="pub-meta">The Care Operative &mdash; <em>Integration and Implementation Insights</em></p>
-            <p class="pub-year">2020</p>
-            <a class="pub-doi" href="https://i2insights.org/2020/06/16/caring-online-workshops/" target="_blank" rel="noopener noreferrer">i2insights.org</a>
-          </article>
+          <article class="pub-card" role="listitem"><h3 class="pub-title"><a href="https://doi.org/10.1007/s13280-024-02086-5" target="_blank" rel="noopener">Reaping what we sow: Centering values in food systems transformations research</a></h3><p class="pub-meta">Care et al. — <em>Ambio</em></p><p class="pub-year">2025</p><a class="pub-doi" href="https://doi.org/10.1007/s13280-024-02086-5" target="_blank">doi:10.1007/s13280-024-02086-5</a></article>
+          <article class="pub-card" role="listitem"><h3 class="pub-title"><a href="https://doi.org/10.1007/s11625-021-00909-y" target="_blank" rel="noopener">Creating leadership collectives for sustainability transformations</a></h3><p class="pub-meta">Care et al. — <em>Sustainability Science</em>, 16: 703–708</p><p class="pub-year">2021</p><a class="pub-doi" href="https://doi.org/10.1007/s11625-021-00909-y" target="_blank">doi:10.1007/s11625-021-00909-y</a></article>
+          <article class="pub-card" role="listitem"><h3 class="pub-title"><a href="https://i2insights.org/2020/06/16/caring-online-workshops/" target="_blank" rel="noopener">Outbreaks, break-outs and break-times: Creating caring online workshops</a></h3><p class="pub-meta">The Care Operative — <em>I2Insights</em></p><p class="pub-year">2020</p><a class="pub-doi" href="https://i2insights.org/2020/06/16/caring-online-workshops/" target="_blank">i2insights.org</a></article>
         </div>
       </div>
     </section>
   </main>
-
   <footer class="site-footer" role="contentinfo">
-    <div class="footer-inner">
-      <p class="footer-invitation">open to connecting with fellow travelers.</p>
-      <div class="footer-bottom-row">
-        <p class="footer-copy">&copy; the careoperative</p>
-      </div>
-    </div>
+    <div class="footer-inner"><p class="footer-invitation">open to connecting with fellow travelers.</p><div class="footer-bottom-row"><p class="footer-copy">&copy; the careoperative</p></div></div>
   </footer>
-  </div>
-
-  <script>
-    const hamburger = document.getElementById('nav-hamburger');
-    const navPanel  = document.getElementById('nav-panel');
-    const siteNav   = document.getElementById('site-nav');
-    function closeNav() {
-      navPanel.classList.remove('nav-open');
-      hamburger.setAttribute('aria-expanded', 'false');
-    }
-    hamburger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const open = navPanel.classList.toggle('nav-open');
-      hamburger.setAttribute('aria-expanded', open);
+</div>
+<script>
+  (function() {
+    const toggle = document.getElementById('darkModeToggle');
+    const html = document.documentElement;
+    function updateToggleIcon() { toggle.innerHTML = html.classList.contains('dark') ? '☀️' : '🌙'; toggle.setAttribute('aria-label', html.classList.contains('dark') ? 'Switch to light mode' : 'Switch to dark mode'); }
+    updateToggleIcon();
+    toggle.addEventListener('click', () => {
+      const isDark = html.classList.contains('dark');
+      if (isDark) { html.classList.remove('dark'); html.classList.add('light'); localStorage.setItem('carop-dark', 'false'); }
+      else { html.classList.remove('light'); html.classList.add('dark'); localStorage.setItem('carop-dark', 'true'); }
+      updateToggleIcon();
     });
-    navPanel.querySelectorAll('a').forEach(function(l) { l.addEventListener('click', closeNav); });
-    document.addEventListener('click', closeNav);
-    siteNav.addEventListener('mouseleave', closeNav);
-  </script>
-  <script>
-    document.querySelectorAll('.footer-contact-obf').forEach(function(el) {
-      function reveal() {
-        const addr = el.dataset.u + '@' + el.dataset.d;
-        const a = document.createElement('a');
-        a.href = 'mailto:' + addr;
-        a.textContent = addr;
-        a.style.color = 'rgba(255,255,255,0.45)';
-        el.replaceWith(a);
-      }
-      el.addEventListener('click', reveal);
-      el.addEventListener('keydown', function(e) {
-        if (e.key === 'Enter' || e.key === ' ') reveal();
-      });
-    });
-  </script>
+  })();
+  const hamburger = document.getElementById('nav-hamburger'), panel = document.getElementById('nav-panel'), siteNav = document.getElementById('site-nav');
+  function closeNav() { if(panel) panel.classList.remove('nav-open'); if(hamburger) hamburger.setAttribute('aria-expanded', 'false'); }
+  if(hamburger && panel) { hamburger.addEventListener('click', (e) => { e.stopPropagation(); const open = panel.classList.toggle('nav-open'); hamburger.setAttribute('aria-expanded', open); }); panel.querySelectorAll('a').forEach(l => l.addEventListener('click', closeNav)); document.addEventListener('click', closeNav); if(siteNav) siteNav.addEventListener('mouseleave', closeNav); }
+</script>
 </body>
 </html>

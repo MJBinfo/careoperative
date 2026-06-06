@@ -9,19 +9,64 @@
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { -webkit-text-size-adjust: 100%; background-color: var(--riso-teal); }
+    html { -webkit-text-size-adjust: 100%; background-color: var(--nav-bg); }
     img, svg { display: block; max-width: 100%; }
     ul { list-style: none; }
     a { text-decoration: none; }
 
+    /* ── Colour tokens: light mode (default) ── */
     :root {
-      --riso-bg:      #faf3e8;
+      /* Riso inks — unchanged in both modes */
       --riso-coral:   #e8604c;
       --riso-teal:    #1d6b6b;
       --riso-yellow:  #f5c842;
       --riso-plum:    #6b3a6b;
-      --riso-ink:     #1a1a1a;
-      --riso-ink-mid: #444;
+      /* Nav/footer bg — same in both modes */
+      --nav-bg:          #1d6b6b;
+      /* Page surfaces & text — light */
+      --riso-bg:         #faf3e8;
+      --riso-surface:    #f0ebe0;
+      --riso-ink:        #1a1a1a;
+      --riso-ink-mid:    #444;
+      /* h2 chip */
+      --chip-bg:         var(--riso-yellow);
+      --chip-text:       var(--riso-teal);
+      /* Forest SVG base colour */
+      --forest-color:    #1d6b6b;
+    }
+
+    /* ── Colour tokens: dark mode (auto via OS) ── */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --riso-bg:         #18150f;
+        --riso-surface:    #231e16;
+        --riso-ink:        #ede6d8;
+        --riso-ink-mid:    #b8ad9e;
+        --chip-bg:         var(--riso-yellow);
+        --chip-text:       #1a1a1a;
+        --forest-color:    #7abeaa;
+      }
+    }
+
+    /* ── Colour tokens: dark mode (manual class) ── */
+    html.dark {
+      --riso-bg:         #18150f;
+      --riso-surface:    #231e16;
+      --riso-ink:        #ede6d8;
+      --riso-ink-mid:    #b8ad9e;
+      --chip-bg:         var(--riso-yellow);
+      --chip-text:       #1a1a1a;
+      --forest-color:    #7abeaa;
+    }
+    /* Manual light override (overrides OS dark preference) */
+    html.light {
+      --riso-bg:         #faf3e8;
+      --riso-surface:    #f0ebe0;
+      --riso-ink:        #1a1a1a;
+      --riso-ink-mid:    #444;
+      --chip-bg:         var(--riso-yellow);
+      --chip-text:       var(--riso-teal);
+      --forest-color:    #1d6b6b;
     }
 
     body {
@@ -30,6 +75,7 @@
       color: var(--riso-ink);
       background-color: var(--riso-bg);
       position: relative;
+      transition: background-color 0.3s, color 0.3s;
     }
     body::before {
       content: ''; position: fixed; inset: 0; z-index: 0;
@@ -39,19 +85,26 @@
     }
 
     /* ── Nav ── */
-    header { position: sticky; top: 0; z-index: 100; width: 100%; background-color: var(--riso-teal); }
-    header nav { width: 100%; background-color: var(--riso-teal); }
+    header { position: sticky; top: 0; z-index: 100; width: 100%; background-color: var(--nav-bg); }
+    header nav { width: 100%; background-color: var(--nav-bg); }
     .nav-inner { display: flex; align-items: center; height: 56px; max-width: 1100px; margin: 0 auto; padding: 0 2rem; gap: 0.5rem; }
     .nav-home { display: flex; align-items: center; }
     .nav-home:hover { opacity: 0.8; }
     .nav-page-links { display: flex; flex: 1; justify-content: center; gap: 0; }
     .nav-page-link { font-family: 'Source Serif 4', Georgia, serif; font-size: 0.85rem; font-weight: 600; text-transform: lowercase; letter-spacing: 0.04em; color: rgba(255,255,255,0.85); padding: 0.3rem 0.8rem; border-radius: 2px; transition: background-color 0.15s, color 0.15s; }
     .nav-page-link:hover { background-color: var(--riso-coral); color: #fff; }
-    .nav-icon-btn { display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.8); padding: 4px; border-radius: 3px; }
+    .nav-icon-btn { display: flex; align-items: center; justify-content: center; background: none; border: none; cursor: pointer; color: rgba(255,255,255,0.75); padding: 5px; border-radius: 3px; transition: color 0.15s; }
     .nav-icon-btn:hover { color: var(--riso-yellow); }
+    /* Sun/moon icon visibility */
+    .icon-moon { display: none; }
+    @media (prefers-color-scheme: dark) { .icon-sun { display: none; } .icon-moon { display: block; } }
+    html.dark  .icon-sun  { display: none   !important; }
+    html.dark  .icon-moon { display: block  !important; }
+    html.light .icon-sun  { display: block  !important; }
+    html.light .icon-moon { display: none   !important; }
     .nav-hamburger { flex-direction: column; gap: 5px; width: 36px; height: 36px; }
     .nav-hamburger span { display: block; width: 20px; height: 2px; background: currentColor; border-radius: 1px; }
-    .nav-panel { display: none; flex-direction: column; background-color: var(--riso-teal); border-top: 2px solid rgba(255,255,255,0.15); }
+    .nav-panel { display: none; flex-direction: column; background-color: var(--nav-bg); border-top: 2px solid rgba(255,255,255,0.15); }
     .nav-panel.nav-open { display: flex; }
     .nav-link { font-family: 'Source Serif 4', Georgia, serif; font-size: 1.1rem; text-transform: lowercase; color: rgba(255,255,255,0.9); padding: 0.6rem 2rem; border-left: 3px solid transparent; transition: background-color 0.15s, border-color 0.15s; }
     .nav-link:hover { background-color: rgba(255,255,255,0.1); border-left-color: var(--riso-yellow); }
@@ -73,7 +126,7 @@
 
     /* ── Content sections ── */
     .content-section { padding: 3rem 0; position: relative; z-index: 1; }
-    .content-section h2 { font-family: 'Lora', Georgia, serif; font-size: 1.5rem; font-weight: 700; color: var(--riso-teal); display: inline-block; background-color: var(--riso-yellow); padding: 0.1rem 0.6rem; margin-bottom: 1.4rem; }
+    .content-section h2 { font-family: 'Lora', Georgia, serif; font-size: 1.5rem; font-weight: 700; color: var(--chip-text); display: inline-block; background-color: var(--chip-bg); padding: 0.1rem 0.6rem; margin-bottom: 1.4rem; }
     .content-section p { font-size: 1rem; color: var(--riso-ink-mid); max-width: 65ch; margin-bottom: 1rem; }
     .content-section p:last-child { margin-bottom: 0; }
 
@@ -137,7 +190,7 @@
       font-weight: 600;
       text-transform: lowercase;
       letter-spacing: 0.04em;
-      color: var(--riso-teal);
+      color: var(--forest-color);
       cursor: pointer;
       transition: color 0.2s;
       padding: 0.2rem 0;
@@ -146,6 +199,15 @@
       gap: 0.3rem;
     }
     .forest-link:hover { color: var(--riso-coral); }
+
+    /* SVG <a> elements: inherit color so currentColor flows from the svg element */
+    #forest-nav-svg a {
+      cursor: pointer;
+      color: inherit;
+      text-decoration: none;
+    }
+    #forest-nav-svg a:focus { outline: none; }
+    #forest-nav-svg a:focus-visible { outline: 2px solid var(--riso-yellow); outline-offset: 2px; }
 
     /* Arrow glyphs — point inward toward SVG */
     .forest-link.bottom-left  { flex-direction: row; }   /* arrow right → */
@@ -234,7 +296,7 @@
     }
 
     /* ── Footer ── */
-    .site-footer { width: 100%; background-color: var(--riso-teal); padding: 3rem 0; text-align: center; }
+    .site-footer { width: 100%; background-color: var(--nav-bg); padding: 3rem 0; text-align: center; }
     .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 1rem; max-width: 680px; margin: 0 auto; padding: 0 2rem; }
     .footer-invitation { font-family: 'Lora', Georgia, serif; font-size: 1.2rem; font-style: italic; color: var(--riso-yellow); }
     .footer-bottom-row { width: 100%; display: flex; justify-content: flex-end; align-items: baseline; }
@@ -242,6 +304,14 @@
 
     a:focus-visible, button:focus-visible { outline: 2px solid var(--riso-yellow); outline-offset: 2px; }
   </style>
+  <!-- Apply saved dark preference before paint to prevent flash -->
+  <script>
+    (function() {
+      var s = localStorage.getItem('carop-dark');
+      if (s === 'true')  document.documentElement.classList.add('dark');
+      if (s === 'false') document.documentElement.classList.add('light');
+    })();
+  </script>
 </head>
 <body>
   <header>
@@ -289,6 +359,27 @@
           <a href="practices.html" class="nav-page-link">Our Practices</a>
           <a href="sites.html" class="nav-page-link">Sites of Care</a>
         </nav>
+        <!-- Dark mode toggle -->
+        <button id="dark-toggle" class="nav-icon-btn" aria-label="Switch to dark mode">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+               width="20" height="20" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1"  x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22"   x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1"  y1="12" x2="3"  y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22"  y1="19.78" x2="5.64"  y2="18.36"/>
+            <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+               width="20" height="20" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
         <button id="nav-hamburger" class="nav-icon-btn nav-hamburger"
                 aria-controls="nav-panel" aria-expanded="false" aria-label="Open navigation menu">
           <span></span><span></span><span></span>
@@ -421,10 +512,16 @@
                xmlns="http://www.w3.org/2000/svg"
                viewBox="0 0 82 64"
                stroke-linecap="round" stroke-linejoin="round"
-               aria-hidden="true" focusable="false">
+               style="color: var(--forest-color);"
+               aria-label="Forest diagram — hover layers to explore"
+               role="img">
 
-            <!-- ── LAYER: roots ── -->
-            <g class="layer-roots" fill="currentColor" stroke="currentColor">
+            <!-- ── ROOTS layer → Our Careoperative ── -->
+            <a href="careoperative.html"
+               data-highlight="highlight-roots"
+               aria-label="Our Careoperative — the people and roots of the collective">
+              <title>Our Careoperative</title>
+              <g class="layer-roots" fill="currentColor" stroke="currentColor">
               <!-- R1 birch roots -->
               <path d="M10,40 C9,42 7,43 5,43 C3,43 2,44 1,45"           stroke-width="0.95" fill="none"/>
               <path d="M12,40 C13,42 15,42 17,41 C19,40 21,41 23,42"     stroke-width="0.9"  fill="none"/>
@@ -463,15 +560,21 @@
               <path d="M32,47 C35,46 38,47 41,46 C43,45 45,46 46,47"     stroke-width="0.75" fill="none"/>
               <path d="M40,50 C37,51 34,50 31,51 C29,52 27,51 25,52"     stroke-width="0.7"  fill="none"/>
               <path d="M52,50 C55,51 58,50 61,51 C63,52 65,51 67,52"     stroke-width="0.7"  fill="none"/>
-            </g>
+              </g>
+            </a>
 
-            <!-- ── LAYER: ground line ── -->
-            <g class="layer-ground" fill="none" stroke="currentColor">
-              <line x1="1" y1="40" x2="81" y2="40" stroke-width="1.2"/>
-            </g>
+            <!-- ── GROUND + GROUNDCOVER layer → Our Work ── -->
+            <a href="work.html"
+               data-highlight="highlight-under"
+               aria-label="Our Work — publications and outputs">
+              <title>Our Work</title>
+              <!-- ── LAYER: ground line ── -->
+              <g class="layer-ground" fill="none" stroke="currentColor">
+                <line x1="1" y1="40" x2="81" y2="40" stroke-width="1.2"/>
+              </g>
 
-            <!-- ── LAYER: understorey / groundcover ── -->
-            <g class="layer-under" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+              <!-- ── LAYER: understorey / groundcover ── -->
+              <g class="layer-under" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <!-- Fern at x=19 -->
               <line x1="19" y1="40" x2="19" y2="35" stroke-width="0.8" fill="none"/>
               <path d="M19,37 C17,36 15,36 14,37" stroke-width="0.7" fill="none"/>
@@ -502,10 +605,15 @@
               <path d="M5,40 C4,39 3,38 3,37 C3,36 4,36 5,37 C5,36 6,36 6,37 C7,38 6,39 5,40 Z" fill-opacity="0.18" stroke-width="0.7"/>
               <path d="M7,40 C6,39 6,38 7,37 C8,37 8,38 8,39 C9,38 9,37 10,37 C10,38 9,39 8,40 Z" fill-opacity="0.15" stroke-width="0.7"/>
               <path d="M77,40 C76,39 76,38 77,37 C78,37 78,38 78,39 C79,38 79,37 80,38 C80,39 79,40 78,40 Z" fill-opacity="0.18" stroke-width="0.7"/>
-            </g>
+              </g>
+            </a>
 
-            <!-- ── LAYER: trees (trunks + canopies) ── -->
-            <g class="layer-trees" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <!-- ── TREES layer → Our Practices ── -->
+            <a href="practices.html"
+               data-highlight="highlight-trees"
+               aria-label="Our Practices — how we work together">
+              <title>Our Practices</title>
+              <g class="layer-trees" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
               <!-- T1 birch -->
               <line x1="9"  y1="40" x2="8"  y2="26" stroke-width="1.0" fill="none"/>
               <line x1="12" y1="40" x2="13" y2="22" stroke-width="0.9" fill="none"/>
@@ -529,7 +637,8 @@
               <!-- T5 right deciduous -->
               <path d="M75,40 C75,37 74,33 75,29" stroke-width="1.5" fill="none"/>
               <path d="M75,29 C72,26 69,25 68,27 C66,25 67,22 69,22 C68,20 70,18 72,19 C71,17 74,16 75,18 C76,16 79,17 78,19 C80,19 81,22 79,23 C81,24 81,27 78,28 C77,27 76,28 75,29 Z" fill-opacity="0.18" stroke-width="1.0"/>
-            </g>
+              </g>
+            </a>
 
           </svg><!-- end #forest-nav-svg -->
 
@@ -565,51 +674,77 @@
   </footer>
   </div>
 
+  <!-- ── Dark mode toggle ── -->
   <script>
-    /* ── Nav hamburger ── */
-    const hamburger = document.getElementById('nav-hamburger');
-    const navPanel  = document.getElementById('nav-panel');
-    const siteNav   = document.getElementById('site-nav');
-    function closeNav() {
-      navPanel.classList.remove('nav-open');
-      hamburger.setAttribute('aria-expanded', 'false');
-    }
-    hamburger.addEventListener('click', function(e) {
-      e.stopPropagation();
-      const open = navPanel.classList.toggle('nav-open');
-      hamburger.setAttribute('aria-expanded', open);
-    });
-    navPanel.querySelectorAll('a').forEach(function(l) { l.addEventListener('click', closeNav); });
-    document.addEventListener('click', closeNav);
-    siteNav.addEventListener('mouseleave', closeNav);
+    (function() {
+      var btn  = document.getElementById('dark-toggle');
+      var html = document.documentElement;
+
+      function isDark() {
+        return html.classList.contains('dark') ||
+          (!html.classList.contains('light') &&
+           window.matchMedia('(prefers-color-scheme: dark)').matches);
+      }
+      function applyDark(dark) {
+        html.classList.toggle('dark',  dark);
+        html.classList.toggle('light', !dark);
+        localStorage.setItem('carop-dark', dark);
+        btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      }
+      btn.addEventListener('click', function() { applyDark(!isDark()); });
+      btn.setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
+    })();
   </script>
 
+  <!-- ── Nav hamburger ── -->
   <script>
-    /* ── Forest SVG layer highlighting ── */
-    const forestNav = document.getElementById('forest-nav');
-    const links = forestNav.querySelectorAll('.forest-link[data-highlight]');
-    const allHighlights = ['highlight-roots', 'highlight-under', 'highlight-trees'];
+    (function() {
+      var hamburger = document.getElementById('nav-hamburger');
+      var navPanel  = document.getElementById('nav-panel');
+      var siteNav   = document.getElementById('site-nav');
+      function closeNav() {
+        navPanel.classList.remove('nav-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+      hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = navPanel.classList.toggle('nav-open');
+        hamburger.setAttribute('aria-expanded', open);
+      });
+      navPanel.querySelectorAll('a').forEach(function(l) { l.addEventListener('click', closeNav); });
+      document.addEventListener('click', closeNav);
+      siteNav.addEventListener('mouseleave', closeNav);
+    })();
+  </script>
 
-    links.forEach(function(link) {
-      const cls = link.dataset.highlight;
+  <!-- ── Forest SVG layer highlighting ── -->
+  <!-- Both the text links and the SVG <a> elements carry data-highlight,
+       so hovering either triggers the same state on #forest-nav. -->
+  <script>
+    (function() {
+      var forestNav  = document.getElementById('forest-nav');
+      var allClasses = ['highlight-roots', 'highlight-under', 'highlight-trees'];
 
-      link.addEventListener('mouseenter', function() {
-        allHighlights.forEach(function(h) { forestNav.classList.remove(h); });
+      function setHighlight(cls) {
+        allClasses.forEach(function(h) { forestNav.classList.remove(h); });
         if (cls) forestNav.classList.add(cls);
+      }
+
+      var triggers = forestNav.querySelectorAll('[data-highlight]');
+      triggers.forEach(function(el) {
+        var cls = el.dataset.highlight;
+        el.addEventListener('mouseenter', function() { setHighlight(cls); });
+        el.addEventListener('mouseleave', function() { setHighlight(''); });
+        el.addEventListener('touchstart', function() {
+          var already = cls && forestNav.classList.contains(cls);
+          setHighlight(already ? '' : cls);
+        }, { passive: true });
       });
 
-      link.addEventListener('mouseleave', function() {
-        forestNav.classList.remove(cls);
-      });
-
-      /* Touch: toggle on tap, clear on second tap or tap elsewhere */
-      link.addEventListener('touchstart', function(e) {
-        e.preventDefault();
-        const already = forestNav.classList.contains(cls);
-        allHighlights.forEach(function(h) { forestNav.classList.remove(h); });
-        if (!already && cls) forestNav.classList.add(cls);
-      }, { passive: false });
-    });
+      document.addEventListener('touchstart', function(e) {
+        if (!forestNav.contains(e.target)) setHighlight('');
+      }, { passive: true });
+    })();
   </script>
 
 </body>
