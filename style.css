@@ -153,25 +153,18 @@ a {
   --forest-color: #1d6b6b;
 }
 
-/* ── DARK MODE OVERRIDES (Unified) ── */
-@media (prefers-color-scheme: dark), html.dark {
+/* ── DARK MODE OVERRIDES — system preference ── */
+@media (prefers-color-scheme: dark) {
   :root {
-    /* BACKGROUND & TEXT CHANGES ONLY */
-    --riso-bg:      #1a1a18;    /* Slightly lighter than #18150f */
+    --riso-bg:      #1a1a18;
     --riso-surface: #252420;
     --riso-ink:     #e8e2d9;
     --riso-ink-mid: #b0a898;
-    
-    /* TEAL MODIFICATION (Per your request: Light Teal) */
-    --riso-teal:    #5aadad;    /* <-- Both system-dark AND manual-dark use this */
-    --nav-bg:       #1d6b6b;    /* Keep nav bar darker for separation */
-    
-    /* UPDATED CHIP TEXT */
+    --riso-teal:    #5aadad;
+    --nav-bg:       #1d6b6b;
     --chip-bg:      var(--riso-yellow);
-    --chip-text:    #1a1a1a;    /* Black text on yellow chip (high contrast) */
-    --forest-color: #5aadad;    /* Sync with new teal */
-    
-    /* NEW ELEMENT SUPPORT (From careoperative/work pages) */
+    --chip-text:    #1a1a1a;
+    --forest-color: #5aadad;
     --riso-border:         #3d3828;
     --riso-photo-bg:       #302d24;
     --riso-shadow:         rgba(0,0,0,0.4);
@@ -182,6 +175,28 @@ a {
     --badge-border:        rgba(42,138,138,0.35);
     --badge-text:          #2a8a8a;
   }
+}
+
+/* ── DARK MODE OVERRIDES — manual toggle (.dark class on <html>) ── */
+html.dark {
+  --riso-bg:      #1a1a18;
+  --riso-surface: #252420;
+  --riso-ink:     #e8e2d9;
+  --riso-ink-mid: #b0a898;
+  --riso-teal:    #5aadad;
+  --nav-bg:       #1d6b6b;
+  --chip-bg:      var(--riso-yellow);
+  --chip-text:    #1a1a1a;
+  --forest-color: #5aadad;
+  --riso-border:         #3d3828;
+  --riso-photo-bg:       #302d24;
+  --riso-shadow:         rgba(0,0,0,0.4);
+  --riso-dim-filter:     brightness(0.45) saturate(0.4);
+  --riso-sleeping-bg:    #222018;
+  --riso-sleeping-dot:   #5a5448;
+  --badge-bg:            rgba(42,138,138,0.15);
+  --badge-border:        rgba(42,138,138,0.35);
+  --badge-text:          #2a8a8a;
 }
 
 /* ------------------------------------------------------------
@@ -375,7 +390,8 @@ header {
   top: 0;
   z-index: 100;
   width: 100%;
-  background-color: var(--nav-bg);
+  background-color: #1d6b6b;
+  background-color: var(--nav-bg, #1d6b6b);
 }
 
 .nav-inner {
@@ -512,7 +528,8 @@ html.light .icon-moon { display: none   !important; }
 .nav-panel {
   display: none;
   flex-direction: column;
-  background-color: var(--nav-bg);
+  background-color: #1d6b6b;
+  background-color: var(--nav-bg, #1d6b6b);
   border-top: 2px solid rgba(255,255,255,0.15);
 }
 
@@ -1357,7 +1374,8 @@ html.dark .hero-labyrinth {
 
 .site-footer {
   width: 100%;
-  background-color: var(--nav-bg);
+  background-color: #1d6b6b;
+  background-color: var(--nav-bg, #1d6b6b);
   padding: 3rem 0;
   text-align: center;
 }
