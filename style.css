@@ -442,7 +442,9 @@ header {
   color: var(--riso-yellow);
   border-bottom: 2px solid var(--riso-yellow);
 }
-
+.nav-page-link:visited {
+  color: rgba(255,255,255,0.85);
+}
 /* Dark mode toggle button */
 .dark-mode-toggle {
   display: flex;
@@ -558,7 +560,9 @@ html.light .icon-moon { display: none   !important; }
   border-left-color: var(--riso-yellow);
   background-color: rgba(255,255,255,0.05);
 }
-
+.nav-link:visited {
+  color: rgba(255,255,255,0.9);
+}
 /* Hide desktop nav on mobile */
 @media (max-width: 760px) {
   .nav-page-links {
