@@ -918,204 +918,129 @@ html.dark .hero-labyrinth {
 
 .member-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--card-gap);
-}
-
-@media (max-width: 560px) {
-  .member-grid {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  align-items: start;
 }
 
 .member-card {
-  position: relative;
-  height: var(--card-h);
-}
-
-.card-shell {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: var(--card-h);
-  display: flex;
-  flex-direction: row;
-  background-color: var(--riso-surface);
-  border-left: 3px solid var(--riso-teal);
-  overflow: hidden;
   cursor: pointer;
-  transition: width 0.32s cubic-bezier(0.4,0,0.2,1), height 0.32s cubic-bezier(0.4,0,0.2,1), box-shadow 0.2s ease;
-  z-index: 1;
-  filter: none;
+  background: var(--riso-surface);
+  border: 1px solid var(--riso-border);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 
-.member-grid.has-active .card-shell {
-  filter: var(--riso-dim-filter);
+.member-card:hover {
+  box-shadow: 0 4px 18px var(--riso-shadow);
+  transform: translateY(-2px);
 }
 
-.member-grid.has-active .member-card.is-active .card-shell {
-  filter: none;
-}
-
-.member-card.is-active .card-shell {
-  width: calc(200% + var(--card-gap));
-  height: auto;
-  min-height: var(--card-h);
+.member-card.is-open {
+  border-color: var(--riso-teal);
   box-shadow: 0 6px 24px var(--riso-shadow);
-  z-index: 10;
-  cursor: default;
+  transform: translateY(-2px);
 }
 
-.member-card.expand-right .card-shell {
-  left: 0;
-  right: auto;
+.member-photo {
+  aspect-ratio: 1 / 1;
+  background-color: var(--riso-photo-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
 }
 
-.card-badge {
+.member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.member-photo::after {
+  content: '';
   position: absolute;
-  top: 6px;
-  right: 6px;
+  inset: 0;
+  background-color: var(--riso-teal);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+
+.member-card:hover .member-photo::after,
+.member-card.is-open .member-photo::after {
+  opacity: 0.12;
+}
+
+.member-photo-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--riso-sleeping-dot);
+}
+
+.member-body {
+  padding: 0.75rem 0.85rem 0.85rem;
+  border-top: 2px solid var(--riso-teal);
+}
+
+.member-badge {
+  display: inline-block;
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 0.6rem;
+  font-size: 0.58rem;
   font-style: italic;
   letter-spacing: 0.03em;
   color: var(--badge-text);
   background-color: var(--badge-bg);
   border: 1px solid var(--badge-border);
   padding: 1px 5px;
-  pointer-events: none;
-  z-index: 2;
-  white-space: nowrap;
+  margin-bottom: 0.35rem;
 }
 
-.card-photo {
-  flex-shrink: 0;
-  width: var(--photo-w);
-  background-color: var(--riso-photo-bg);
-  border-right: 1px solid var(--riso-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  transition: width 0.32s cubic-bezier(0.4,0,0.2,1);
-}
-
-.member-card.is-active .card-photo {
-  width: var(--peek-w);
-  min-width: var(--peek-w);
-}
-
-.card-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.card-photo-label {
-  font-size: 0.6rem;
-  color: var(--riso-sleeping-dot);
-  text-align: center;
-  padding: 0.2rem;
-  transition: opacity 0.15s;
-}
-
-.member-card.is-active .card-photo-label {
-  opacity: 0;
-}
-
-.card-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 0.75rem 0.9rem;
-  min-width: 0;
-}
-
-.card-name {
+.member-name {
   font-family: 'Lora', Georgia, serif;
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  color: var(--riso-teal);
+  color: var(--riso-ink);
   line-height: 1.25;
-  margin-bottom: 0.25rem;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
+  margin-bottom: 0.2rem;
 }
 
-.member-card.is-active .card-name {
-  -webkit-line-clamp: unset;
-  overflow: visible;
-}
-
-.card-affiliation {
+.member-affiliation {
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 0.78rem;
+  font-size: 0.75rem;
   font-style: italic;
   color: var(--riso-ink-mid);
   line-height: 1.35;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
+}
+
+.member-bio {
   overflow: hidden;
-}
-
-.member-card.is-active .card-affiliation {
-  -webkit-line-clamp: unset;
-  overflow: visible;
-}
-
-.card-bio {
-  font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 0.85rem;
-  line-height: 1.6;
-  color: var(--riso-ink-mid);
   max-height: 0;
+  transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s ease;
   opacity: 0;
-  overflow: hidden;
-  transition: max-height 0.32s cubic-bezier(0.4,0,0.2,1), opacity 0.22s ease 0.1s;
 }
 
-.member-card.is-active .card-bio {
-  max-height: 300px;
+.member-card.is-open .member-bio {
+  max-height: 500px;
   opacity: 1;
-  padding-top: 0.5rem;
 }
 
-.card-close-hint {
-  display: none;
-  font-size: 0.72rem;
-  color: var(--riso-teal);
-  letter-spacing: 0.04em;
-  text-transform: lowercase;
-  margin-top: 0.6rem;
-  opacity: 0.7;
+.member-bio p {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--riso-ink-mid);
+  padding-top: 0.65rem;
+  max-width: 100%;
+  margin: 0;
 }
 
-.member-card.is-active .card-close-hint {
-  display: block;
-}
-
-@media (max-width: 560px) {
-  .member-card {
-    height: auto;
-  }
-  .card-shell {
-    position: relative;
-    width: 100% !important;
-    height: auto !important;
-  }
-  .member-card.is-active .card-photo {
-    width: var(--photo-w);
-  }
-  .member-card.is-active .card-photo-label {
-    opacity: 1;
-  }
-  .card-info {
-    padding: 1rem;
+@media (max-width: 760px) {
+  .member-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -1153,8 +1078,6 @@ html.dark .hero-labyrinth {
   margin: 0 0.6rem;
   color: var(--riso-sleeping-dot);
 }
-
-
 /* ------------------------------------------------------------
    16. Conference entries (Work page)
    ------------------------------------------------------------ */
