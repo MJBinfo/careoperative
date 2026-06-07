@@ -25,416 +25,568 @@
   <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button><button id="nav-hamburger" class="nav-icon-btn nav-hamburger" aria-controls="nav-panel" aria-expanded="false"><span></span><span></span><span></span></button></div><div id="nav-panel" class="nav-panel"><a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a><a href="careoperative.html" class="nav-link active">Our Careoperative</a><a href="work.html" class="nav-link">Our Work</a><a href="practices.html" class="nav-link">Our Practices</a><a href="sites.html" class="nav-link">Sites of Care</a></div></nav></header>
 <div class="clip-wrap"><main><svg class="page-labyrinth" viewBox="-855 -1005 1610 1460" aria-hidden="true"><path stroke-width="25" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M200,200 C420.914,200,600,20.9138,600-200 C600-558.985,308.985-850-50-850 C-408.985-850-700-558.985-700-200 C-700,76.1423-476.142,300-200,300 C-144.772,300-100,255.228-100,200V100H-200 C-365.685,100-500-34.3147-500-200 C-500-448.528-298.528-650-50-650 C198.528-650,400-448.528,400-200 C400-89.5432,310.457,0,200,0H-200 C-310.457,0-400-89.5432-400-200 C-400-393.3-243.3-550-50-550 C143.3-550,300-393.3,300-200 C300-144.772,255.228-100,200-100H100V-200 C100-282.843,32.8425-350-50-350 C-132.843-350-200-282.843-200-200 M-200,200 C-420.914,200-600,20.9138-600-200 C-600-503.757-353.757-750-50-750 C253.757-750,500-503.757,500-200 C500-34.3147,365.685,100,200,100H100V200 C100,255.228,144.772,300,200,300 C476.142,300,700,76.1423,700-200 C700-614.213,364.213-950-50-950 C-464.213-950-800-614.213-800-200 C-800,131.371-531.371,400-200,400 C-89.5432,400,0,310.457,0,200V-200 C0-227.614-22.386-250-50-250 C-77.614-250-100-227.614-100-200V-100H-200 C-255.228-100-300-144.772-300-200 C-300-338.071-188.071-450-50-450 C88.071-450,200-338.071,200-200"/></svg><section class="page-hero"><div class="container"><h1>Our Careoperative</h1><p class="lead">We are a group of researchers who found in each other something rarer than a network: a genuine community of practice, accountable to shared values and to one another. Select any portrait to learn more.</p></div></section><section class="content-section"><div class="container"><h2>How we are organised</h2><p>The Careoperative has always understood participation as something that ebbs and flows. Life changes, research pressures shift, and the energy any one of us can bring to collective work moves with the seasons of a career. Rather than treating this as a problem to be managed, we built the collective to accommodate it. Members are either <em>active</em> — regularly engaged in meetings, writing projects, and shared work — or <em>sleeping</em>, stepping back without stepping out.</p><p>Sleeping membership is not an ending. It preserves belonging, keeps doors open, and honours the truth that the conditions for full participation are not always within a person's control. When circumstances change, members move back into active engagement. The distinction is practical, not hierarchical: it reflects where someone is at a given moment, not the value of what they have contributed.</p></div></section><section class="content-section"><div class="container-wide"><h2>Active members</h2>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+  <!-- START OF INSERTED CODE -->
 <style>
-  /* Base Layout */
+  /* Member Grid Layout */
   .member-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
-    padding: 2rem;
-    max-width: 1400px;
-    margin: 0 auto;
-  }
-
-  /* Member Card Container */
-  .member-card {
-    background: #fff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    
-    /* Initial State Constraints */
-    height: auto; 
-    min-height: 360px; /* Account for photo + name + affiliation */
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    max-width: 100%; 
+    margin: 1.5rem auto 0;
+    transition: all 0.2s ease;
   }
 
-  /* Greyed out state for inactive cards */
-  .member-grid .member-card:not(.expanded) {
-    opacity: 0.4;
-    transform: scale(0.98);
-    filter: grayscale(0.6);
+  /* Grey-out logic: when grid has an active card, dim others */
+  .member-grid.has-active .member-card:not(.is-active) {
+    opacity: 0.45;
+    filter: grayscale(0.05);
+    pointer-events: none; 
   }
 
-  /* Active Expanded State */
-  .member-card.expanded {
-    opacity: 1;
-    transform: scale(1);
+  /* Card Base */
+  .member-card {
+    width: 300px;
+    background: #ffffff;
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.02);
+    transition: all 0.25s ease-out;
+    overflow: hidden;
+    position: relative;
+    break-inside: avoid;
+  }
+
+  .dark .member-card { background: #1e293b; }
+
+  /* Active State */
+  .member-card.is-active {
+    box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
     z-index: 10;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    border-color: #4285f4; /* Proton Blue accent */
-    flex-grow: 1; /* Allows fluid height growth */
   }
 
-  /* Photo Placeholder (300x400 requirement) */
-  .member-photo {
+  /* Clickable Shell */
+  .card-shell {
+    cursor: pointer;
+    outline: none;
+    display: block;
+    width: 100%;
+  }
+  
+  .card-shell:focus-visible {
+    outline: 3px solid var(--riso-yellow, #fde047);
+    outline-offset: -3px;
+  }
+
+  /* Photo Placeholder (300x400) */
+  .card-photo {
     width: 100%;
     height: 400px;
-    background-color: #f0f0f0;
+    background: #eef2f5;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #999;
-    font-size: 0.9rem;
-    position: relative;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #e9edf2;
   }
-  
-  /* Badge positioning */
-  .member-badge {
+
+  .dark .card-photo { background: #334155; }
+  .card-photo-label {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #5e6f8d;
+    background: rgba(255,255,240,0.7);
+    padding: 0.4rem 0.9rem;
+    border-radius: 40px;
+    backdrop-filter: blur(2px);
+    letter-spacing: 0.3px;
+  }
+
+  /* Badge Styling */
+  .card-badge {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #4285f4;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-size: 0.75rem;
-    font-weight: bold;
+    background: #fde047;
+    color: #854d0e;
+    font-size: 0.7rem;
+    font-weight: 600;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 0.2rem 0.75rem;
+    border-radius: 20px;
+    z-index: 2;
+    pointer-events: none;
   }
 
-  /* Content Body */
-  .member-body {
-    padding: 1.5rem;
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
+  /* Info Section */
+  .card-info {
+    padding: 1rem;
   }
 
-  /* Text Wrapping & Typography */
-  .member-name {
-    font-size: 1.25rem;
+  .card-name {
+    font-family: 'Lora', serif;
+    font-size: 1.15rem;
     font-weight: 700;
-    margin-bottom: 0.25rem;
-    line-height: 1.2;
+    color: #0f2b3d;
+    margin-bottom: 0.2rem;
+    line-height: 1.35;
     word-wrap: break-word;
   }
+  .dark .card-name { color: #f1f5f9; }
 
-  .member-affiliation {
-    font-size: 0.95rem;
-    color: #555;
-    margin-bottom: 0.5rem;
+  .card-affiliation {
+    font-size: 0.8rem;
+    color: #4b5e77;
     line-height: 1.4;
+    margin-bottom: 0.5rem;
     word-wrap: break-word;
+    border-left: 2px solid #cbd5e1;
+    padding-left: 0.5rem;
   }
 
-  /* Bio Section - Hidden by default */
-  .member-bio-container {
+  /* Bio & ORCID Container (Animated) */
+  .card-bio-wrapper {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease-out, opacity 0.4s ease;
     opacity: 0;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease 0.1s;
+    border-top: 1px solid transparent;
   }
 
-  .member-card.expanded .member-bio-container {
-    max-height: 1000px; /* Large enough to fit any bio */
+  .member-card.is-active .card-bio-wrapper {
+    max-height: 600px;
     opacity: 1;
-    margin-top: 1rem;
-    border-top: 1px solid #eee;
-    padding-top: 1rem;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top-color: #eef2f6;
   }
+  .dark .member-card.is-active .card-bio-wrapper { border-top-color: #334155; }
 
-  .member-bio p {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: #333;
-    margin: 0;
-  }
-
-  /* ORCID Link */
-  .member-orcid {
-    margin-top: 1rem;
+  .card-bio {
     font-size: 0.85rem;
+    line-height: 1.6;
+    color: #1f3a4b;
+    margin-bottom: 0;
   }
-  
-  .member-orcid a {
-    color: #007d82; /* Standard ORCID green/blue mix */
-    text-decoration: none;
-    display: inline-flex;
+  .dark .card-bio { color: #cbd5e1; }
+
+  /* ORCID Link - Visible only when expanded */
+  .card-orcid {
+    display: none;
+    margin-top: 0.75rem;
+    font-size: 0.8rem;
+    background: #f8fafc;
+    padding: 0.45rem 0.6rem;
+    border-radius: 40px;
+    width: fit-content;
+    border: 1px solid #e2edf7;
     align-items: center;
-  }
-  
-  .member-orcid a:hover {
-    text-decoration: underline;
+    gap: 0.4rem;
   }
 
+  .dark .card-orcid { 
+    background: #334155; 
+    border-color: #475569; 
+  }
+
+  .member-card.is-active .card-orcid {
+    display: inline-flex;
+  }
+
+  .card-orcid a {
+    color: #0369a1;
+    text-decoration: none;
+    font-weight: 500;
+    word-break: break-all;
+    transition: color 0.2s;
+  }
+
+  .dark .card-orcid a { color: #7dd3fc; }
+  .card-orcid a:hover { text-decoration: underline; }
+
+  /* Close Hint */
+  .card-close-hint {
+    display: none;
+    font-size: 0.75rem;
+    color: #94a3b8;
+    margin-top: 0.5rem;
+    font-style: italic;
+    text-align: center;
+  }
+  .member-card.is-active .card-close-hint { display: block; }
+
+  /* Sleeping & Alumni Lists */
+  .sleeping-list, .alumni-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  .sleeping-name, .alumni-name {
+    background: #f1f5f9;
+    padding: 0.5rem 1rem;
+    border-radius: 40px;
+    font-size: 0.9rem;
+    color: #475569;
+    display: inline-block;
+  }
+  .dark .sleeping-name, .dark .alumni-name {
+    background: #334155;
+    color: #94a3b8;
+  }
 </style>
-</head>
-<body>
 
 <div class="member-grid" id="member-grid">
-
+  
   <!-- Michael J. Bernstein -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <p class="member-name">Michael J. Bernstein</p>
-      <p class="member-affiliation">Austrian Institute of Technology, Vienna</p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>Michael is a senior scientist and leader of the Societal Futures group at AIT's Center for Innovation Systems and Policy. His project-based work spans international, transdisciplinary collaborations on the social, ethical, and environmental dimensions of research and innovation systems.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">Michael J. Bernstein</p>
+        <p class="card-affiliation">Austrian Institute of Technology, Vienna</p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>Michael is a senior scientist and leader of the Societal Futures group at AIT's Center for Innovation Systems and Policy. His project-based work spans international, transdisciplinary collaborations on the social, ethical, and environmental dimensions of research and innovation systems.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="https://orcid.org/0000-0001-7980-0489" target="_blank" rel="noopener">0000-0001-7980-0489</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
   <!-- Mollie Chapman -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <p class="member-name">Mollie Chapman</p>
-      <p class="member-affiliation">TdLab, ETH Zurich</p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>Mollie is an established researcher at the Transdisciplinarity Lab of ETH Zurich, focused on environmental values and food systems transformations. Her research with agricultural producers has spanned Canada, the USA, Colombia, Costa Rica, and Switzerland.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">Mollie Chapman</p>
+        <p class="card-affiliation">TdLab, ETH Zurich</p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>Mollie is an established researcher at the Transdisciplinarity Lab of ETH Zurich, focused on environmental values and food systems transformations. Her research with agricultural producers has spanned Canada, the USA, Colombia, Costa Rica, and Switzerland.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="#" target="_blank" rel="noopener">Placeholder</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
   <!-- Isabel Diaz Reviriego -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <p class="member-name">Isabel Diaz Reviriego</p>
-      <p class="member-affiliation"></p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>Isabel's research centres on the social-ecological dimensions of biodiversity and food systems, with a particular interest in the knowledge and practices of local and indigenous communities.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">Isabel Diaz Reviriego</p>
+        <p class="card-affiliation"></p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>Isabel's research centres on the social-ecological dimensions of biodiversity and food systems, with a particular interest in the knowledge and practices of local and indigenous communities.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="#" target="_blank" rel="noopener">Placeholder</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
   <!-- María R. Felipe-Lucia -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <p class="member-name">María R. Felipe-Lucia</p>
-      <p class="member-affiliation"></p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>María's work focuses on biodiversity and ecosystem services in agricultural and forest landscapes, examining how governance structures shape the relationship between biodiversity conservation and human well-being.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">María R. Felipe-Lucia</p>
+        <p class="card-affiliation"></p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>María's work focuses on biodiversity and ecosystem services in agricultural and forest landscapes, examining how governance structures shape the relationship between biodiversity conservation and human well-being.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="#" target="_blank" rel="noopener">Placeholder</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
   <!-- Cecilie Friis -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <p class="member-name">Cecilie Friis</p>
-      <p class="member-affiliation">University of Copenhagen</p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>Cecilie is an Assistant Professor in Geography at the University of Copenhagen. Her research centres on the globalisation of land-use change and sustainability governance of agri-food systems, with a particular focus on transnational land acquisitions and their effects on smallholder livelihoods.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">Cecilie Friis</p>
+        <p class="card-affiliation">University of Copenhagen</p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>Cecilie is an Assistant Professor in Geography at the University of Copenhagen. Her research centres on the globalisation of land-use change and sustainability governance of agri-food systems, with a particular focus on transnational land acquisitions and their effects on smallholder livelihoods.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="#" target="_blank" rel="noopener">Placeholder</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
   <!-- L. Jamila Haider -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <p class="member-name">L. Jamila Haider</p>
-      <p class="member-affiliation">Stockholm Resilience Centre, Stockholm University</p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>Jamila is a Researcher and Theme Leader at the Stockholm Resilience Centre. Her work seeks to understand the resilience of food systems — and specifically how interventions enable or constrain the capacity of small-scale farmers to navigate change in biologically and culturally diverse landscapes.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">L. Jamila Haider</p>
+        <p class="card-affiliation">Stockholm Resilience Centre, Stockholm University</p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>Jamila is a Researcher and Theme Leader at the Stockholm Resilience Centre. Her work seeks to understand the resilience of food systems — and specifically how interventions enable or constrain the capacity of small-scale farmers to navigate change in biologically and culturally diverse landscapes.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="#" target="_blank" rel="noopener">Placeholder</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
-  <!-- Sonia Graham -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <span class="member-badge">2026 Caretaker</span>
-      <p class="member-name">Sonia Graham</p>
-      <p class="member-affiliation">University of Wollongong, Australia</p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>Sonia is a Principal Fellow at the University of Wollongong. Her research explores the role of community values in adaptation to climate change and investigates how groups come together to address environmental challenges — and the social goods that emerge from doing so.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <!-- Sonia Graham (Caretaker) -->
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <span class="card-badge">2026 Caretaker</span>
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">Sonia Graham</p>
+        <p class="card-affiliation">University of Wollongong, Australia</p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>Sonia is a Principal Fellow at the University of Wollongong. Her research explores the role of community values in adaptation to climate change and investigates how groups come together to address environmental challenges — and the social goods that emerge from doing so.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="#" target="_blank" rel="noopener">Placeholder</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
   <!-- Harry Hoffmann -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <p class="member-name">Harry Hoffmann</p>
-      <p class="member-affiliation">TMG Research gGmbH, Berlin</p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>Harry is a Senior Research Associate in the Governance of Food Systems Transformation at TMG Research. His work spans food system transformation in the Global South, global food and nutrition security, energy production, and agricultural economics.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">Harry Hoffmann</p>
+        <p class="card-affiliation">TMG Research gGmbH, Berlin</p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>Harry is a Senior Research Associate in the Governance of Food Systems Transformation at TMG Research. His work spans food system transformation in the Global South, global food and nutrition security, energy production, and agricultural economics.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="#" target="_blank" rel="noopener">Placeholder</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
   <!-- Mónica Hernández-Morcillo -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <p class="member-name">Mónica Hernández-Morcillo</p>
-      <p class="member-affiliation">Eberswalde University for Sustainable Development</p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>Mónica is a senior researcher and lecturer on regenerative forestry, exploring governance innovations that build transdisciplinary capacities for regenerative forest management. She is also actively engaged in planting Tiny Forests with communities of care in Berlin.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">Mónica Hernández-Morcillo</p>
+        <p class="card-affiliation">Eberswalde University for Sustainable Development</p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>Mónica is a senior researcher and lecturer on regenerative forestry, exploring governance innovations that build transdisciplinary capacities for regenerative forest management. She is also actively engaged in planting Tiny Forests with communities of care in Berlin.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="#" target="_blank" rel="noopener">Placeholder</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
-  <!-- Maria Lee Kernecker -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <span class="member-badge">2026 Caretaker</span>
-      <p class="member-name">Maria Lee Kernecker</p>
-      <p class="member-affiliation">Leibniz Centre for Agricultural Landscape Research (ZALF)</p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>Maria is a Scientist and Research Group Leader for Land Use Decisions in Spatial and System Context at ZALF. Her work explores the relationships between people, biodiversity, and food in agricultural landscapes, seeking to understand how the production–conservation divide might be overcome.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <!-- Maria Lee Kernecker (Caretaker) -->
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <span class="card-badge">2026 Caretaker</span>
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">Maria Lee Kernecker</p>
+        <p class="card-affiliation">Leibniz Centre for Agricultural Landscape Research (ZALF)</p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>Maria is a Scientist and Research Group Leader for Land Use Decisions in Spatial and System Context at ZALF. Her work explores the relationships between people, biodiversity, and food in agricultural landscapes, seeking to understand how the production–conservation divide might be overcome.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="#" target="_blank" rel="noopener">Placeholder</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
-  <!-- Hannah Pitt -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <span class="member-badge">2026 Caretaker</span>
-      <p class="member-name">Hannah Pitt</p>
-      <p class="member-affiliation">Cardiff University</p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>Hannah is a Lecturer in Environmental Geography at Cardiff University. Her research focuses on work and skills in commercial food growing as a dimension of sustainable food systems, and she specialises in collaborations with third-sector organisations and communities, with a particular interest in human–plant relations.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <!-- Hannah Pitt (Caretaker) -->
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <span class="card-badge">2026 Caretaker</span>
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">Hannah Pitt</p>
+        <p class="card-affiliation">Cardiff University</p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>Hannah is a Lecturer in Environmental Geography at Cardiff University. Her research focuses on work and skills in commercial food growing as a dimension of sustainable food systems, and she specialises in collaborations with third-sector organisations and communities, with a particular interest in human–plant relations.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="#" target="_blank" rel="noopener">Placeholder</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
   <!-- Caroline Schill -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <p class="member-name">Caroline Schill</p>
-      <p class="member-affiliation">Stockholm Resilience Centre &amp; Beijer Institute</p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>Caroline's research focuses on social-ecological systems, behavioural economics, and the governance of the commons, examining how people cooperate to manage shared resources in the face of environmental change and inequality.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">Caroline Schill</p>
+        <p class="card-affiliation">Stockholm Resilience Centre &amp; Beijer Institute</p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>Caroline's research focuses on social-ecological systems, behavioural economics, and the governance of the commons, examining how people cooperate to manage shared resources in the face of environmental change and inequality.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="#" target="_blank" rel="noopener">Placeholder</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
-  <!-- Verena Seufert -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <span class="member-badge">2026 Caretaker</span>
-      <p class="member-name">Verena Seufert</p>
-      <p class="member-affiliation">University of Hohenheim, Stuttgart</p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>Verena is a Junior Professor and head of the Department of Sustainable Use of Natural Resources at Hohenheim. Her research aims to understand and contribute to sustainability transformations in the agri-food system by integrating knowledge across disciplines and from different societal actors.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <!-- Verena Seufert (Caretaker) -->
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <span class="card-badge">2026 Caretaker</span>
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">Verena Seufert</p>
+        <p class="card-affiliation">University of Hohenheim, Stuttgart</p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>Verena is a Junior Professor and head of the Department of Sustainable Use of Natural Resources at Hohenheim. Her research aims to understand and contribute to sustainability transformations in the agri-food system by integrating knowledge across disciplines and from different societal actors.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="#" target="_blank" rel="noopener">Placeholder</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
   <!-- Kesheng Shu -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <p class="member-name">Kesheng Shu</p>
-      <p class="member-affiliation"></p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>Kesheng's research addresses sustainable agriculture and food systems, with a focus on the ecological and social dimensions of farming transitions in diverse geographic contexts.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">Kesheng Shu</p>
+        <p class="card-affiliation"></p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>Kesheng's research addresses sustainable agriculture and food systems, with a focus on the ecological and social dimensions of farming transitions in diverse geographic contexts.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="#" target="_blank" rel="noopener">Placeholder</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
   <!-- Vivian Valencia -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <p class="member-name">Vivian Valencia</p>
-      <p class="member-affiliation">Wageningen University and Research</p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>Vivian is a researcher in the Farming Systems Ecology group at Wageningen University. Her work explores traditional food systems, crop diversity, and the ways smallholder farmers navigate transitions toward more sustainable agricultural practices.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">Vivian Valencia</p>
+        <p class="card-affiliation">Wageningen University and Research</p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>Vivian is a researcher in the Farming Systems Ecology group at Wageningen University. Her work explores traditional food systems, crop diversity, and the ways smallholder farmers navigate transitions toward more sustainable agricultural practices.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="#" target="_blank" rel="noopener">Placeholder</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
   <!-- Julie G. Zähringer -->
-  <div class="member-card" tabindex="0" role="button" aria-expanded="false">
-    <div class="member-photo"><span class="member-photo-label">photo</span></div>
-    <div class="member-body">
-      <p class="member-name">Julie G. Zähringer</p>
-      <p class="member-affiliation">Wyss Academy for Nature &amp; University of Bern</p>
-      
-      <div class="member-bio-container">
-        <div class="member-bio"><p>Julie is a Professor of Land Systems and Sustainability Transformations at the Wyss Academy for Nature, with joint appointments at the Centre for Development and Environment and the Institute of Geography, University of Bern. Her research centres on land system changes, their telecoupled drivers, and their impacts on ecosystem services and human well-being in forested tropical landscapes.</p></div>
-        <div class="member-orcid"><a href="#" target="_blank">🔗 View ORCID Profile</a></div>
+  <div class="member-card">
+    <div class="card-shell" tabindex="0" role="button" aria-expanded="false">
+      <div class="card-photo"><span class="card-photo-label">📷 photo</span></div>
+      <div class="card-info">
+        <p class="card-name">Julie G. Zähringer</p>
+        <p class="card-affiliation">Wyss Academy for Nature &amp; University of Bern</p>
+        <div class="card-bio-wrapper">
+          <div class="card-bio"><p>Julie is a Professor of Land Systems and Sustainability Transformations at the Wyss Academy for Nature, with joint appointments at the Centre for Development and Environment and the Institute of Geography, University of Bern. Her research centres on land system changes, their telecoupled drivers, and their impacts on ecosystem services and human well-being in forested tropical landscapes.</p></div>
+          <div class="card-orcid">🔗 ORCID: <a href="#" target="_blank" rel="noopener">Placeholder</a></div>
+        </div>
+        <span class="card-close-hint">tap to close</span>
       </div>
     </div>
   </div>
 
 </div>
+<p style="margin-top:1rem; font-size:0.8rem; font-style:italic; color:var(--riso-sleeping-dot, #cbd5e1);">Affiliations marked for Isabel Diaz Reviriego, María R. Felipe-Lucia, and Kesheng Shu are to be confirmed.</p>
+
+</div><!-- End of container-wide (closing the one opened before h2) -->
+
+<!-- Sleeping Members Section -->
+<section class="content-section">
+  <div class="container">
+    <h2>Sleeping members</h2>
+    <p>Stepping back for now, but still part of the collective. The door remains open.</p>
+    <div class="sleeping-list">
+      <span class="sleeping-name">Poppy Nicol</span>
+    </div>
+  </div>
+</section>
+
+<!-- Alumni Section -->
+<section class="content-section">
+  <div class="container">
+    <h2>Alumni</h2>
+    <p>People who travelled with us for a time and have since moved on. We are grateful for what they brought to the collective.</p>
+    <div class="alumni-list">
+      <span class="alumni-name">Gunnar Dressler</span>
+      <span class="alumni-name">Hendrik Hänke</span>
+      <span class="alumni-name">Amanda Wood</span>
+    </div>
+  </div>
+</section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const cards = document.querySelectorAll('.member-card');
+(function(){
+  const grid = document.getElementById('member-grid');
+  if(!grid) return; 
+  
+  const cards = Array.from(grid.querySelectorAll('.member-card'));
+  const shells = Array.from(grid.querySelectorAll('.card-shell'));
 
-    cards.forEach(card => {
-      card.addEventListener('click', function() {
-        const isExpanded = this.classList.contains('expanded');
+  function closeAll() {
+    cards.forEach(c => {
+      c.classList.remove('is-active');
+      const shell = c.querySelector('.card-shell');
+      if(shell) shell.setAttribute('aria-expanded', 'false');
+    });
+    grid.classList.remove('has-active');
+  }
 
-        // Reset all cards first
-        cards.forEach(c => {
-          c.classList.remove('expanded');
-          c.setAttribute('aria-expanded', 'false');
-        });
+  function openCard(card) {
+    closeAll();
+    card.classList.add('is-active');
+    const shell = card.querySelector('.card-shell');
+    if(shell) shell.setAttribute('aria-expanded', 'true');
+    grid.classList.add('has-active');
+  }
 
-        // If the clicked card was NOT already expanded, expand it now
-        if (!isExpanded) {
-          this.classList.add('expanded');
-          this.setAttribute('aria-expanded', 'true');
+  shells.forEach(shell => {
+    let card = shell.parentElement;
+    
+    shell.addEventListener('click', e => {
+      e.stopPropagation();
+      if (card.classList.contains('is-active')) {
+        closeAll();
+      } else {
+        openCard(card);
+      }
+    });
+
+    shell.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        if (card.classList.contains('is-active')) {
+          closeAll();
+        } else {
+          openCard(card);
         }
-        // If it WAS already expanded, the reset loop above handled collapsing it
-      });
+      }
+      if (e.key === 'Escape') {
+        closeAll();
+      }
     });
   });
-</script>
 
-</body>
-</html>
+  document.addEventListener('click', closeAll);
+})();
+</script>
+<!-- END OF INSERTED CODE -->
   
-</div>
-<p style="margin-top:1rem; font-size:0.8rem; font-style:italic; color:var(--riso-sleeping-dot)">Affiliations marked for Isabel Diaz Reviriego, María R. Felipe-Lucia, and Kesheng Shu are to be confirmed.</p>
-<script>
+  <script>
   /* Dark mode toggle */
   (function() {
     let t = document.getElementById('darkModeToggle');
