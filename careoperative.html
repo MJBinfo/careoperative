@@ -22,7 +22,7 @@
   <a href="practices.html" class="nav-page-link">Our Practices</a>
   <a href="sites.html" class="nav-page-link">Sites of Care</a>
 </div>
-  <button id="darkModeToggle" class="dark-mode-toggle" aria-label="Toggle dark mode">🌙</button><button id="nav-hamburger" class="nav-icon-btn nav-hamburger" aria-controls="nav-panel" aria-expanded="false"><span></span><span></span><span></span></button></div><div id="nav-panel" class="nav-panel"><a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a><a href="careoperative.html" class="nav-link active">Our Careoperative</a><a href="work.html" class="nav-link">Our Work</a><a href="practices.html" class="nav-link">Our Practices</a><a href="sites.html" class="nav-link">Sites of Care</a></div></nav></header>
+  <button id="dark-toggle" class="nav-icon-btn" aria-label="Switch to dark mode"><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button><button id="nav-hamburger" class="nav-icon-btn nav-hamburger" aria-controls="nav-panel" aria-expanded="false"><span></span><span></span><span></span></button></div><div id="nav-panel" class="nav-panel"><a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a><a href="careoperative.html" class="nav-link active">Our Careoperative</a><a href="work.html" class="nav-link">Our Work</a><a href="practices.html" class="nav-link">Our Practices</a><a href="sites.html" class="nav-link">Sites of Care</a></div></nav></header>
 <div class="clip-wrap"><main><svg class="page-labyrinth" viewBox="-855 -1005 1610 1460" aria-hidden="true"><path stroke-width="25" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M200,200 C420.914,200,600,20.9138,600-200 C600-558.985,308.985-850-50-850 C-408.985-850-700-558.985-700-200 C-700,76.1423-476.142,300-200,300 C-144.772,300-100,255.228-100,200V100H-200 C-365.685,100-500-34.3147-500-200 C-500-448.528-298.528-650-50-650 C198.528-650,400-448.528,400-200 C400-89.5432,310.457,0,200,0H-200 C-310.457,0-400-89.5432-400-200 C-400-393.3-243.3-550-50-550 C143.3-550,300-393.3,300-200 C300-144.772,255.228-100,200-100H100V-200 C100-282.843,32.8425-350-50-350 C-132.843-350-200-282.843-200-200 M-200,200 C-420.914,200-600,20.9138-600-200 C-600-503.757-353.757-750-50-750 C253.757-750,500-503.757,500-200 C500-34.3147,365.685,100,200,100H100V200 C100,255.228,144.772,300,200,300 C476.142,300,700,76.1423,700-200 C700-614.213,364.213-950-50-950 C-464.213-950-800-614.213-800-200 C-800,131.371-531.371,400-200,400 C-89.5432,400,0,310.457,0,200V-200 C0-227.614-22.386-250-50-250 C-77.614-250-100-227.614-100-200V-100H-200 C-255.228-100-300-144.772-300-200 C-300-338.071-188.071-450-50-450 C88.071-450,200-338.071,200-200"/></svg><section class="page-hero"><div class="container"><h1>Our Careoperative</h1><p class="lead">We are a group of researchers who found in each other something rarer than a network: a genuine community of practice, accountable to shared values and to one another. Select any portrait to learn more.</p></div></section><section class="content-section"><div class="container"><h2>How we are organised</h2><p>The Careoperative has always understood participation as something that ebbs and flows. Life changes, research pressures shift, and the energy any one of us can bring to collective work moves with the seasons of a career. Rather than treating this as a problem to be managed, we built the collective to accommodate it. Members are either <em>active</em> — regularly engaged in meetings, writing projects, and shared work — or <em>sleeping</em>, stepping back without stepping out.</p><p>Sleeping membership is not an ending. It preserves belonging, keeps doors open, and honours the truth that the conditions for full participation are not always within a person's control. When circumstances change, members move back into active engagement. The distinction is practical, not hierarchical: it reflects where someone is at a given moment, not the value of what they have contributed.</p></div></section><section class="content-section"><div class="container-wide"><h2>Active members</h2>
 
   <!-- START OF INSERTED CODE -->
@@ -599,25 +599,21 @@
   <script>
   /* Dark mode toggle */
   (function() {
-    let t = document.getElementById('darkModeToggle');
-    let d = document.documentElement;
-    function u() {
-      t.innerHTML = d.classList.contains('dark') ? '☀️' : '🌙';
-      t.setAttribute('aria-label', d.classList.contains('dark') ? 'Switch to light mode' : 'Switch to dark mode');
+    var btn  = document.getElementById('dark-toggle');
+    var html = document.documentElement;
+    function isDark() {
+      return html.classList.contains('dark') ||
+        (!html.classList.contains('light') &&
+         window.matchMedia('(prefers-color-scheme: dark)').matches);
     }
-    u();
-    t.addEventListener('click', () => {
-      if (d.classList.contains('dark')) {
-        d.classList.remove('dark');
-        d.classList.add('light');
-        localStorage.setItem('carop-dark', 'false');
-      } else {
-        d.classList.remove('light');
-        d.classList.add('dark');
-        localStorage.setItem('carop-dark', 'true');
-      }
-      u();
-    });
+    function applyDark(dark) {
+      html.classList.toggle('dark',  dark);
+      html.classList.toggle('light', !dark);
+      localStorage.setItem('carop-dark', dark);
+      btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+    btn.addEventListener('click', function() { applyDark(!isDark()); });
+    btn.setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
   })();
 
   /* Nav hamburger */
