@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Practices — The Careoperative</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>
+    (function(){
+      var s = localStorage.getItem('carop-dark'), d = document.documentElement;
+      if (s === 'true') d.classList.add('dark');
+      else if (s === 'false') d.classList.add('light');
+      else if (window.matchMedia('(prefers-color-scheme: dark)').matches) d.classList.add('dark');
+      else d.classList.add('light');
+    })();
+  </script>
+</head>
+<body>
+  <header>
+    <nav aria-label="Main navigation" id="site-nav">
+      <div class="nav-inner">
+
+        <a href="index.html" aria-label="Home — The Careoperative" class="nav-home">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 64" width="46" height="36"
+               stroke-linecap="round" stroke-linejoin="round"
+               style="color:var(--riso-yellow);" aria-hidden="true">
+            <line x1="1" y1="40" x2="81" y2="40" stroke="currentColor" stroke-width="1.2" fill="none"/>
+            <g fill="currentColor" stroke="currentColor">
+              <line x1="19" y1="40" x2="19" y2="35" stroke-width="0.8" fill="none"/>
+              <path d="M19,37 C17,36 15,36 14,37" stroke-width="0.7" fill="none"/>
+              <path d="M19,37 C21,36 23,36 24,37" stroke-width="0.7" fill="none"/>
+              <path d="M5,40 C4,39 3,38 3,37 C3,36 4,36 5,37 C5,36 6,36 6,37 C7,38 6,39 5,40 Z" fill-opacity="0.4" stroke-width="0.7"/>
+            </g>
+            <g fill="currentColor" stroke="currentColor">
+              <line x1="9"  y1="40" x2="8"  y2="26" stroke-width="1.0" fill="none"/>
+              <line x1="12" y1="40" x2="13" y2="22" stroke-width="0.9" fill="none"/>
+              <ellipse cx="9"  cy="20" rx="5.5" ry="7.5" fill-opacity="0.5" stroke-width="0.9"/>
+              <ellipse cx="14" cy="17" rx="5"   ry="6.5" fill-opacity="0.4" stroke-width="0.85"/>
+            </g>
+            <g fill="currentColor" stroke="currentColor">
+              <path d="M26,40 C25,37 25,33 26,28" stroke-width="2.0" fill="none"/>
+              <path d="M26,28 C24,25 17,23 13,24 C11,22 12,19 15,19 C13,17 15,15 18,16 C17,13 20,12 22,14 C21,11 24,10 26,12 C26,9 29,9 30,11 C32,9 35,10 34,13 C36,12 38,14 36,16 C39,16 40,19 38,20 C40,22 40,25 37,26 C34,25 29,25 26,28 Z" fill-opacity="0.45" stroke-width="1.0"/>
+            </g>
+            <g fill="currentColor" stroke="currentColor">
+              <path d="M46,40 C46,37 45,32 46,25" stroke-width="2.2" fill="none"/>
+              <path d="M46,2 C43,1 40,2 38,4 C35,3 32,6 31,10 C30,13 31,17 33,19 C32,20 32,22 34,22 C37,23 41,23 46,22 C51,23 55,23 58,22 C60,22 60,20 59,19 C61,17 62,13 61,10 C60,6 57,3 54,4 C52,2 49,1 46,2 Z" fill-opacity="0.5" stroke-width="1.0"/>
+            </g>
+            <g fill="currentColor" stroke="currentColor">
+              <line x1="63" y1="40" x2="63" y2="28" stroke-width="0.95" fill="none"/>
+              <circle cx="63" cy="24" r="6"   fill-opacity="0.45" stroke-width="0.85"/>
+              <circle cx="57" cy="27" r="5.5" fill-opacity="0.35" stroke-width="0.85"/>
+            </g>
+            <g fill="currentColor" stroke="currentColor">
+              <path d="M75,40 C75,37 74,33 75,29" stroke-width="1.5" fill="none"/>
+              <path d="M75,29 C72,26 69,25 68,27 C66,25 67,22 69,22 C68,20 70,18 72,19 C71,17 74,16 75,18 C76,16 79,17 78,19 C80,19 81,22 79,23 C81,24 81,27 78,28 C77,27 76,28 75,29 Z" fill-opacity="0.45" stroke-width="1.0"/>
+            </g>
+          </svg>
+        </a>
+
+        <nav class="nav-page-links" aria-label="Page links">
+          <a href="index.html"         class="nav-page-link">Home</a>
+          <a href="about.html"         class="nav-page-link">About</a>
+          <a href="careoperative.html" class="nav-page-link">Our Careoperative</a>
+          <a href="work.html"          class="nav-page-link">Our Work</a>
+          <a href="practices.html"     class="nav-page-link active" aria-current="page">Our Practices</a>
+          <a href="sites.html"         class="nav-page-link">Sites of Care</a>
+        </nav>
+
+        <button id="dark-toggle" class="nav-icon-btn" aria-label="Switch to dark mode">
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+               width="20" height="20" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1"  x2="12" y2="3"/>
+            <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22"   x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1"  y1="12" x2="3"  y2="12"/>
+            <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22"  y1="19.78" x2="5.64"  y2="18.36"/>
+            <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+               width="20" height="20" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+
+        <button id="nav-hamburger" class="nav-icon-btn nav-hamburger"
+                aria-controls="nav-panel" aria-expanded="false"
+                aria-label="Open navigation menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+      <div id="nav-panel" class="nav-panel" role="dialog" aria-label="Site navigation">
+        <a href="index.html"          class="nav-link">Home</a>
+        <a href="about.html"          class="nav-link">About</a>
+        <a href="careoperative.html"  class="nav-link">Our Careoperative</a>
+        <a href="work.html"           class="nav-link">Our Work</a>
+        <a href="practices.html"      class="nav-link active" aria-current="page">Our Practices</a>
+        <a href="sites.html"          class="nav-link">Sites of Care</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="clip-wrap">
+  <main>
+
+    <!-- Labyrinth watermark — floats near the decision-making section -->
+    <svg class="page-labyrinth" style="top:1050px;"
+         xmlns="http://www.w3.org/2000/svg"
+         viewBox="-855 -1005 1610 1460"
+         aria-hidden="true" focusable="false">
+      <path stroke-width="25" stroke-linejoin="round" stroke-linecap="round"
+            stroke="currentColor" fill="none"
+            d="M200,200 C420.914,200,600,20.9138,600-200 C600-558.985,308.985-850-50-850 C-408.985-850-700-558.985-700-200 C-700,76.1423-476.142,300-200,300 C-144.772,300-100,255.228-100,200V100H-200 C-365.685,100-500-34.3147-500-200 C-500-448.528-298.528-650-50-650 C198.528-650,400-448.528,400-200 C400-89.5432,310.457,0,200,0H-200 C-310.457,0-400-89.5432-400-200 C-400-393.3-243.3-550-50-550 C143.3-550,300-393.3,300-200 C300-144.772,255.228-100,200-100H100V-200 C100-282.843,32.8425-350-50-350 C-132.843-350-200-282.843-200-200 M-200,200 C-420.914,200-600,20.9138-600-200 C-600-503.757-353.757-750-50-750 C253.757-750,500-503.757,500-200 C500-34.3147,365.685,100,200,100H100V200 C100,255.228,144.772,300,200,300 C476.142,300,700,76.1423,700-200 C700-614.213,364.213-950-50-950 C-464.213-950-800-614.213-800-200 C-800,131.371-531.371,400-200,400 C-89.5432,400,0,310.457,0,200V-200 C0-227.614-22.386-250-50-250 C-77.614-250-100-227.614-100-200V-100H-200 C-255.228-100-300-144.772-300-200 C-300-338.071-188.071-450-50-450 C88.071-450,200-338.071,200-200"/>
+    </svg>
+
+    <!-- Page hero -->
+    <section class="page-hero" aria-labelledby="page-title">
+      <div class="container">
+        <h1 id="page-title">Our Practices</h1>
+        <p class="lead">How a collective actually operates is where values either take hold or quietly evaporate. This page describes the specific practices through which the Careoperative tries to live what it believes.</p>
+      </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <!-- Guiding principles -->
+    <section class="content-section" aria-labelledby="principles-heading">
+      <div class="container">
+        <h2 id="principles-heading">Guiding principles</h2>
+        <p>Our Code of Collaboration opens with five articles that describe how we aspire to treat each other and the work. These are not aspirational slogans — they are behavioral commitments, named so that we can hold each other to account.</p>
+
+        <div class="acc-list acc-principles">
+
+          <div class="acc-item" data-acc="p1">
+            <button class="acc-btn" aria-expanded="false" aria-controls="acc-p1">
+              <span class="acc-label">Be respectful</span>
+              <span class="acc-chevron" aria-hidden="true">▾</span>
+            </button>
+            <div class="acc-body" id="acc-p1" hidden>
+              <p>Respect colleagues' needs, time, opinions, and limits — and your own. Listen without interrupting. Acknowledge that differences of discipline, background, and circumstance are not always visible. When critique is offered, couple it with a constructive follow-up.</p>
+            </div>
+          </div>
+
+          <div class="acc-item" data-acc="p2">
+            <button class="acc-btn" aria-expanded="false" aria-controls="acc-p2">
+              <span class="acc-label">Be responsible</span>
+              <span class="acc-chevron" aria-hidden="true">▾</span>
+            </button>
+            <div class="acc-body" id="acc-p2" hidden>
+              <p>Follow through on commitments. Be ambitious, but don't promise what cannot be delivered. If you're struggling with a task, pass it on rather than let it stall. Come prepared. Be pragmatic: deliberate but not slow to decide.</p>
+            </div>
+          </div>
+
+          <div class="acc-item" data-acc="p3">
+            <button class="acc-btn" aria-expanded="false" aria-controls="acc-p3">
+              <span class="acc-label">Communicate early and often</span>
+              <span class="acc-chevron" aria-hidden="true">▾</span>
+            </button>
+            <div class="acc-body" id="acc-p3" hidden>
+              <p>Collaborate vocally to avoid misunderstandings. Let people know early if something changes. Share what others need to know, without flooding the channels. Everyone is busy; good communication is a form of care.</p>
+            </div>
+          </div>
+
+          <div class="acc-item" data-acc="p4">
+            <button class="acc-btn" aria-expanded="false" aria-controls="acc-p4">
+              <span class="acc-label">Be supportive</span>
+              <span class="acc-chevron" aria-hidden="true">▾</span>
+            </button>
+            <div class="acc-body" id="acc-p4" hidden>
+              <p>Cooperate by making use of your strengths and letting others apply theirs. When a process stops working, name it, take time to reflect, and bring suggestions rather than complaints. Cover each other's gaps; use them as learning opportunities.</p>
+            </div>
+          </div>
+
+          <div class="acc-item" data-acc="p5">
+            <button class="acc-btn" aria-expanded="false" aria-controls="acc-p5">
+              <span class="acc-label">Equity</span>
+              <span class="acc-chevron" aria-hidden="true">▾</span>
+            </button>
+            <div class="acc-body" id="acc-p5" hidden>
+              <p>Treat each other fairly and justly while respecting our differences. We do not tolerate discrimination, harassment, or bullying. We recognize that our collective formed through a selection process we did not design, which may not have been fully equitable — and we seek to remedy that through ongoing attention to inclusivity.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <!-- Membership and participation -->
+    <section class="content-section" aria-labelledby="participation-heading">
+      <div class="container">
+        <h2 id="participation-heading">Membership and participation</h2>
+        <p>Not everyone can be equally present all the time — and pretending otherwise would be dishonest about how academic life actually works. At our annual meeting, members choose their level of participation for the year ahead. Four tiers are recognised, each with corresponding expectations.</p>
+
+        <div class="membership-table-wrap">
+          <table class="membership-table" aria-label="Careoperative participation tiers">
+            <thead>
+              <tr>
+                <th scope="col">Member</th>
+                <th scope="col">Annual<br>check-in</th>
+                <th scope="col">Annual<br>meeting</th>
+                <th scope="col">Quarterly<br>meetings</th>
+                <th scope="col">Monthly<br>meetings</th>
+                <th scope="col">Decision-<br>making</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="tier-name">Sleeping</span></td>
+                <td class="check">✓</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>Strategic decisions via bridge person</td>
+              </tr>
+              <tr>
+                <td><span class="tier-name">Observer</span></td>
+                <td></td>
+                <td class="check">✓</td>
+                <td></td>
+                <td></td>
+                <td>Strategic decisions via bridge person</td>
+              </tr>
+              <tr>
+                <td><span class="tier-name">Active</span></td>
+                <td></td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+                <td>Full participation</td>
+              </tr>
+              <tr>
+                <td><span class="tier-name">Caretaker</span></td>
+                <td></td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+                <td class="check">✓</td>
+                <td>Full + caretaker meetings</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>The Caretakers — elected annually — hold the stewardship role for the collective: coordinating logistics, holding the calendar, and ensuring continuity when the group's energy is dispersed. The role rotates so that the skills and responsibilities it develops are shared across the group over time.</p>
+      </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <!-- Decision-making -->
+    <section class="content-section" aria-labelledby="decisions-heading">
+      <div class="container">
+        <h2 id="decisions-heading">Decision-making</h2>
+        <p>Our decision-making is inspired by sociocratic principles. The aim is not to produce perfect agreement but to ensure everyone has a genuine say, and that the group can move without being paralysed by the need for unanimity.</p>
+
+        <!-- Radial diagram (desktop ≥ 500px) -->
+        <div class="radial-wrap" aria-label="Sociocratic decision process — interactive diagram" role="img">
+
+          <svg id="decision-radial"
+               viewBox="0 0 480 500"
+               width="480" height="500"
+               style="max-width:100%; overflow:visible; display:block; margin: 1.5rem auto 0;"
+               aria-hidden="true">
+            <defs>
+              <clipPath id="lab-clip">
+                <circle cx="240" cy="240" r="62"/>
+              </clipPath>
+            </defs>
+
+            <!-- Spokes -->
+            <line class="spoke" id="spoke-1" x1="240" y1="178" x2="240" y2=" 62" stroke="rgba(29,107,107,0.22)" stroke-width="1" stroke-dasharray="3 5"/>
+            <line class="spoke" id="spoke-2" x1="294" y1="209" x2="394" y2="151" stroke="rgba(29,107,107,0.22)" stroke-width="1" stroke-dasharray="3 5"/>
+            <line class="spoke" id="spoke-3" x1="294" y1="271" x2="394" y2="329" stroke="rgba(29,107,107,0.22)" stroke-width="1" stroke-dasharray="3 5"/>
+            <line class="spoke" id="spoke-4" x1="240" y1="302" x2="240" y2="418" stroke="rgba(29,107,107,0.22)" stroke-width="1" stroke-dasharray="3 5"/>
+            <line class="spoke" id="spoke-5" x1="186" y1="271" x2=" 86" y2="329" stroke="rgba(29,107,107,0.22)" stroke-width="1" stroke-dasharray="3 5"/>
+            <line class="spoke" id="spoke-6" x1="186" y1="209" x2=" 86" y2="151" stroke="rgba(29,107,107,0.22)" stroke-width="1" stroke-dasharray="3 5"/>
+
+            <!-- Labyrinth centre -->
+            <circle class="lab-bg" cx="240" cy="240" r="62" stroke="rgba(29,107,107,0.18)" stroke-width="1"/>
+            <g clip-path="url(#lab-clip)">
+              <g transform="translate(243.73,260.52) scale(0.07463)">
+                <path d="M200,200 C420.914,200,600,20.9138,600-200 C600-558.985,308.985-850-50-850 C-408.985-850-700-558.985-700-200 C-700,76.1423-476.142,300-200,300 C-144.772,300-100,255.228-100,200V100H-200 C-365.685,100-500-34.3147-500-200 C-500-448.528-298.528-650-50-650 C198.528-650,400-448.528,400-200 C400-89.5432,310.457,0,200,0H-200 C-310.457,0-400-89.5432-400-200 C-400-393.3-243.3-550-50-550 C143.3-550,300-393.3,300-200 C300-144.772,255.228-100,200-100H100V-200 C100-282.843,32.8425-350-50-350 C-132.843-350-200-282.843-200-200 M-200,200 C-420.914,200-600,20.9138-600-200 C-600-503.757-353.757-750-50-750 C253.757-750,500-503.757,500-200 C500-34.3147,365.685,100,200,100H100V200 C100,255.228,144.772,300,200,300 C476.142,300,700,76.1423,700-200 C700-614.213,364.213-950-50-950 C-464.213-950-800-614.213-800-200 C-800,131.371-531.371,400-200,400 C-89.5432,400,0,310.457,0,200V-200 C0-227.614-22.386-250-50-250 C-77.614-250-100-227.614-100-200V-100H-200 C-255.228-100-300-144.772-300-200 C-300-338.071-188.071-450-50-450 C88.071-450,200-338.071,200-200"
+                      stroke="#e8604c" stroke-width="28" stroke-linejoin="round" stroke-linecap="round" fill="none" opacity="0.55"/>
+              </g>
+            </g>
+            <circle id="lab-ring" cx="240" cy="240" r="62" fill="none" stroke="rgba(29,107,107,0.10)" stroke-width="1"/>
+
+            <!-- Step nodes -->
+            <g class="step-node" data-step="1" tabindex="0" role="button" aria-label="Step 1: Proposal">
+              <circle class="node-halo"   cx="240" cy=" 62" r="41" fill="none" stroke="#f5c842" stroke-width="0"/>
+              <circle class="node-circle" cx="240" cy=" 62" r="34" stroke="rgba(29,107,107,0.35)" stroke-width="1.5" stroke-dasharray="3 4"/>
+              <text class="node-num"   x="240" y=" 57" text-anchor="middle" dominant-baseline="auto">1</text>
+              <text class="node-label" x="240" y=" 71" text-anchor="middle">Proposal</text>
+            </g>
+
+            <g class="step-node" data-step="2" tabindex="0" role="button" aria-label="Step 2: Clarifications">
+              <circle class="node-halo"   cx="394" cy="151" r="41" fill="none" stroke="#f5c842" stroke-width="0"/>
+              <circle class="node-circle" cx="394" cy="151" r="34" stroke="rgba(29,107,107,0.35)" stroke-width="1.5" stroke-dasharray="3 4"/>
+              <text class="node-num"   x="394" y="146" text-anchor="middle" dominant-baseline="auto">2</text>
+              <text class="node-label" x="394" y="160" text-anchor="middle">Clarifications</text>
+            </g>
+
+            <g class="step-node" data-step="3" tabindex="0" role="button" aria-label="Step 3: Amendments">
+              <circle class="node-halo"   cx="394" cy="329" r="41" fill="none" stroke="#f5c842" stroke-width="0"/>
+              <circle class="node-circle" cx="394" cy="329" r="34" stroke="rgba(29,107,107,0.35)" stroke-width="1.5" stroke-dasharray="3 4"/>
+              <text class="node-num"   x="394" y="324" text-anchor="middle" dominant-baseline="auto">3</text>
+              <text class="node-label" x="394" y="338" text-anchor="middle">Amendments</text>
+            </g>
+
+            <g class="step-node" data-step="4" tabindex="0" role="button" aria-label="Step 4: Signal">
+              <circle class="node-halo"   cx="240" cy="418" r="41" fill="none" stroke="#f5c842" stroke-width="0"/>
+              <circle class="node-circle" cx="240" cy="418" r="34" stroke="rgba(29,107,107,0.35)" stroke-width="1.5" stroke-dasharray="3 4"/>
+              <text class="node-num"   x="240" y="413" text-anchor="middle" dominant-baseline="auto">4</text>
+              <text class="node-label" x="240" y="427" text-anchor="middle">Signal</text>
+            </g>
+
+            <g class="step-node" data-step="5" tabindex="0" role="button" aria-label="Step 5: Objections">
+              <circle class="node-halo"   cx=" 86" cy="329" r="41" fill="none" stroke="#f5c842" stroke-width="0"/>
+              <circle class="node-circle" cx=" 86" cy="329" r="34" stroke="rgba(29,107,107,0.35)" stroke-width="1.5" stroke-dasharray="3 4"/>
+              <text class="node-num"   x=" 86" y="324" text-anchor="middle" dominant-baseline="auto">5</text>
+              <text class="node-label" x=" 86" y="338" text-anchor="middle">Objections</text>
+            </g>
+
+            <g class="step-node" data-step="6" tabindex="0" role="button" aria-label="Step 6: Decision">
+              <circle class="node-halo"   cx=" 86" cy="151" r="41" fill="none" stroke="#f5c842" stroke-width="0"/>
+              <circle class="node-circle" cx=" 86" cy="151" r="34" stroke="rgba(29,107,107,0.35)" stroke-width="1.5" stroke-dasharray="3 4"/>
+              <text class="node-num"   x=" 86" y="146" text-anchor="middle" dominant-baseline="auto">6</text>
+              <text class="node-label" x=" 86" y="160" text-anchor="middle">Decision</text>
+            </g>
+
+          </svg>
+
+          <!-- Detail card — revealed on hover/click -->
+          <div id="radial-detail" aria-live="polite">
+            <p id="radial-detail-label"></p>
+            <p id="radial-detail-text"></p>
+          </div>
+
+        </div><!-- /radial-wrap -->
+
+        <!-- Accordion fallback (mobile < 500px) -->
+        <div class="accordion-wrap">
+          <p style="font-size:0.82rem; color:var(--riso-ink-mid); margin-bottom:1rem;">Tap a step to expand its detail.</p>
+
+          <div class="acc-list">
+
+            <div class="acc-item" data-acc="1">
+              <button class="acc-btn" aria-expanded="false" aria-controls="acc-body-1">
+                <span class="acc-num">1</span>
+                <span class="acc-label">Proposal</span>
+                <span class="acc-short">Someone summarises what they're proposing and why.</span>
+                <span class="acc-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="acc-body" id="acc-body-1" hidden>
+                <p>A person or sub-group summarises the key elements and justification of a proposed decision — its substance, its rationale, and what it is asking the group to commit to.</p>
+              </div>
+            </div>
+
+            <div class="acc-item" data-acc="2">
+              <button class="acc-btn" aria-expanded="false" aria-controls="acc-body-2">
+                <span class="acc-num">2</span>
+                <span class="acc-label">Clarifications</span>
+                <span class="acc-short">Open round for questions — not debate.</span>
+                <span class="acc-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="acc-body" id="acc-body-2" hidden>
+                <p>An open round inviting clarifying questions only. This is not the moment for objections or advocacy; it is for making sure everyone understands the proposal before responding to it.</p>
+              </div>
+            </div>
+
+            <div class="acc-item" data-acc="3">
+              <button class="acc-btn" aria-expanded="false" aria-controls="acc-body-3">
+                <span class="acc-num">3</span>
+                <span class="acc-label">Amendments</span>
+                <span class="acc-short">Refine or counter-propose if needed.</span>
+                <span class="acc-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="acc-body" id="acc-body-3" hidden>
+                <p>An amended or counter-proposal is offered if the clarifications reveal that the original needs adjustment. The group can iterate before moving to a decision.</p>
+              </div>
+            </div>
+
+            <div class="acc-item" data-acc="4">
+              <button class="acc-btn" aria-expanded="false" aria-controls="acc-body-4">
+                <span class="acc-num">4</span>
+                <span class="acc-label">Signal</span>
+                <span class="acc-short">Thumbs up or down — everyone has a say.</span>
+                <span class="acc-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="acc-body" id="acc-body-4" hidden>
+                <p>Each participant signals agreement or disagreement — thumbs-up or thumbs-down. This makes visible where the group actually stands, rather than allowing a few voices to create a false impression of consensus.</p>
+              </div>
+            </div>
+
+            <div class="acc-item" data-acc="5">
+              <button class="acc-btn" aria-expanded="false" aria-controls="acc-body-5">
+                <span class="acc-num">5</span>
+                <span class="acc-label">Objections</span>
+                <span class="acc-short">Those who disagree say why.</span>
+                <span class="acc-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="acc-body" id="acc-body-5" hidden>
+                <p>Disagreeing participants explain their objections. This is where real differences surface — and where the group learns what it needs to address before a durable decision is possible.</p>
+              </div>
+            </div>
+
+            <div class="acc-item" data-acc="6">
+              <button class="acc-btn" aria-expanded="false" aria-controls="acc-body-6">
+                <span class="acc-num">6</span>
+                <span class="acc-label">Decision</span>
+                <span class="acc-short">Consensus, good enough for now, or back to the agenda.</span>
+                <span class="acc-chevron" aria-hidden="true">▾</span>
+              </button>
+              <div class="acc-body" id="acc-body-6" hidden>
+                <p>The group reaches one of four outcomes: full consensus (agreed); slight disagreement (accepted as good enough for now, safe enough to try — GEFNSETT); substantial disagreement (needs more work, returns to a future agenda); or a clear follow-up with responsibilities distributed.</p>
+              </div>
+            </div>
+
+          </div><!-- /acc-list -->
+        </div><!-- /accordion-wrap -->
+
+        <!-- GEFNSETT note — shown on both layouts -->
+        <aside class="gefnsett-note">
+          <p>Where time is short, the group can be asked to endorse a decision as <strong>GEFNSETT</strong> — <em>good enough for now, safe enough to try.</em> The explicit acknowledgement that a decision is provisional lowers the stakes enough that progress becomes possible. Silence is treated as acquiescence if notice for review has been given and time has elapsed.</p>
+        </aside>
+
+      </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <!-- Publication and authorship -->
+    <section class="content-section" aria-labelledby="authorship-heading">
+      <div class="container">
+        <h2 id="authorship-heading">Publication and authorship</h2>
+        <p>The Careoperative publishes collectively under the name <strong>O. Care</strong> — or, in more recent work, <strong>Dr. Care</strong> — as shared first author, with remaining authors listed alphabetically. The reasoning is described on the <a href="about.html">About</a> page and in our <a href="work.html">published work</a>. Here we set out the specific protocols that make this practice workable.</p>
+
+        <div class="acc-list acc-principles">
+
+          <div class="acc-item" data-acc="a1">
+            <button class="acc-btn" aria-expanded="false" aria-controls="acc-a1">
+              <span class="acc-label">Courtesy notice</span>
+              <span class="acc-chevron" aria-hidden="true">▾</span>
+            </button>
+            <div class="acc-body" id="acc-a1" hidden>
+              <p>Any member intending to develop a manuscript that draws on the intellectual contributions of other members — including ideas generated in group sessions — is expected to notify all members in writing as early as possible, preferably at the stage of conceptualization. Members then have the equivalent of ten working days to respond: to express interest in being actively included, or to indicate they prefer not to participate.</p>
+              <p>This notice requirement applies even to work intended as single-authored, where collective intellectual input may be implicated. It prevents the kind of ambiguity about credit and contribution that can quietly damage working relationships.</p>
+            </div>
+          </div>
+
+          <div class="acc-item" data-acc="a2">
+            <button class="acc-btn" aria-expanded="false" aria-controls="acc-a2">
+              <span class="acc-label">Opt-in and duties of authorship</span>
+              <span class="acc-chevron" aria-hidden="true">▾</span>
+            </button>
+            <div class="acc-body" id="acc-a2" hidden>
+              <p>Opting in means accepting the duties of authorship: substantive contribution to the work, participation in review and revision, and accountability for the published result. A member who has contributed ideas but chooses to opt out of a paper will be acknowledged appropriately in citations, footnotes, or acknowledgements — but will not appear as an author.</p>
+              <p>We adopt the COPE definition of authorship, which sets a higher bar than mere contribution. This is intentional: we do not pad author lists, and we do not exclude people who have done the work.</p>
+            </div>
+          </div>
+
+          <div class="acc-item" data-acc="a3">
+            <button class="acc-btn" aria-expanded="false" aria-controls="acc-a3">
+              <span class="acc-label">Recognising power imbalances</span>
+              <span class="acc-chevron" aria-hidden="true">▾</span>
+            </button>
+            <div class="acc-body" id="acc-a3" hidden>
+              <p>Where senior and junior researchers co-author, or where members with institutional leadership roles collaborate with those without them, power differentials can distort the process. Junior researchers may hesitate to question a senior co-author; those in non-leadership positions may fear that honest disagreement carries professional risk.</p>
+              <p>We name this explicitly in our Code of Collaboration and build in a recourse: in cases where these tensions arise, independent members of the collective or an external publication ethics process can be brought in to support communication and resolution.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-rule">
+
+    <!-- Conflict and repair -->
+    <section class="content-section" aria-labelledby="conflict-heading">
+      <div class="container">
+        <h2 id="conflict-heading">Conflict and repair</h2>
+        <p>Disagreements, tensions, and conflicts are not aberrations in collective work — they are inevitable features of it. They reveal real differences. They are also, if handled well, opportunities for emotional learning and for building the kind of assertiveness and mutual understanding that sustains a long-running collaboration.</p>
+
+        <div class="practice-list">
+
+          <article class="practice-card" aria-labelledby="practice-prevention">
+            <div class="practice-card-inner">
+              <p class="practice-label">conflict practice</p>
+              <p class="practice-title" id="practice-prevention">Prevention through structure</p>
+              <p class="practice-body">Much of our conflict prevention is structural rather than reactive. We developed a shared vision before we needed to make hard decisions. We established decision-making procedures and identified roles before disputes arose. We elected Caretakers with a mandate for continuity. We created regular processes — quarterly and annual reviews — for examining not just what we are producing but how we are working together.</p>
+              <p class="practice-body">We also actively worked to avoid competitive dynamics. The authorship model is one expression of this; so is the explicit commitment in our Code to celebrating collectively and creating space for the group to feel its underlying unity across visible differences.</p>
+            </div>
+          </article>
+
+          <article class="practice-card" aria-labelledby="practice-resolution">
+            <div class="practice-card-inner">
+              <p class="practice-label">conflict practice</p>
+              <p class="practice-title" id="practice-resolution">Resolution protocol</p>
+              <p class="practice-body">When a conflict cannot be resolved through direct conversation, our protocol moves in steps: the parties involved are first supported separately, to create a secure space; then brought together, with the aim of clarifying perceptions, distinguishing positions from underlying interests and needs, and finding whatever partial agreements are available. Written or oral joint agreements are developed where useful.</p>
+              <p class="practice-body">We also maintain a committee of mediators — members of the collective not directly involved in a dispute — who can be called upon to facilitate this process. The goal is not to suppress conflict but to work through it in a way that leaves the relationship, and the collective, stronger.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="footer-inner">
+      <p class="footer-invitation">Open to connecting with fellow travelers.</p>
+      <div class="footer-bottom-row">
+        <p class="footer-copy">&copy; the careoperative</p>
+      </div>
+    </div>
+  </footer>
+  </div><!-- /clip-wrap -->
+
+  <!-- Dark mode toggle -->
+  <script>
+    (function() {
+      var btn  = document.getElementById('dark-toggle');
+      var html = document.documentElement;
+      function isDark() {
+        return html.classList.contains('dark') ||
+          (!html.classList.contains('light') &&
+           window.matchMedia('(prefers-color-scheme: dark)').matches);
+      }
+      function applyDark(dark) {
+        html.classList.toggle('dark',  dark);
+        html.classList.toggle('light', !dark);
+        localStorage.setItem('carop-dark', dark);
+        btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+      }
+      btn.addEventListener('click', function() { applyDark(!isDark()); });
+      btn.setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
+    })();
+  </script>
+
+  <!-- Nav hamburger -->
+  <script>
+    (function() {
+      var hamburger = document.getElementById('nav-hamburger');
+      var navPanel  = document.getElementById('nav-panel');
+      var siteNav   = document.getElementById('site-nav');
+      function closeNav() {
+        navPanel.classList.remove('nav-open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+      hamburger.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var open = navPanel.classList.toggle('nav-open');
+        hamburger.setAttribute('aria-expanded', open);
+      });
+      navPanel.querySelectorAll('a').forEach(function(l) { l.addEventListener('click', closeNav); });
+      document.addEventListener('click', closeNav);
+      siteNav.addEventListener('mouseleave', closeNav);
+    })();
+  </script>
+
+  <!-- Radial diagram -->
+  <script>
+    (function() {
+      var STEPS = {
+        '1': { label: 'Step 1 — Proposal',       text: 'A person or sub-group summarises the key elements and justification of a proposed decision — its substance, its rationale, and what it is asking the group to commit to.' },
+        '2': { label: 'Step 2 — Clarifications', text: 'An open round inviting clarifying questions only. This is not the moment for objections or advocacy; it is for making sure everyone understands the proposal before responding to it.' },
+        '3': { label: 'Step 3 — Amendments',     text: 'An amended or counter-proposal is offered if the clarifications reveal that the original needs adjustment. The group can iterate before moving to a decision.' },
+        '4': { label: 'Step 4 — Signal',         text: 'Each participant signals agreement or disagreement — thumbs-up or thumbs-down. This makes visible where the group actually stands, rather than allowing a few voices to create a false impression of consensus.' },
+        '5': { label: 'Step 5 — Objections',     text: 'Disagreeing participants explain their objections. This is where real differences surface — and where the group learns what it needs to address before a durable decision is possible.' },
+        '6': { label: 'Step 6 — Decision',       text: 'The group reaches one of four outcomes: full consensus (agreed); slight disagreement (accepted as good enough for now, safe enough to try — GEFNSETT); substantial disagreement (needs more work, returns to a future agenda); or a clear follow-up with responsibilities distributed.' }
+      };
+
+      var detail      = document.getElementById('radial-detail');
+      var detailLabel = document.getElementById('radial-detail-label');
+      var detailText  = document.getElementById('radial-detail-text');
+      var labRing     = document.getElementById('lab-ring');
+      var nodes       = document.querySelectorAll('.step-node');
+      var spokes      = document.querySelectorAll('.spoke');
+      var current     = null;
+
+      function activate(n) {
+        if (current !== null) {
+          nodes[current].classList.remove('active');
+          spokes[current].classList.remove('active');
+        }
+        if (n === current) {
+          current = null;
+          detail.style.opacity = '0';
+          detail.style.pointerEvents = 'none';
+          labRing.setAttribute('stroke', 'rgba(29,107,107,0.10)');
+          return;
+        }
+        current = n;
+        nodes[n].classList.add('active');
+        spokes[n].classList.add('active');
+        var step = String(n + 1);
+        detailLabel.textContent = STEPS[step].label;
+        detailText.textContent  = STEPS[step].text;
+        detail.style.opacity = '1';
+        detail.style.pointerEvents = 'auto';
+        labRing.setAttribute('stroke', 'rgba(232,96,76,0.28)');
+      }
+
+      nodes.forEach(function(node, i) {
+        node.addEventListener('mouseenter', function() { activate(i); });
+        node.addEventListener('click', function() { activate(i); });
+        node.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(i); }
+        });
+      });
+
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('#decision-radial') && !e.target.closest('#radial-detail')) {
+          if (current !== null) activate(current);
+        }
+      });
+    })();
+  </script>
+
+  <!-- Accordion -->
+  <script>
+    (function() {
+      var items = document.querySelectorAll('.acc-item');
+      items.forEach(function(item) {
+        var btn  = item.querySelector('.acc-btn');
+        var body = item.querySelector('.acc-body');
+        btn.addEventListener('click', function() {
+          var isOpen = item.classList.contains('open');
+          items.forEach(function(i) {
+            i.classList.remove('open');
+            i.querySelector('.acc-btn').setAttribute('aria-expanded', 'false');
+            i.querySelector('.acc-body').hidden = true;
+          });
+          if (!isOpen) {
+            item.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+            body.hidden = false;
+          }
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>

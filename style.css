@@ -1412,3 +1412,327 @@ html.dark .hero-labyrinth {
     height: 200px;
   }
 }
+
+
+/* ------------------------------------------------------------
+   22. Practices page
+   ------------------------------------------------------------ */
+
+/* Section divider */
+.section-rule {
+  border: none;
+  border-top: 1px solid rgba(29,107,107,0.18);
+  margin: 0;
+}
+
+/* Practice cards */
+.practice-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
+  margin-top: 0.5rem;
+}
+
+.practice-card {
+  background-color: var(--riso-surface);
+  border-left: 3px solid var(--riso-teal);
+  padding: 1.4rem 1.6rem;
+}
+
+.practice-card-inner {
+  max-width: 62ch;
+}
+
+.practice-label {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--riso-coral);
+  margin-bottom: 0.3rem;
+}
+
+.practice-title {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--riso-ink);
+  margin-bottom: 0.65rem;
+}
+
+.practice-body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.95rem;
+  color: var(--riso-ink-mid);
+  line-height: 1.75;
+  max-width: 62ch;
+  margin-bottom: 0.75rem;
+}
+
+.practice-body:last-child { margin-bottom: 0; }
+
+.practice-body a {
+  color: var(--riso-teal);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.practice-body a:hover { color: var(--riso-coral); }
+
+/* Membership table */
+.membership-table-wrap {
+  overflow-x: auto;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.membership-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.85rem;
+  color: var(--riso-ink-mid);
+}
+
+.membership-table th {
+  font-family: 'Lora', Georgia, serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: lowercase;
+  letter-spacing: 0.03em;
+  color: var(--riso-teal);
+  padding: 0.5rem 0.75rem;
+  border-bottom: 2px solid var(--riso-teal);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.membership-table td {
+  padding: 0.45rem 0.75rem;
+  border-bottom: 1px solid rgba(29,107,107,0.12);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.membership-table tr:last-child td { border-bottom: none; }
+
+.membership-table .tier-name {
+  font-weight: 600;
+  color: var(--riso-ink);
+  white-space: nowrap;
+}
+
+.membership-table .check {
+  color: var(--riso-teal);
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Radial decision diagram */
+.radial-wrap   { display: block; }
+.accordion-wrap { display: none; }
+
+/* Override SVG presentation attributes so dark mode takes effect */
+.node-circle { fill: var(--riso-surface); }
+.lab-bg      { fill: var(--riso-surface); }
+
+.node-num {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 700;
+  font-size: 1rem;
+  fill: rgba(29,107,107,0.55);
+  transition: fill 0.18s;
+  pointer-events: none;
+  user-select: none;
+}
+
+.node-label {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.58rem;
+  font-weight: 600;
+  fill: rgba(85,85,85,0.6);
+  transition: fill 0.18s;
+  pointer-events: none;
+  user-select: none;
+}
+
+.step-node { cursor: pointer; }
+
+.step-node:focus-visible .node-circle {
+  stroke: var(--riso-yellow);
+  stroke-width: 2.5;
+  stroke-dasharray: none;
+}
+
+.step-node.active .node-halo   { stroke-width: 2 !important; }
+.step-node.active .node-circle {
+  fill:            var(--riso-teal) !important;
+  stroke:          var(--riso-teal) !important;
+  stroke-dasharray: none          !important;
+}
+.step-node.active .node-num    { fill: var(--riso-yellow)        !important; }
+.step-node.active .node-label  { fill: rgba(255,255,255,0.88)    !important; }
+
+.spoke.active {
+  stroke:          var(--riso-teal) !important;
+  stroke-width:    1.5              !important;
+  stroke-dasharray: none           !important;
+}
+
+/* Radial detail card (revealed on hover/click) */
+#radial-detail {
+  min-height: 5rem;
+  max-width: 400px;
+  margin: 0.5rem auto 0;
+  padding: 1rem 1.2rem;
+  background: var(--riso-surface);
+  border-left: 3px solid var(--riso-teal);
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  pointer-events: none;
+}
+
+#radial-detail-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--riso-coral);
+  margin-bottom: 0.4rem;
+}
+
+#radial-detail-text {
+  font-size: 0.88rem;
+  color: var(--riso-ink-mid);
+  line-height: 1.72;
+  margin: 0;
+}
+
+/* GEFNSETT note */
+.gefnsett-note {
+  background: var(--riso-surface);
+  border-left: 3px solid var(--riso-coral);
+  padding: 0.9rem 1.1rem;
+  margin-top: 2rem;
+}
+
+.gefnsett-note p {
+  font-size: 0.88rem;
+  color: var(--riso-ink-mid);
+  line-height: 1.72;
+  max-width: 62ch;
+  margin: 0;
+}
+
+/* Accordion (used in guiding principles, decision-making, and authorship) */
+.acc-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.content-section .acc-list {
+  margin-top: 1.25rem;
+}
+
+.acc-item {
+  border-left: 3px solid rgba(29,107,107,0.18);
+  border-bottom: 1px solid rgba(29,107,107,0.12);
+  transition: border-color 0.15s;
+}
+
+.acc-item.open {
+  border-left-color: var(--riso-teal);
+  background: var(--riso-surface);
+}
+
+.acc-btn {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  text-align: left;
+  flex-wrap: wrap;
+  color: inherit;
+}
+
+.acc-num {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--riso-teal);
+  min-width: 1rem;
+  opacity: 0.7;
+  flex-shrink: 0;
+}
+
+.acc-label {
+  font-family: 'Lora', Georgia, serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--riso-ink);
+  flex-shrink: 0;
+}
+
+.acc-short {
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 0.83rem;
+  color: var(--riso-ink-mid);
+  font-style: italic;
+  flex: 1;
+}
+
+.acc-chevron {
+  font-size: 0.7rem;
+  color: var(--riso-teal);
+  opacity: 0.6;
+  margin-left: auto;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+
+.acc-item.open .acc-chevron { transform: rotate(180deg); }
+
+.acc-body {
+  padding: 0 1rem 0.9rem 2.7rem;
+}
+
+.acc-body p {
+  font-size: 0.88rem;
+  color: var(--riso-ink-mid);
+  line-height: 1.72;
+  margin: 0;
+  border-top: 1px solid rgba(29,107,107,0.12);
+  padding-top: 0.6rem;
+  max-width: 100%;
+}
+
+.acc-body p + p {
+  margin-top: 0.6rem;
+  border-top: none;
+  padding-top: 0;
+}
+
+/* Principles / authorship accordion — no step number, tighter indent */
+.acc-principles .acc-body {
+  padding-left: 1rem;
+}
+
+.acc-principles .acc-label {
+  color: var(--riso-teal);
+}
+
+/* Swap radial ↔ accordion on small screens */
+@media (max-width: 500px) {
+  .radial-wrap    { display: none; }
+  .accordion-wrap { display: block; }
+}
+
+@media (max-width: 640px) {
+  .practice-card { padding: 1rem 1.1rem; }
+}
