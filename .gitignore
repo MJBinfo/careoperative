@@ -1,0 +1,6 @@
+# Claude Code harness state (worktrees, session scratch data)
+.claude/
+
+# Jekyll build output (GitHub Pages builds this server-side; never commit it)
+_site/
+.jekyll-cache/

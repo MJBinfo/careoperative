@@ -1,0 +1,12 @@
+<!-- Shared block, rendered from _includes/theme-init.html.
+     Edit it there and every page picks the change up. -->
+<script>
+  (function () {
+    var saved = localStorage.getItem('carop-dark');
+    var html = document.documentElement;
+    if (saved === 'true') html.classList.add('dark');
+    else if (saved === 'false') html.classList.add('light');
+    else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) html.classList.add('dark');
+    else html.classList.add('light');
+  })();
+</script>
