@@ -134,24 +134,6 @@ a {
 /* ------------------------------------------------------------
    2. Dark mode — automatic via prefers-color-scheme
    ------------------------------------------------------------ */
-/* ── GLOBAL VARIABLES (ALL MODES SHARE THESE) ── */
-:root {
-  /* RISO INKS - Constant across modes */
-  --riso-coral:   #e8604c;
-  --riso-teal:    #1d6b6b; 
-  --riso-yellow:  #f5c842;  /* DO NOT CHANGE IN DARK MODE */
-  --riso-plum:    #6b3a6b;  /* DO NOT CHANGE IN DARK MODE */
-  
-  /* LIGHT MODE BASES */
-  --nav-bg:       #1d6b6b;
-  --riso-bg:      #faf3e8;
-  --riso-surface: #f0ebe0;
-  --riso-ink:     #1a1a1a;
-  --riso-ink-mid: #444;
-  --chip-bg:      var(--riso-yellow);
-  --chip-text:    var(--riso-teal);
-  --forest-color: #1d6b6b;
-}
 
 /* ── DARK MODE OVERRIDES — system preference ── */
 @media (prefers-color-scheme: dark) {
@@ -390,8 +372,7 @@ header {
   top: 0;
   z-index: 100;
   width: 100%;
-  background-color: #1d6b6b;
-  background-color: var(--nav-bg, #1d6b6b);
+  background-color: var(--nav-bg);
 }
 
 .nav-inner {
@@ -530,8 +511,7 @@ html.light .icon-moon { display: none   !important; }
 .nav-panel {
   display: none;
   flex-direction: column;
-  background-color: #1d6b6b;
-  background-color: var(--nav-bg, #1d6b6b);
+  background-color: var(--nav-bg);
   border-top: 2px solid rgba(255,255,255,0.15);
 }
 
@@ -1301,8 +1281,7 @@ html.dark .hero-labyrinth {
 
 .site-footer {
   width: 100%;
-  background-color: #1d6b6b;
-  background-color: var(--nav-bg, #1d6b6b);
+  background-color: var(--nav-bg);
   padding: 3rem 0;
   text-align: center;
 }
