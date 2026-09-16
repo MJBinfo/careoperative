@@ -8,21 +8,98 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script>(function(){let s=localStorage.getItem('carop-dark'),d=document.documentElement;if(s==='true')d.classList.add('dark');else if(s==='false')d.classList.add('light');else if(window.matchMedia('(prefers-color-scheme: dark)').matches)d.classList.add('dark');else d.classList.add('light')})();</script>
+  <!-- Shared across all pages. Keep index.html, about.html, careoperative.html,
+       work.html, practices.html and sites.html in sync when editing this block. -->
+  <script>
+    (function () {
+      var saved = localStorage.getItem('carop-dark');
+      var html = document.documentElement;
+      if (saved === 'true') html.classList.add('dark');
+      else if (saved === 'false') html.classList.add('light');
+      else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) html.classList.add('dark');
+      else html.classList.add('light');
+    })();
+  </script>
 </head>
 <body>
-<header><nav id="site-nav"><div class="nav-inner"><a href="index.html" aria-label="Home — The Careoperative" class="nav-home"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 64" width="46" height="36" stroke-linecap="round" stroke-linejoin="round" style="color:var(--riso-yellow)" aria-hidden="true"><line x1="1" y1="40" x2="81" y2="40" stroke="currentColor" stroke-width="1.2" fill="none"/><g fill="currentColor" stroke="currentColor"><line x1="19" y1="40" x2="19" y2="35" stroke-width="0.8" fill="none"/><path d="M19,37 C17,36 15,36 14,37" stroke-width="0.7" fill="none"/><path d="M19,37 C21,36 23,36 24,37" stroke-width="0.7" fill="none"/><path d="M5,40 C4,39 3,38 3,37 C3,36 4,36 5,37 C5,36 6,36 6,37 C7,38 6,39 5,40 Z" fill-opacity="0.4" stroke-width="0.7"/></g><g fill="currentColor" stroke="currentColor"><line x1="9" y1="40" x2="8" y2="26" stroke-width="1.0" fill="none"/><ellipse cx="9" cy="20" rx="5.5" ry="7.5" fill-opacity="0.5" stroke-width="0.9"/><ellipse cx="14" cy="17" rx="5" ry="6.5" fill-opacity="0.4" stroke-width="0.85"/></g><g fill="currentColor" stroke="currentColor"><path d="M26,40 C25,37 25,33 26,28" stroke-width="2.0" fill="none"/><path d="M26,28 C24,25 17,23 13,24 C11,22 12,19 15,19 C13,17 15,15 18,16 C17,13 20,12 22,14 C21,11 24,10 26,12 C26,9 29,9 30,11 C32,9 35,10 34,13 C36,12 38,14 36,16 C39,16 40,19 38,20 C40,22 40,25 37,26 C34,25 29,25 26,28 Z" fill-opacity="0.45" stroke-width="1.0"/></g><g fill="currentColor" stroke="currentColor"><path d="M46,40 C46,37 45,32 46,25" stroke-width="2.2" fill="none"/><path d="M46,2 C43,1 40,2 38,4 C35,3 32,6 31,10 C30,13 31,17 33,19 C32,20 32,22 34,22 C37,23 41,23 46,22 C51,23 55,23 58,22 C60,22 60,20 59,19 C61,17 62,13 61,10 C60,6 57,3 54,4 C52,2 49,1 46,2 Z" fill-opacity="0.5" stroke-width="1.0"/></g><g fill="currentColor" stroke="currentColor"><line x1="63" y1="40" x2="63" y2="28" stroke-width="0.95" fill="none"/><circle cx="63" cy="24" r="6" fill-opacity="0.45" stroke-width="0.85"/><circle cx="57" cy="27" r="5.5" fill-opacity="0.35" stroke-width="0.85"/></g><g fill="currentColor" stroke="currentColor"><path d="M75,40 C75,37 74,33 75,29" stroke-width="1.5" fill="none"/><path d="M75,29 C72,26 69,25 68,27 C66,25 67,22 69,22 C68,20 70,18 72,19 C71,17 74,16 75,18 C76,16 79,17 78,19 C80,19 81,22 79,23 C81,24 81,27 78,28 C77,27 76,28 75,29 Z" fill-opacity="0.45" stroke-width="1.0"/></g>
-</svg>
-</a>
-<div class="nav-page-links">
-  <a href="index.html" class="nav-page-link">Home</a>
-  <a href="about.html" class="nav-page-link">About</a>
-  <a href="careoperative.html" class="nav-page-link active">Our Careoperative</a>
-  <a href="work.html" class="nav-page-link">Our Work</a>
-  <a href="practices.html" class="nav-page-link">Our Practices</a>
-  <a href="sites.html" class="nav-page-link">Sites of Care</a>
-</div>
-  <button id="dark-toggle" class="nav-icon-btn" aria-label="Switch to dark mode"><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg></button><button id="nav-hamburger" class="nav-icon-btn nav-hamburger" aria-controls="nav-panel" aria-expanded="false" aria-label="Open navigation menu"><span></span><span></span><span></span></button></div><div id="nav-panel" class="nav-panel"><a href="index.html" class="nav-link">Home</a><a href="about.html" class="nav-link">About</a><a href="careoperative.html" class="nav-link active">Our Careoperative</a><a href="work.html" class="nav-link">Our Work</a><a href="practices.html" class="nav-link">Our Practices</a><a href="sites.html" class="nav-link">Sites of Care</a></div></nav></header>
+<!-- Shared across all pages. Keep index.html, about.html, careoperative.html,
+     work.html, practices.html and sites.html in sync when editing this block. -->
+<header>
+  <nav aria-label="Main navigation" id="site-nav">
+    <div class="nav-inner">
+      <a href="index.html" aria-label="Home — The Careoperative" class="nav-home">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82 64" width="46" height="36" stroke-linecap="round" stroke-linejoin="round" style="color:var(--riso-yellow);" aria-hidden="true">
+        <line x1="1" y1="40" x2="81" y2="40" stroke="currentColor" stroke-width="1.2" fill="none"/>
+        <g fill="currentColor" stroke="currentColor">
+          <line x1="19" y1="40" x2="19" y2="35" stroke-width="0.8" fill="none"/>
+          <path d="M19,37 C17,36 15,36 14,37" stroke-width="0.7" fill="none"/>
+          <path d="M19,37 C21,36 23,36 24,37" stroke-width="0.7" fill="none"/>
+          <path d="M5,40 C4,39 3,38 3,37 C3,36 4,36 5,37 C5,36 6,36 6,37 C7,38 6,39 5,40 Z" fill-opacity="0.4" stroke-width="0.7"/>
+        </g>
+        <g fill="currentColor" stroke="currentColor">
+          <line x1="9" y1="40" x2="8" y2="26" stroke-width="1.0" fill="none"/>
+          <ellipse cx="9" cy="20" rx="5.5" ry="7.5" fill-opacity="0.5" stroke-width="0.9"/>
+          <ellipse cx="14" cy="17" rx="5" ry="6.5" fill-opacity="0.4" stroke-width="0.85"/>
+        </g>
+        <g fill="currentColor" stroke="currentColor">
+          <path d="M26,40 C25,37 25,33 26,28" stroke-width="2.0" fill="none"/>
+          <path d="M26,28 C24,25 17,23 13,24 C11,22 12,19 15,19 C13,17 15,15 18,16 C17,13 20,12 22,14 C21,11 24,10 26,12 C26,9 29,9 30,11 C32,9 35,10 34,13 C36,12 38,14 36,16 C39,16 40,19 38,20 C40,22 40,25 37,26 C34,25 29,25 26,28 Z" fill-opacity="0.45" stroke-width="1.0"/>
+        </g>
+        <g fill="currentColor" stroke="currentColor">
+          <path d="M46,40 C46,37 45,32 46,25" stroke-width="2.2" fill="none"/>
+          <path d="M46,2 C43,1 40,2 38,4 C35,3 32,6 31,10 C30,13 31,17 33,19 C32,20 32,22 34,22 C37,23 41,23 46,22 C51,23 55,23 58,22 C60,22 60,20 59,19 C61,17 62,13 61,10 C60,6 57,3 54,4 C52,2 49,1 46,2 Z" fill-opacity="0.5" stroke-width="1.0"/>
+        </g>
+        <g fill="currentColor" stroke="currentColor">
+          <line x1="63" y1="40" x2="63" y2="28" stroke-width="0.95" fill="none"/>
+          <circle cx="63" cy="24" r="6" fill-opacity="0.45" stroke-width="0.85"/>
+          <circle cx="57" cy="27" r="5.5" fill-opacity="0.35" stroke-width="0.85"/>
+        </g>
+        <g fill="currentColor" stroke="currentColor">
+          <path d="M75,40 C75,37 74,33 75,29" stroke-width="1.5" fill="none"/>
+          <path d="M75,29 C72,26 69,25 68,27 C66,25 67,22 69,22 C68,20 70,18 72,19 C71,17 74,16 75,18 C76,16 79,17 78,19 C80,19 81,22 79,23 C81,24 81,27 78,28 C77,27 76,28 75,29 Z" fill-opacity="0.45" stroke-width="1.0"/>
+        </g>
+      </svg>
+      </a>
+      <nav class="nav-page-links" aria-label="Page links">
+        <a href="index.html" class="nav-page-link">Home</a>
+        <a href="about.html" class="nav-page-link">About</a>
+        <a href="careoperative.html" class="nav-page-link active" aria-current="page">Our Careoperative</a>
+        <a href="work.html" class="nav-page-link">Our Work</a>
+        <a href="practices.html" class="nav-page-link">Our Practices</a>
+        <a href="sites.html" class="nav-page-link">Sites of Care</a>
+      </nav>
+      <button id="dark-toggle" class="nav-icon-btn" aria-label="Switch to dark mode">
+        <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+             width="20" height="20" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1"  x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22"   x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1"  y1="12" x2="3"  y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22"  y1="19.78" x2="5.64"  y2="18.36"/>
+          <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+        </svg>
+        <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+             width="20" height="20" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      </button>
+      <button id="nav-hamburger" class="nav-icon-btn nav-hamburger" aria-controls="nav-panel" aria-expanded="false" aria-label="Open navigation menu"><span></span><span></span><span></span></button>
+    </div>
+    <div id="nav-panel" class="nav-panel" role="dialog" aria-label="Site navigation">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="careoperative.html" class="nav-link active" aria-current="page">Our Careoperative</a>
+      <a href="work.html" class="nav-link">Our Work</a>
+      <a href="practices.html" class="nav-link">Our Practices</a>
+      <a href="sites.html" class="nav-link">Sites of Care</a>
+    </div>
+  </nav>
+</header>
 <div class="clip-wrap"><main><svg class="page-labyrinth" viewBox="-855 -1005 1610 1460" aria-hidden="true"><path stroke-width="25" stroke-linejoin="round" stroke-linecap="round" stroke="currentColor" fill="none" d="M200,200 C420.914,200,600,20.9138,600-200 C600-558.985,308.985-850-50-850 C-408.985-850-700-558.985-700-200 C-700,76.1423-476.142,300-200,300 C-144.772,300-100,255.228-100,200V100H-200 C-365.685,100-500-34.3147-500-200 C-500-448.528-298.528-650-50-650 C198.528-650,400-448.528,400-200 C400-89.5432,310.457,0,200,0H-200 C-310.457,0-400-89.5432-400-200 C-400-393.3-243.3-550-50-550 C143.3-550,300-393.3,300-200 C300-144.772,255.228-100,200-100H100V-200 C100-282.843,32.8425-350-50-350 C-132.843-350-200-282.843-200-200 M-200,200 C-420.914,200-600,20.9138-600-200 C-600-503.757-353.757-750-50-750 C253.757-750,500-503.757,500-200 C500-34.3147,365.685,100,200,100H100V200 C100,255.228,144.772,300,200,300 C476.142,300,700,76.1423,700-200 C700-614.213,364.213-950-50-950 C-464.213-950-800-614.213-800-200 C-800,131.371-531.371,400-200,400 C-89.5432,400,0,310.457,0,200V-200 C0-227.614-22.386-250-50-250 C-77.614-250-100-227.614-100-200V-100H-200 C-255.228-100-300-144.772-300-200 C-300-338.071-188.071-450-50-450 C88.071-450,200-338.071,200-200"/></svg><section class="page-hero"><div class="container"><h1>Our Careoperative</h1><p class="lead">We are a group of researchers who found in each other something rarer than a network: a genuine community of practice, accountable to shared values and to one another. Select any portrait to learn more.</p></div></section><section class="content-section"><div class="container"><h2>How we are organised</h2><p>The Careoperative has always understood participation as something that ebbs and flows. Life changes, research pressures shift, and the energy any one of us can bring to collective work moves with the seasons of a career. Rather than treating this as a problem to be managed, we built the collective to accommodate it. Members are either <em>active</em> — regularly engaged in meetings, writing projects, and shared work — or <em>sleeping</em>, stepping back without stepping out.</p><p>Sleeping membership is not an ending. It preserves belonging, keeps doors open, and honours the truth that the conditions for full participation are not always within a person's control. When circumstances change, members move back into active engagement. The distinction is practical, not hierarchical: it reflects where someone is at a given moment, not the value of what they have contributed.</p></div></section><section class="content-section"><div class="container-wide"><h2>Active members</h2>
 
   <!-- START OF INSERTED CODE -->
@@ -530,14 +607,16 @@
 </section>
 </main>
 
-  <footer class="site-footer">
-    <div class="footer-inner">
-      <p class="footer-invitation">Open to connecting with fellow travelers.</p>
-      <div class="footer-bottom-row">
-        <p class="footer-copy">&copy; the careoperative</p>
-      </div>
+<!-- Shared across all pages. Keep index.html, about.html, careoperative.html,
+     work.html, practices.html and sites.html in sync when editing this block. -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-inner">
+    <p class="footer-invitation">Open to connecting with fellow travelers.</p>
+    <div class="footer-bottom-row">
+      <p class="footer-copy">&copy; the careoperative</p>
     </div>
-  </footer>
+  </div>
+</footer>
 </div>
   <script>
 (function(){
@@ -596,10 +675,11 @@
 </script>
 <!-- END OF INSERTED CODE -->
 
-  <script>
-  /* Dark mode toggle */
-  (function() {
-    var btn  = document.getElementById('dark-toggle');
+<!-- Shared across all pages. Keep index.html, about.html, careoperative.html,
+     work.html, practices.html and sites.html in sync when editing this block. -->
+<script>
+  (function () {
+    var btn = document.getElementById('dark-toggle');
     var html = document.documentElement;
     function isDark() {
       return html.classList.contains('dark') ||
@@ -607,68 +687,34 @@
          window.matchMedia('(prefers-color-scheme: dark)').matches);
     }
     function applyDark(dark) {
-      html.classList.toggle('dark',  dark);
+      html.classList.toggle('dark', dark);
       html.classList.toggle('light', !dark);
       localStorage.setItem('carop-dark', dark);
       btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
     }
-    btn.addEventListener('click', function() { applyDark(!isDark()); });
-    btn.setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
-  })();
-
-  /* Nav hamburger */
-  (function() {
-    let h = document.getElementById('nav-hamburger');
-    let p = document.getElementById('nav-panel');
-    let s = document.getElementById('site-nav');
-    function c() {
-      p && p.classList.remove('nav-open');
-      h && h.setAttribute('aria-expanded', 'false');
-    }
-    if (h && p) {
-      h.addEventListener('click', e => {
-        e.stopPropagation();
-        let o = p.classList.toggle('nav-open');
-        h.setAttribute('aria-expanded', o);
-      });
-      p.querySelectorAll('a').forEach(l => l.addEventListener('click', c));
-      document.addEventListener('click', c);
-      s && s.addEventListener('mouseleave', c);
+    if (btn) {
+      btn.addEventListener('click', function () { applyDark(!isDark()); });
+      btn.setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
     }
   })();
-
-  /* Member grid */
-  (function() {
-    const grid = document.getElementById('member-grid');
-    const cards = Array.from(grid.querySelectorAll('.member-card'));
-
-    function closeAll() {
-      cards.forEach(c => {
-        c.classList.remove('is-open');
-        c.setAttribute('aria-expanded', 'false');
-      });
+  (function () {
+    var hamburger = document.getElementById('nav-hamburger');
+    var navPanel = document.getElementById('nav-panel');
+    var siteNav = document.getElementById('site-nav');
+    function closeNav() {
+      if (navPanel) navPanel.classList.remove('nav-open');
+      if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
     }
-
-    cards.forEach(card => {
-      card.addEventListener('click', e => {
+    if (hamburger && navPanel) {
+      hamburger.addEventListener('click', function (e) {
         e.stopPropagation();
-        const isOpen = card.classList.contains('is-open');
-        closeAll();
-        if (!isOpen) {
-          card.classList.add('is-open');
-          card.setAttribute('aria-expanded', 'true');
-        }
+        var open = navPanel.classList.toggle('nav-open');
+        hamburger.setAttribute('aria-expanded', open);
       });
-      card.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          card.click();
-        }
-        if (e.key === 'Escape') closeAll();
-      });
-    });
-
-    document.addEventListener('click', closeAll);
+      navPanel.querySelectorAll('a').forEach(function (l) { l.addEventListener('click', closeNav); });
+      document.addEventListener('click', closeNav);
+      if (siteNav) siteNav.addEventListener('mouseleave', closeNav);
+    }
   })();
 </script>
 </body>
