@@ -1,0 +1,42 @@
+<!-- Shared block, rendered from _includes/site-scripts.html.
+     Edit it there and every page picks the change up. -->
+<script>
+  (function () {
+    var btn = document.getElementById('dark-toggle');
+    var html = document.documentElement;
+    function isDark() {
+      return html.classList.contains('dark') ||
+        (!html.classList.contains('light') &&
+         window.matchMedia('(prefers-color-scheme: dark)').matches);
+    }
+    function applyDark(dark) {
+      html.classList.toggle('dark', dark);
+      html.classList.toggle('light', !dark);
+      localStorage.setItem('carop-dark', dark);
+      btn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+    if (btn) {
+      btn.addEventListener('click', function () { applyDark(!isDark()); });
+      btn.setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
+    }
+  })();
+  (function () {
+    var hamburger = document.getElementById('nav-hamburger');
+    var navPanel = document.getElementById('nav-panel');
+    var siteNav = document.getElementById('site-nav');
+    function closeNav() {
+      if (navPanel) navPanel.classList.remove('nav-open');
+      if (hamburger) hamburger.setAttribute('aria-expanded', 'false');
+    }
+    if (hamburger && navPanel) {
+      hamburger.addEventListener('click', function (e) {
+        e.stopPropagation();
+        var open = navPanel.classList.toggle('nav-open');
+        hamburger.setAttribute('aria-expanded', open);
+      });
+      navPanel.querySelectorAll('a').forEach(function (l) { l.addEventListener('click', closeNav); });
+      document.addEventListener('click', closeNav);
+      if (siteNav) siteNav.addEventListener('mouseleave', closeNav);
+    }
+  })();
+</script>
